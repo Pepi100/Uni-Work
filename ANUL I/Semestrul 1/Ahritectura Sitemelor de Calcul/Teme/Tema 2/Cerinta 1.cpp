@@ -12,7 +12,7 @@ int ultima[33];
 
 void afisare(){
     for(int i=0;i<3*n;i++)
-        cout<<rezultat[i];
+        cout<<rezultat[i]<<" ";
     cout<<'\n';
     exit(0);
 
@@ -27,6 +27,8 @@ void btk(int k){
                 int aux = vInitial[k];
 
 
+                aparitii[aux]--;
+
                 if( k-ultima[aux] > m && aparitii[aux] < 3){
                     aparitii[aux]++;
                     int retinut = ultima[aux];
@@ -36,6 +38,8 @@ void btk(int k){
                     aparitii[aux]--;
                     ultima[aux] = retinut;
                 }
+
+                aparitii[aux]++;
 
         }else{ //daca nu, ii dam un for
             for(int aux = 1; aux <= n; aux++){
@@ -70,6 +74,7 @@ int main()
     for(int i=0;i<3*n;i++){
         cin>>vInitial[i];
         ultima[i]=-30;
+        aparitii[vInitial[i]]++;
     }
 
 
@@ -79,3 +84,4 @@ int main()
 
     return 0;
 }
+

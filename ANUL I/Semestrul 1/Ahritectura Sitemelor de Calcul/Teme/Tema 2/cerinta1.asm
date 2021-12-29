@@ -98,6 +98,14 @@ btk:
 	
 	are_val:
 	
+		//aparitii[aux]--
+		
+		lea aparitii, %esi
+		movl aux, %ecx
+		movl (%esi, %ecx, 4), %eax
+		decl %eax
+		movl %eax, (%esi, %ecx, 4)
+	
 		
 		
 		lea ultima, %esi
@@ -111,7 +119,7 @@ btk:
 		
 		cmp m, %eax
 		ja are_distanta
-		jmp inchide
+		jmp inchide2
 		
 		are_distanta:
 		
@@ -126,7 +134,7 @@ btk:
 			cmp $3, %eax
 			jb e_bun
 			
-			jmp inchide
+			jmp inchide2
 			
 			e_bun:
 			
@@ -178,7 +186,7 @@ btk:
 				movl retinut, %eax
 				movl %eax, (%esi, %ecx, 4)
 				
-				jmp inchide
+				jmp inchide2
 				
 				
 				
@@ -197,8 +205,7 @@ btk:
 		
 		et_for:
 			
-			
-
+		
 		
 			movl aux, %eax
 			cmp n, %eax
@@ -287,6 +294,13 @@ btk:
 			
 			jmp et_for
 	
+	inchide2:
+		lea aparitii, %esi
+		movl aux, %ecx
+		movl (%esi, %ecx, 4), %eax
+		incl %eax
+		movl %eax, (%esi, %ecx, 4)
+		jmp inchide
 	
 	
 	jmp_afisare:
@@ -369,7 +383,13 @@ citire:
 		
 		popl %ecx
 		
+		lea vInitial, %esi
 		movl %eax, (%esi, %ecx, 4)
+		
+		lea aparitii, %edi
+		movl (%edi, %eax, 4), %ebx
+		incl %ebx
+		movl  %ebx, (%edi, %eax, 4)
 		
 		incl %ecx
 		jmp for_citire
@@ -393,7 +413,7 @@ lea ultima, %esi
 xorl %ecx, %ecx
 
 for_ultima:
-	cmp $30, %ecx
+	cmp $31, %ecx
 	je continuare_for_ultima
 	
 	movl $-30, (%esi, %ecx, 4)
