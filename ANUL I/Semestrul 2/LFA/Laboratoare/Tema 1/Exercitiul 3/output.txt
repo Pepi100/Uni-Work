@@ -1,6 +1,6 @@
 NU
 NU
 NU
-DA
-DA
-DA
+DA 5 8 2 4 2 4 2 4 2 6 
+DA 5 8 2 4 2 
+DA 5 8 2 4 2 
