@@ -1,6 +1,8 @@
 # Tehnici Web
 
  :floppy_disk: [Drive-ul cursului](https://drive.google.com/drive/u/0/folders/1h059-AbXRFfmXbPUemzj2OrOHeWU3w_E) :floppy_disk:
+
+ :woman:[Site-ul profei](http://irinaciocan.ro/tehnici_web/index.php) :woman:
  
  :printer:[Pagina Moodle](https://moodle.unibuc.ro/course/view.php?id=6733):printer:
  
