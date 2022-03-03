@@ -4,7 +4,7 @@
 
 ### As of 2021, I am currently enrolled in a 3-year program at the University of Bucharest, studying Computer Science.
 
-First year:
+ I. First year:
 
 	* First semester:
 		
@@ -17,13 +17,13 @@ First year:
 
 		*
 
-Second year:
+II. Second year:
 
 	* First semester:
 		
 	* Second semester:
 
-Third year:
+II. Third year:
 
 	* First semester:
 		
