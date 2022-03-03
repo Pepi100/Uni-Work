@@ -6,12 +6,12 @@
 
  I. First year:
 
-	* First semester:
+    * First semester:
 		
 		*
 
 		*
-	* Second semester:
+    * Second semester:
 		
 		*
 
@@ -19,15 +19,15 @@
 
 II. Second year:
 
-	* First semester:
+    * First semester:
 		
-	* Second semester:
+    * Second semester:
 
-II. Third year:
+III. Third year:
 
-	* First semester:
+     * First semester:
 		
-	* Second semester:	
+     * Second semester:	
 
 
 
