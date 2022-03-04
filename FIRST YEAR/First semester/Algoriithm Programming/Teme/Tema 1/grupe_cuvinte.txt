@@ -1,0 +1,12 @@
+Literele adnst: tastand, stand
+Literele imntu: munti, minut, numit
+Literele agln: langa
+Literele abcn: cabana, banca, banc, bacan
+Literele acmu: acum
+Literele psu: spus, supus
+Literele is: si
+Literele ep: pepe, pe
+Literele in: in
+Literele nu: un
+Literele o: o
+Literele a: a
