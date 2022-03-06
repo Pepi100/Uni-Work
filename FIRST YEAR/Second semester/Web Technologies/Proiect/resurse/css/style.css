@@ -10,6 +10,9 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
     --roz: #FF0054;
     --portocaliu: #FF5400;
     --galben: rgb(255, 221, 128);
+    --width-buton: 5em;
+    --width-buton-produse: 10em;
+    --height-buton:2.5em;
     margin: 0;
     padding: 0;
 
@@ -72,32 +75,84 @@ main div{
 
 
 
-
-header nav{
-    width:100%;
-    position:fixed;
-background: var(--portocaliu);
-height:3rem;
-top:0px;
-left:0px;
-font-family:Arial, Helvetica, sans-serif;
-
+body{
+    padding: 0;
+    margin: 0;
 }
 
-header nav ul{
-
-}
-
-header nav ul li{
-    list-style: none;
-    display: inline-block;
-
-}
-
-header nav ul li a{
-    text-decoration: none;
-    padding: 0 20px;
+header>nav{
+    background-color: var(--portocaliu);
     
+}
+
+ul.meniu{
+    display: flex;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+ul.submeniu{
+    display: none;
+}
+
+
+ul.meniu li{
+    width: var(--width-buton);
+    height: var(--height-buton);
+    list-style-type: none;
+    background-color: var(--portocaliu);
+}
+
+ul.meniu li ul li{
+    width: var(--width-buton-produse);
+    height: var(--height-buton);
+
+}
+
+ul.meniu li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    text-align: center;
+    line-height: var(--height-buton);
+    color:#390099;
+}
+
+
+ul.meniu>li.meniu-produse:hover{
+    width: var(--width-buton-produse);
+    height: var(--height-buton);
+    animation: expansiune_produse;
+    animation-duration: 0.5s;
+    transform-origin: left;
+
+}
+
+
+ul.meniu>li:hover>ul.submeniu{
+    width: var(--width-buton-produse);
+    height: var(--height-buton);
+    display: block;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    animation: aparitie_submeniu;
+    animation-duration: 0.8s;
+    transform-origin: top;
+
+}
+
+@keyframes expansiune_produse {
+    0%{transform: scaleX(0.5);}
+    100%{transform: scaleX(1);}    
+}
+
+@keyframes aparitie_submeniu {
+    0%{transform: scaleY(0);}
+    100%{transform: scaleY(1);}    
 }
 
 
