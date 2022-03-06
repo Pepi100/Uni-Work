@@ -20,14 +20,37 @@
     <meta name="msapplication-config" content="./resurse/ico/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
+    <!-- CSS -->
+    <link href="./resurse/css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="resurse/css/style_700.css" type="text/css" media="screen and (max-width: 700px)" />
+	<link rel="stylesheet" href="resurse/css/style_400.css" type="text/css" media="screen and (max-width: 400px)" />
+
 </head>
 <body>
+
+
     <header>
         <h1>Magazinul pasionaților de audio!</h1>
 
         <nav>
-            <ul>
-                <li><div>Acasa</div>
+            <ul class = "meniu">
+                <li><a href = "index.html">Acasa</a></li>
+
+                <li class="meniu-produse">
+                    <a href="#">Produse</a>
+                    <ul class = "submeniu">
+                        <li><a href="#">Casti</a></li>
+                        <li><a href="#">Microfoane</a></li>
+                        <li><a href="#">Instrumente Studio</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Promotii</a></li>
+
+
+
+
+                <!-- <li><div>Acasa</div>
                     <ul>
                         <li><a href="#despre_noi">Despre noi</a></li>
                         <li><a href="#producatori">Producatori</a></li>
@@ -69,28 +92,79 @@
                         <li><a href="monitoare_studio.html">Producatori</a></li>
                         <li><a href="casti.html">Produse populare</a></li>
                     </ul>
-                </li>
+                </li> -->
             </ul>
         </nav>
  
 
     </header>
-    <main>
-        <section id="despre_noi">
-            <h2>Cine suntem noi?</h2>
-            <figure>
-                <picture>
-                <source srcset="./resurse/imagini/Firesoundicon.png" media="(max-width:600px)">
-                <source srcset="./resurse/imagini/Firesoundlogomic.png" media="(max-width:1000px)">
-                <img src="./resurse/imagini/Firesoundlogo.png" alt="Logo-ul Fyre">
 
+    <main id="gr">
+
+        <div id="poster">
+            <figure>
+                <picture >
+                <source srcset="./resurse/imagini/Firesoundicon.png" media="(max-width:400px)">
+                <source srcset="./resurse/imagini/Firesoundlogomic.png" media="(max-width:700px)">
+                <img src="./resurse/imagini/Firesoundlogo.png" alt="Logo-ul Fyre">
+    
                 </picture>
                 <figcaption>Logo-ul Fyresound</figcaption>
             </figure>
+        </div>
+
+
+
+        <div id="cevamic">
+            <h2>????</h2>
+            <h2>Cine suntem noi?</h2>
+        </div>
+
+        <div id="despre_noi">
+        
             <p>Fyresound este cel mai nou magazin online dedicat audiofililor și creatorilor de muzica. Aici vei găsi atât produsele producătorilor mari, cu vechime, dar și ale celor noi, care încă nu au intrat în atenția distributorilor.</p>
             <p>Misiunea noastră este să aducem cea mai variata gama de produse audio din romania, servind produsele renumite pentru profesioniști, într-un mediu simplu pentru începători.</p>
             
-        </section>
+        </div>
+
+        <div id="anunturi">
+            <h2>Anunturi</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <div id = "utilizatori">
+            <h2>Utilizatori</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+
+        <div id="statistici">
+            <h2>Statistici produse</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        
+        </div>
+
+        <div id="date">
+            <h2>Date importante</h2>
+            <section id="downloads">
+                <h3>Downloads:</h3>
+                <br>
+                <a href="./resurse/downloads/AltoPro_LiveSound_Guide_final.pdf" target="_blank" download>Gid live audio</a>
+            </section>
+            
+        </div>
+
+        <div id="topProduse">
+            <h2>Cele mai populare produse:</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        
+
+        </div>
+
+
+
+
+        <!-- 
 
         <section id = "cum_sa_cumperi">
             <h2>Cum sa alegi produsul perfect pentru tine.</h2>
@@ -111,14 +185,13 @@
             <h2>Downloads:</h2>
             <br>
             <a href="./resurse/downloads/AltoPro_LiveSound_Guide_final.pdf" target="_blank" download>Gid live audio</a>
-        </section>
+        </section> -->
 
     </main>
     <footer>
-       <section>
-            <a href="index.html">Inceputul paginii</a>
-        </section>
-        <section id = "contact"></section>
+       
+        
+        <section id = "contact">
             <h2>Informatii de contact</h2>
             <address>
                 Telefon: <a href="tel:+40721844977" target="_blank">0721844977</a>
@@ -130,7 +203,8 @@
                 Whatsapp: <a href= "https://wa.me/072184497" target="_blank"> 072184497</a>
             </address>
         </section>
-        <br>
+
+
         <section id = "copyright">
             <small>
             &#169; Fyresound Store
@@ -138,6 +212,12 @@
             </small>
 
         </section>
+
+        <section  id = "go-up" class = "text-right">
+
+            <h2>Go up:</h2>
+            <a href="index.html">Click!</a>
+       </section>
 
 
 

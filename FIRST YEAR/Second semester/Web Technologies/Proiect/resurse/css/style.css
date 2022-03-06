@@ -1,0 +1,119 @@
+/* 
+Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
+  
+
+*/
+
+:root {
+    --mov: #390099;
+    --visiniu: #9E0059;
+    --roz: #FF0054;
+    --portocaliu: #FF5400;
+    --galben: rgb(255, 221, 128);
+    margin: 0;
+    padding: 0;
+
+  }
+  
+
+
+
+#gr {
+    display: grid;
+    grid-template-areas: "z-poster z-poster z-poster"
+                        "z-mica z-despre z-anunturi"
+                        "z-utilizatori z-despre z-anunturi"
+                        "z-utilizatori z-statistici z-date"
+                        "z-topProduse z-topProduse z-topProduse";
+
+
+    
+    grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr; 
+}
+
+#poster{
+    grid-area: z-poster;
+}
+
+#cevamic{
+    grid-area: z-mica;
+} 
+
+#despre_noi{
+    grid-area:z-despre;
+}
+
+#anunturi{
+    grid-area: z-anunturi;
+}
+
+#utilizatori{
+    grid-area: z-utilizatori;
+}
+
+#statistici{
+    grid-area: z-statistici;
+}
+
+#date{
+    grid-area: z-date;
+}
+
+#topProduse{
+    grid-area: z-topProduse;
+}
+
+main div{
+    /* border: 1px solid var(--mov); */
+    margin: 5px;
+    padding: 10px;
+}
+
+
+
+
+header nav{
+    width:100%;
+    position:fixed;
+background: var(--portocaliu);
+height:3rem;
+top:0px;
+left:0px;
+font-family:Arial, Helvetica, sans-serif;
+
+}
+
+header nav ul{
+
+}
+
+header nav ul li{
+    list-style: none;
+    display: inline-block;
+
+}
+
+header nav ul li a{
+    text-decoration: none;
+    padding: 0 20px;
+    
+}
+
+
+
+
+footer{
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;  
+    
+    margin:auto;
+
+}
+
+.text-right {
+
+    text-align: right;
+    }
