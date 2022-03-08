@@ -27,11 +27,11 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
                         "z-mica z-despre z-anunturi"
                         "z-utilizatori z-despre z-anunturi"
                         "z-utilizatori z-statistici z-date"
-                        "z-topProduse z-topProduse z-topProduse";
+                        "z-videoclipuri z-videoclipuri z-videoclipuri";
 
 
     
-    grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr 1fr 5fr;
     grid-template-columns: 1fr 3fr 1fr; 
 }
 
@@ -63,9 +63,15 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
     grid-area: z-date;
 }
 
-#topProduse{
-    grid-area: z-topProduse;
+#videoclipuri{
+    grid-area: z-videoclipuri;
+    border: 5px solid var(--portocaliu);
+    background-color: var(--galben);
+    width: 500px;
+    height: 400px;
+    position: relative;
 }
+
 
 main div{
     /* border: 1px solid var(--mov); */
@@ -111,7 +117,7 @@ ul.meniu li ul li{
 
 }
 
-ul.meniu li a{
+ul.meniu>li a{
     display: block;
     width: 100%;
     height: 100%;
@@ -119,8 +125,29 @@ ul.meniu li a{
     text-align: center;
     line-height: var(--height-buton);
     color:#390099;
+
+    
+    
+    
 }
 
+/* ul.meniu>li>a{
+    text-shadow: 2px -20px 4px var(--mov);
+    display: none;
+} */
+
+ul.meniu>li>a:hover{
+    /* text-shadow: 2px 2px 4px var(--mov); */
+    animation: umbra;
+    animation-duration: 0.7s;
+    animation-timing-function: linear;
+}
+
+
+@keyframes umbra {
+    0%{ text-shadow: 2px -15px 4px var(--mov); background-color: #FF5400;}
+    100%{text-shadow: 2px 2px 4px var(--mov);background-color: var(--roz);}
+}
 
 ul.meniu>li.meniu-produse:hover{
     width: var(--width-buton-produse);
