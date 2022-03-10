@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <title>Fyresound - Magazinul pasionaților de audio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="keywords" content="audio, HIFI, echipamente_audio, casti, microfoane, monitoare_studio">
+    <meta name="description" content="Site dedicat audiofililor si creatorilor de muzica.">
+    
+
+
+
+    <%- include("../fragmente/head.ejs");  %> 
+
+
+    <!-- CSS -->
+    <link href="./resurse/css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="resurse/css/style_700.css" type="text/css" media="screen and (max-width: 700px)" />
+	<link rel="stylesheet" href="resurse/css/style_400.css" type="text/css" media="screen and (max-width: 400px)" />
+
+</head>
+<body>
+
+    <%- include("../fragmente/header.ejs");  %> 
+
+    <h1>IP: <%- locals.ip %></h1>
+
+    
+
+    <main id="gr">
+
+        <div id="poster">
+            <figure>
+                <picture >
+                <source srcset="./resurse/imagini/Firesoundicon.png" media="(max-width:400px)">
+                <source srcset="./resurse/imagini/Firesoundlogomic.png" media="(max-width:700px)">
+                <img src="./resurse/imagini/Firesoundlogo.png" alt="Logo-ul Fyre">
+    
+                </picture>
+                <figcaption>Logo-ul Fyresound</figcaption>
+            </figure>
+        </div>
+
+
+
+        <div id="cevamic">
+            <h2>????</h2>
+            <h2>Cine suntem noi?</h2>
+        </div>
+
+        <div id="despre_noi">
+        
+            <p>Fyresound este cel mai nou magazin online dedicat audiofililor și creatorilor de muzica. Aici vei găsi atât produsele producătorilor mari, cu vechime, dar și ale celor noi, care încă nu au intrat în atenția distributorilor.</p>
+            <p>Misiunea noastră este să aducem cea mai variata gama de produse audio din romania, servind produsele renumite pentru profesioniști, într-un mediu simplu pentru începători.</p>
+            
+        </div>
+
+        <div id="anunturi">
+            <h2>Anunturi</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <div id = "utilizatori">
+            <h2>Utilizatori</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+
+        <div id="statistici">
+            <h2>Statistici produse</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        
+        </div>
+
+        <div id="date">
+            <h2>Date importante</h2>
+            <section id="downloads">
+                <h3>Downloads:</h3>
+                <br>
+                <a href="./resurse/downloads/AltoPro_LiveSound_Guide_final.pdf" target="_blank" download>Gid live audio</a>
+            </section>
+            
+        </div>
+
+        <div id="videoclipuri" >
+            <div class="iframescreen">
+                <div class="iframecolumn">
+                    <a href="https://www.youtube.com/embed/J-6z93SqEO0" target="ifr">Ceva0</a>
+                    <a href="https://www.youtube.com/embed/hJjcd5lZKrY" target="ifr">Ceva1</a>  
+                </div>  
+                
+                <iframe width="500" height="400" src = "https://www.youtube.com/embed/J-6z93SqEO0" name = "ifr"></iframe>
+
+
+            </div>
+
+            
+
+        </div>
+
+
+
+
+        <!-- 
+
+        <section id = "cum_sa_cumperi">
+            <h2>Cum sa alegi produsul perfect pentru tine.</h2>
+            <p><b>Microfoanele</b> prezente în magazin se împart in două mari categorii:  <i><a href= "https://www.neumann.com/homestudio/en/what-is-a-condenser-microphone">condenser</a></i> si  <i><a href="https://www.neumann.com/homestudio/en/what-is-a-dynamic-microphone">dinamic</a></i>. Ambele au rolul lor, dar primul lucru pe care trebuie să il știi atunci dacă te gândești să îți achiziționezi unul este că un microfon de tip condenser este mult mai sensibil și captează mai multă informație din jurul său. Astfel, acesta nu este o alegere bună pentru o cameră fără tratament acustic sau pentru un apartament.
+                Următorul aspect de interes în alegerea unui microfon este tipul de conector pe care acesta îl folosește: <i>XLR</i> și <i>USB</i> sunt principalele opțiuni. <a href="https://en.wikipedia.org/wiki/XLR_connector"><i>XLR</i></a> este un conector ce datează din anii 50, care foloseste 3 pini pentru a transmite un semnal audio analog. Pentru a folosi un astfel de microfon este necesară si achiziționarea unei interfețe audio care să transforme semnalul analog intr-unul digital care să poată fi înțeles de calculator.</p>
+            <p>În zona de <b>instrumente pentru studio </b> se regăsesc toate cele necesare pentru asamblarea de la 0 a unui <q>home studio</q>, cu oferte pentru toate nivelurile de preț. De la interfațe audio și mixere, controllere <abbr title="musical instrument digital interface">MIDI</abbr> pentru clape sau chitară și bineînteles, cablurile și conectorii necesari pentru a le lega pe toate.</p>
+            <iframe width="500" height="300" src="https://www.youtube.com/embed/-iaQHN45rxE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <br>
+            <a href="https://www.youtube.com/embed/J-6z93SqEO0" target="ifr">Cum sa alegi un microfon pentru bugetul tau</a>
+            <a href="https://www.youtube.com/embed/hJjcd5lZKrY" target="ifr">Cum sa alegi o interfata audio pentru bugetul tau</a>    
+            <br>
+            <iframe width="400" height="240" src = "https://www.youtube.com/embed/J-6z93SqEO0" name = "ifr"></iframe>
+
+        </section>
+        
+        <section id="downloads">
+            <h2>Downloads:</h2>
+            <br>
+            <a href="./resurse/downloads/AltoPro_LiveSound_Guide_final.pdf" target="_blank" download>Gid live audio</a>
+        </section> -->
+
+        <video width="320" height="240" controls="controls" poster="/resurse/imagini/">
+            <source src="videoclip.mp4" type="video/mp4">
+            <source src="videoclip.ogv" type="video/ogv">
+            <track default src="./resurse/tracks/mesaje_ro.vtt" kind="captions" srclang="ro" label="romana" />
+            <track  src="mesaje_en.vtt" kind="captions" srclang="en" label="engleza" />
+           </video>
+
+    </main>
+
+    <%- include("../fragmente/footer.ejs");  %> 
+    
+    
+
+</body>
+
+
+</html>

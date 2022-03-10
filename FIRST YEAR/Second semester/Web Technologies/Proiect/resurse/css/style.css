@@ -62,6 +62,9 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
 #date{
     grid-area: z-date;
 }
+::cue{
+    background: var(--visiniu);
+}
 
 #videoclipuri{
     grid-area: z-videoclipuri;
