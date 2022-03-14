@@ -40,11 +40,17 @@ public:
 
 class MasinaSpalat{
 private:
-    bool libera = true;
+    bool libera ;
     Durata timpRamas;
     int capsule;
 public:
-    MasinaSpalat( bool _libera, Durata& _timpRamas, int _capsule){
+    MasinaSpalat( ){
+        libera = true;
+        timpRamas = Durata(0,0);
+        capsule = 0;
+    }
+
+    MasinaSpalat( bool _libera, Durata _timpRamas, int _capsule){
         libera = _libera;
         timpRamas = _timpRamas;
         capsule = _capsule;
@@ -58,8 +64,19 @@ public:
         return capsule;
     }
 
+    void setTimpRamas( Durata _durata){
+        timpRamas = _durata;
+    }
+
     Durata getTimpRamas(){
         return timpRamas;
+    }
+    void addCapsule(int capsule_extra){
+        if(capsule_extra >= 0)
+            capsule+= capsule_extra;
+    }
+    void consumaCapsula(){
+        capsule--;
     }
 
 
@@ -69,10 +86,15 @@ public:
 class Spalatorie{
 private:
     int numarMasini;
-    MasinaSpalat masini[5];
+    MasinaSpalat *masini;
 public:
+    Spalatorie(int _numarMasini, MasinaSpalat _masini[]){
+        numarMasini = _numarMasini;
+        masini = _masini;
+    }
+
     void listeazaMasini(){
-        if(numarMasini = 0){
+        if(numarMasini == 0){
             cout<<"Deocamdata nu sunt masini in aceasta spalatorie.\n";
         }
         else{
@@ -91,10 +113,63 @@ public:
 
     }
 
+    int getNumarMasini(){
+        return numarMasini;
+    }
+    MasinaSpalat* getMasini(){
+        return masini;
+    }
+
+    void adaugaJob(int masina, Durata durata){
+        if(masini[masina].getCapsule() == 0){
+            cout<<"Masina "<<masina<<" nu mai are capsule! Adaugati capsule sau incercati alta capsule.\n";
+        }else{
+
+            if(masini[masina].isLibera() == false)cout<<"Aceasta masina nu este libera!\n";
+            else{
+                masini[masina].consumaCapsula();
+                masini[masina].setTimpRamas(durata);
+            }
+
+
+        }
+    }
+
 };
+
+void listeazaMasiniLibere( Spalatorie spalatorie){
+    int nrLibere = 0;
+    int libere[5];
+    for(int i=0; i< spalatorie.getNumarMasini();i++){
+        if(spalatorie.getMasini()->isLibera() == true){
+            libere[nrLibere] = i;
+            nrLibere++;
+        }
+    }
+    if(nrLibere == 0) cout<< "Nu sunt masini libere la aceasta spalatorie\n";
+    else{
+        cout<<"Urmatoarele masini sunt libere:";
+        for(int i=0; i<nrLibere;i++) cout<<" "<< libere[i];
+        cout<<".\n";
+    }
+
+}
 
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    MasinaSpalat masini[5] = {
+            MasinaSpalat(true, Durata(0, 0), 3),
+            MasinaSpalat(true, Durata(0, 0), 2),
+            MasinaSpalat(true, Durata(0, 0), 5),
+    };
+    Spalatorie spalatorie(
+            3,
+            masini
+    );
+
+    spalatorie.listeazaMasini();
+    listeazaMasiniLibere(spalatorie);
+
+
     return 0;
 }
