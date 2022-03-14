@@ -1,4 +1,6 @@
 const express= require("express");
+const fs=require("fs")
+const sharp= require("sharp")
 app= express();
 
 app.set("view engine","ejs");
