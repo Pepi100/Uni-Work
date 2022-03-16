@@ -28,7 +28,10 @@ ostream &operator<<(ostream &os, const InterestPoint &punct){
     return os;
 }
 istream &operator>>(istream &is, InterestPoint &punct){
-    is >> punct.vizitatori>>punct.x>>punct.y;
+    //cout<<"Numar vizitatori: ";
+    is >> punct.vizitatori;
+    //cout<<"Coordonate: ";
+    is>>punct.x>>punct.y;
     return is;
 }
 
@@ -47,6 +50,25 @@ public:
     friend ostream &operator<<(ostream &os, const BikeTrail &trail);
     friend istream &operator>>(istream &is, BikeTrail &trail);
 
+     string getNume() const {
+        return nume;
+    }
+
+    void setNume(const string _nume) {
+        nume = _nume;
+    }
+
+     string getOras() const {
+        return oras;
+    }
+
+    void setOras(const string _oras) {
+        oras = _oras;
+    }
+
+    vector<InterestPoint> getPuncte(){
+         return puncte;
+     }
 
 
 };
@@ -76,13 +98,33 @@ istream &operator>>(istream &is, BikeTrail &trail){
 
 }
 
+void rezolvare(BikeTrail trail){
+    int a, b, c;
+    vector<InterestPoint> v = trail.getPuncte();
+    int maxim = 0;
+    for(int i = 0; i<trail.getPuncte().size();i++){
+        for(int j = 0; j<trail.getPuncte().size();j++){
+            for(int k = 0; k<trail.getPuncte().size();k++){
+                if( i!=j && j!=k && i!=k && v[i].getDistance(v[j])+v[j].getDistance(v[k]) > maxim ){
+                    a=i,b=j,c=k;
+                    maxim = v[i].getDistance(v[j])+v[j].getDistance(v[k]);
+                }
+            }
+        }
+
+    }
+
+    cout<<"Distanta maxima dintre 3 puncte: "<<maxim<<"\n Punctele:\n";
+    cout<<v[a]<<v[b]<<v[c];
+
+}
+
 
 
 int main() {
     BikeTrail b;
     cin>>b;
-    cout<<b;
-
+    rezolvare(b);
 
 }
 

@@ -24,14 +24,24 @@ public:
             secunde = secunde %60;
         }
     }
-    int getMinute(){
+    int getMinute() const{
         return minute;
     }
-    int getSecunde(){
+    int getSecunde() const{
         return secunde;
     }
 
-    int toSeconds(){
+    void setMinute(int _min){
+        if(_min >= 0) minute = _min;
+        else cout<< "Nu poti avea un numar negativ de minute";
+    }
+
+    void setSecunde(int _sec){
+        if(_sec >= 0) secunde = _sec;
+        else cout<< "Nu poti avea un numar negativ de secunde";
+    }
+
+    int toSeconds() const{
         return minute*60 + secunde;
     }
 
@@ -56,21 +66,49 @@ public:
         capsule = _capsule;
     }
 
-    bool isLibera() {
+    void actualizareTimp(Durata timp){
+        if(timpRamas.toSeconds() > timp.toSeconds()){
+                if(timpRamas.getSecunde() >= timp.getSecunde() ){
+                    timpRamas.setSecunde( timpRamas.getSecunde() - timp.getSecunde() );
+                    timpRamas.setMinute(timpRamas.getMinute() - timp.getMinute() );
+                }else{
+                    timpRamas.setSecunde( 60 + timpRamas.getSecunde() - timp.getSecunde() );
+                    timpRamas.setMinute(timpRamas.getMinute() - timp.getMinute() - 1);
+                }
+        }else{
+            timpRamas.setSecunde(0);
+            timpRamas.setMinute(0);
+            libera = true;
+        }
+
+    }
+
+    bool isLibera() const {
         return libera;
     }
 
-    int getCapsule(){
+    int getCapsule() const{
         return capsule;
+    }
+
+    Durata getTimpRamas(){
+        return timpRamas;
     }
 
     void setTimpRamas( Durata _durata){
         timpRamas = _durata;
     }
 
-    Durata getTimpRamas(){
-        return timpRamas;
+    void setLibera(bool status){
+        libera = status;
     }
+
+    void setCapsule(int cap){
+        if(cap >= 0) capsule = cap;
+        else cout<< "Nu poti avea un numar negativ de capsule";
+    }
+
+
     void addCapsule(int capsule_extra){
         if(capsule_extra >= 0)
             capsule+= capsule_extra;
@@ -98,14 +136,19 @@ public:
             cout<<"Deocamdata nu sunt masini in aceasta spalatorie.\n";
         }
         else{
+            cout<<"Spalatoria in prezent: \n";
                 for(int i=0; i<numarMasini;i++){
                     if(masini[i].getCapsule() == 0){
-                        cout<<"Masina "<<i+1<<" este neutilizabila, nu mai are capsule.\n";
+                        cout<<"Masina "<<i<<" este neutilizabila, nu mai are capsule.\n";
                     }else{
-                        if(masini[i].isLibera() ==  true){
-                            cout<<"Masina "<<i+1<<" este libera. Aceasta mai are "<<masini[i].getCapsule()<<" capsule.\n";
+                        if(masini[i].isLibera()){
+                            cout<<"Masina "<<i<<" este libera. Aceasta mai are "<<masini[i].getCapsule()<<" capsule.\n";
                         }else{
-                            cout<<"Masina "<<i+1<<" este ocupata pentru inca "<<masini[i].getTimpRamas().getMinute()<<":"<<masini[i].getTimpRamas().getSecunde()<<".\n";
+                            if(masini[i].getTimpRamas().getSecunde() >9)
+                            cout<<"Masina "<<i<<" este ocupata pentru inca "<<masini[i].getTimpRamas().getMinute()<<":"<<masini[i].getTimpRamas().getSecunde()<<".\n";
+                            else{
+                                cout<<"Masina "<<i<<" este ocupata pentru inca "<<masini[i].getTimpRamas().getMinute()<<":0"<<masini[i].getTimpRamas().getSecunde()<<".\n";
+                            }
                         }
                     }
                 }
@@ -113,7 +156,7 @@ public:
 
     }
 
-    int getNumarMasini(){
+    int getNumarMasini() const{
         return numarMasini;
     }
     MasinaSpalat* getMasini(){
@@ -122,24 +165,34 @@ public:
 
     void adaugaJob(int masina, Durata durata){
         if(masini[masina].getCapsule() == 0){
-            cout<<"Masina "<<masina<<" nu mai are capsule! Adaugati capsule sau incercati alta capsule.\n";
+            cout<<"Masina "<<masina<<" nu mai are capsule! Adaugati capsule sau incercati alta masina de spalat.\n";
         }else{
 
-            if(masini[masina].isLibera() == false)cout<<"Aceasta masina nu este libera!\n";
+            if(!masini[masina].isLibera())cout << "Aceasta masina nu este libera!\n";
             else{
                 masini[masina].consumaCapsula();
                 masini[masina].setTimpRamas(durata);
+                masini[masina].setLibera(false);
             }
 
 
         }
     }
 
+    void actualizeazaTimp(Durata timp){
+        for(int i = 0; i< numarMasini;i++){
+            masini[i].actualizareTimp(timp);
+        }
+
+    }
+
+
 };
 
 void listeazaMasiniLibere( Spalatorie spalatorie){
     int nrLibere = 0;
     int libere[5];
+
     for(int i=0; i< spalatorie.getNumarMasini();i++){
         if(spalatorie.getMasini()->isLibera() == true){
             libere[nrLibere] = i;
@@ -167,8 +220,36 @@ int main() {
             masini
     );
 
+// listare initiala
     spalatorie.listeazaMasini();
     listeazaMasiniLibere(spalatorie);
+
+    spalatorie.adaugaJob(
+            1,
+            Durata(1, 20)
+    );
+    spalatorie.listeazaMasini();
+
+    spalatorie.actualizeazaTimp(Durata(1, 19));
+    spalatorie.listeazaMasini();
+
+    spalatorie.actualizeazaTimp(Durata(1, 0));
+    spalatorie.listeazaMasini(); // metoda
+
+// adaugam inca o spalare la masina 1, ca sa ramana fara capsule
+    spalatorie.adaugaJob(
+            1,
+            Durata(0, 35)
+    );
+    spalatorie.actualizeazaTimp(Durata(3, 0));
+
+// Incercam sa adaugam inca o spalare. Ar trebui sa afiseze mesajul "Masina 1 nu mai are capsule!"
+    spalatorie.adaugaJob(
+            1,
+            Durata(0, 35)
+    );
+// Ceea ce se poate observa si din listarea masinilor:
+    spalatorie.listeazaMasini();
 
 
     return 0;
