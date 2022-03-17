@@ -25,6 +25,41 @@
 
     <h1>IP: <%- locals.ip %></h1>
 
+    <p>
+                        
+        <p> <%- locals.ip %></p>
+
+
+        <div id="galerie_statica">
+            <% 
+            v_luni = ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie"]
+            d = new Date()
+            for(let imag of locals.imagini){ 
+                if(imag.luni && imag.luni.includes(v_luni[d.getMonth()])){
+
+                
+                
+                %>
+                <figure>
+                    <picture>
+                        <source srcset = "<%- imag.mic %>" media="(max-width:800px)" />
+                        <source srcset = "<%- imag.mediu %>" media="(max-width:1200px)" />
+                        <img src="<%-imag.mare %>" alt="ceva" />
+   
+                    </picture>
+                    <figcaption>Descriere</figcaption>
+   
+   
+                </figure>
+          <%  }
+                } %>
+
+        </div>
+      
+ 
+
+</p>
+
     
 
     <main id="gr">
@@ -123,10 +158,10 @@
             <a href="./resurse/downloads/AltoPro_LiveSound_Guide_final.pdf" target="_blank" download>Gid live audio</a>
         </section> -->
 
-        <video width="320" height="240" controls="controls" poster="/resurse/imagini/">
+        <video width="320" height="240" controls="controls" poster="/resurse/imagini/" preload="auto">
             <source src="videoclip.mp4" type="video/mp4">
             <source src="videoclip.ogv" type="video/ogv">
-            <track default src="./resurse/tracks/mesaje_ro.vtt" kind="captions" srclang="ro" label="romana" />
+            <track default src="./resurse/tracks/romana.vtt" kind="captions" srclang="ro" label="romana" />
             <track  src="mesaje_en.vtt" kind="captions" srclang="en" label="engleza" />
            </video>
 

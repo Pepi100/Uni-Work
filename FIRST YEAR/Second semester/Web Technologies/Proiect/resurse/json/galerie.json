@@ -1,0 +1,20 @@
+{
+	"cale_galerie":"resurse/imagini/galerie",
+	"imagini": [
+		{
+			"fisier":"audio-technica-atr2500x-usb.jpg",
+			"descriere":"ATR 2500X USB",
+			"luni":["martie", "aprilie"]
+		},
+		{
+			"fisier":"audio-technica-at2035.jpg",
+			"descriere":"AT 2035",
+			"luni":["martie", "aprilie"]
+		},
+		{
+			"fisier":"audio-technica-at2040.jpg",
+			"descriere":"AT 2040",
+			"luni":["martie", "aprilie"]
+		}
+	]
+}
