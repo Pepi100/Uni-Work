@@ -7,9 +7,11 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
 :root {
     --mov: #390099;
     --visiniu: #9E0059;
+    --visiniu-t:rgb(158, 0, 89, 0.3) ;
     --roz: #FF0054;
     --portocaliu: #FF5400;
     --galben: rgb(255, 221, 128);
+    --galben-t: rgb(255, 221, 128,0.3);
     --width-buton: 5em;
     --width-buton-produse: 10em;
     --height-buton:2.5em;
@@ -63,17 +65,10 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
     grid-area: z-date;
 }
 ::cue{
-    background: var(--visiniu);
+    color: var(--mov);
+    background: var(--galben-t);
 }
 
-#videoclipuri{
-    grid-area: z-videoclipuri;
-    border: 5px solid var(--portocaliu);
-    background-color: var(--galben);
-    width: 500px;
-    height: 400px;
-    position: relative;
-}
 
 
 main div{
@@ -238,3 +233,33 @@ footer{
 
     text-align: right;
     }
+
+
+    #triunghi{
+        position:absolute;
+        bottom:5px;
+        right:5px;
+        border-bottom:40px solid transparent;
+        border-top:0px solid transparent;
+        border-left:20px solid white;
+        border-right:20px solid white;
+        background-color:var(--culoare-mov);   
+        background-clip: border-box;
+        padding:0;
+        width:0;
+        box-sizing:border-box;
+    }
+    #triunghi::after{
+        position:absolute;
+        display: block;
+        left:-20px;
+        content:" ";
+        width:40px;
+        height:40px;
+        background-image: url("../imagini/ath-m40x.png");
+        background-position: center 15px;
+        background-repeat:no-repeat;
+        background-size: 20px 20px;
+    
+    }
+    
