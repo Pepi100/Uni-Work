@@ -16,6 +16,7 @@
     <!-- CSS -->
     <link href="./resurse/css/style.css" rel="stylesheet" type="text/css" />
     <link href="./resurse/css/iframe.css" rel="stylesheet" type="text/css" />
+    <link href="./resurse/css/link_sus.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="resurse/css/style_700.css" type="text/css" media="screen and (max-width: 700px)" />
 	<link rel="stylesheet" href="resurse/css/style_400.css" type="text/css" media="screen and (max-width: 400px)" />
 
@@ -59,11 +60,11 @@
       
  
 
-</p>
+    </p>
 
     
 
-    <main id="gr">
+    <main id="main_grid">
 
         <div id="poster">
             <figure>
@@ -75,22 +76,28 @@
                 </picture>
                 <figcaption>Logo-ul Fyresound</figcaption>
             </figure>
-        </div>
 
-
-
-        <div id="cevamic">
-            <h2>????</h2>
-            <h2>Cine suntem noi?</h2>
-        </div>
-
-        <div id="despre_noi">
+            <div id="despre_noi">
         
-            <p>Fyresound este cel mai nou magazin online dedicat audiofililor și creatorilor de muzica. Aici vei găsi atât produsele producătorilor mari, cu vechime, dar și ale celor noi, care încă nu au intrat în atenția distributorilor.</p>
-            <p>Misiunea noastră este să aducem cea mai variata gama de produse audio din romania, servind produsele renumite pentru profesioniști, într-un mediu simplu pentru începători.</p>
-            
+                <p>Fyresound este cel mai nou magazin online dedicat audiofililor și creatorilor de muzica. Aici vei găsi atât produsele producătorilor mari, cu vechime, dar și ale celor noi, care încă nu au intrat în atenția distributorilor.</p>
+                <p>Misiunea noastră este să aducem cea mai variata gama de produse audio din romania, servind produsele renumite pentru profesioniști, într-un mediu simplu pentru începători.</p>
+                
+            </div>
         </div>
 
+
+        <div id="tabel">
+            <h2> Aici va veni un tabel</h2>
+
+        </div>
+
+
+        <div id="calendar">
+            <h2>????</h2>
+            <h2>Aici va veni un calendar</h2>
+        </div>
+
+        
         <div id="anunturi">
             <h2>Anunturi</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -113,18 +120,33 @@
             <section id="downloads">
                 <h3>Downloads:</h3>
                 <br>
-                <a href="./resurse/downloads/AltoPro_LiveSound_Guide_final.pdf" target="_blank" download>Gid live audio</a>
+                <a href="./resurse/downloads/AltoPro_LiveSound_Guide_final.pdf" target="_blank" download>Ghid live audio</a>
             </section>
             
         </div>
 
+        <div id = "videoclipuri">
+            <video width="320" height="240" controls="controls" poster="./resurse/imagini/Firesoundlogo.png" preload="auto">
+                    <source src="./resurse/video/video.mp4" type="video/mp4">
+                    <source src="./resurse/video/video.wmv" type="video/wmv">
+                    <track default src="./resurse/tracks/video_romana.vtt" kind="captions" srclang="ro" label="romana" />
+                    <track  src="./resurse/tracks/video_engleza.vtt" kind="captions" srclang="en" label="engleza" />
+            </video>
+
+        </div>
+
         
-                <div class="iframecolumn">
-                    <a href="https://www.youtube.com/embed/J-6z93SqEO0" target="ifr">Ceva0</a>
-                    <a href="https://www.youtube.com/embed/hJjcd5lZKrY" target="ifr">Ceva1</a>  
-                </div>  
-                
-                <iframe width="500" height="400" src = "https://www.youtube.com/embed/J-6z93SqEO0" name = "ifr"></iframe>
+
+        <div id="cont_iframe">
+            <div id="cont_linkuri">
+                <a href="https://www.youtube.com/embed/J-6z93SqEO0" target="ifr">Alegearea microfonului</a>
+                <a href="https://www.youtube.com/embed/hJjcd5lZKrY" target="ifr">Alegerea interfetei</a>  
+            </div>
+            <div id="cont_vid">
+                 <iframe width="640" height="360" src = "https://www.youtube.com/embed/J-6z93SqEO0" name = "ifr"></iframe>
+            </div>
+           
+        </div>
 
 
     
@@ -156,12 +178,7 @@
             <a href="./resurse/downloads/AltoPro_LiveSound_Guide_final.pdf" target="_blank" download>Gid live audio</a>
         </section> -->
 
-        <video width="320" height="240" controls="controls" poster="./resurse/imagini/Firesoundlogo.png" preload="auto">
-            <source src="./resurse/video/video.mp4" type="video/mp4">
-            <source src="./resurse/video/video.wmv" type="video/wmv">
-            <track default src="./resurse/tracks/video_romana.vtt" kind="captions" srclang="ro" label="romana" />
-            <track  src="./resurse/tracks/video_engleza.vtt" kind="captions" srclang="en" label="engleza" />
-           </video>
+        
 
     </main>
 

@@ -15,38 +15,41 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
     --width-buton: 5em;
     --width-buton-produse: 10em;
     --height-buton:2.5em;
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
 
   }
   
 
 
 
-#gr {
+#main_grid {
     display: grid;
     grid-template-areas: "z-poster z-poster z-poster"
-                        "z-mica z-despre z-anunturi"
-                        "z-utilizatori z-despre z-anunturi"
+                        "z-calendar z-tabel z-anunturi"
+                        "z-utilizatori z-tabel z-anunturi"
                         "z-utilizatori z-statistici z-date"
                         "z-videoclipuri z-videoclipuri z-videoclipuri";
 
 
     
-    grid-template-rows: 2fr 1fr 1fr 1fr 5fr;
+    grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 3fr 1fr; 
 }
 
 #poster{
     grid-area: z-poster;
+    width: auto;
+    margin: auto;
+    text-align: center;
 }
 
-#cevamic{
-    grid-area: z-mica;
+#calendar{
+    grid-area: z-calendar;
 } 
 
-#despre_noi{
-    grid-area:z-despre;
+#tabel{
+    grid-area:z-tabel;
 }
 
 #anunturi{
@@ -63,7 +66,19 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
 
 #date{
     grid-area: z-date;
+    
 }
+
+#downloads a{
+    text-decoration: none;
+    color: black;
+}
+
+
+#videoclipuri{
+    grid-area: z-videoclipuri;
+}
+
 ::cue{
     color: var(--mov);
     background: var(--galben-t);
@@ -235,31 +250,5 @@ footer{
     }
 
 
-    #triunghi{
-        position:absolute;
-        bottom:5px;
-        right:5px;
-        border-bottom:40px solid transparent;
-        border-top:0px solid transparent;
-        border-left:20px solid white;
-        border-right:20px solid white;
-        background-color:var(--culoare-mov);   
-        background-clip: border-box;
-        padding:0;
-        width:0;
-        box-sizing:border-box;
-    }
-    #triunghi::after{
-        position:absolute;
-        display: block;
-        left:-20px;
-        content:" ";
-        width:40px;
-        height:40px;
-        background-image: url("../imagini/ath-m40x.png");
-        background-position: center 15px;
-        background-repeat:no-repeat;
-        background-size: 20px 20px;
-    
-    }
+   
     

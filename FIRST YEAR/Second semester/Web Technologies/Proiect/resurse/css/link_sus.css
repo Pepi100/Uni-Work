@@ -1,0 +1,30 @@
+:root{
+    --marime_buton: 1.5em;
+}
+
+
+#link-top{
+    position: fixed;
+    box-shadow: 0.1em 0.1em 8px 2px rgba(0,0,0,0.8);
+    bottom: 0.3em;
+    opacity: 0.5;
+    right: 0.5em;
+    bottom: 0.5em;
+    width: var(--marime_buton);
+    height: var(--marime_buton);
+    box-sizing: border-box;
+
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.4em;
+    border-radius: 50%;
+    border: 2px solid var(--visiniu);
+    background: var(--portocaliu);
+    font-size: 2em;
+    
+    transition: all 0.5s linear;
+}
+
+#link-top:hover{
+    opacity: 0.9;
+}

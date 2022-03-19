@@ -1,0 +1,39 @@
+#cont_iframe{
+    display: flexbox;
+    padding: 0px;
+    
+
+}
+
+#cont_linkuri{
+    margin: 0 auto;
+}
+
+#cont_linkuri a{
+    
+    margin: 0 auto;
+    display: inline-flex; 
+    height: 40px;
+    width: 100px;
+    border: 2px solid var(--visiniu);
+    background-color: var(--portocaliu);
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    line-height: 20px;
+    transition: all 0.7s linear;
+
+}
+
+#cont_linkuri a:hover{
+    background-color: var(--galben);
+}
+
+#cont_vid{
+    border: 3px solid var(--visiniu);
+    background-color: var(--portocaliu);
+    text-decoration: none;
+    /* 1280 x 720 */
+    width: 640px;
+    height: 360px;
+}
