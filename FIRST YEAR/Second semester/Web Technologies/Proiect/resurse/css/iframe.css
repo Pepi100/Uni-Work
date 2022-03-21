@@ -1,21 +1,27 @@
 #cont_iframe{
     display: flexbox;
-    padding: 0px;
+    padding: 0%;
+    /* border: 2px solid black; */
     
 
 }
 
 #cont_linkuri{
     margin: 0 auto;
+    padding: 0%;
+    
+    /* border: 2px solid black; */
+    text-align: center;
 }
 
 #cont_linkuri a{
-    
+    padding: 0%;
     margin: 0 auto;
     display: inline-flex; 
     height: 40px;
     width: 100px;
     border: 2px solid var(--visiniu);
+    border-bottom: 0px;
     background-color: var(--portocaliu);
     text-decoration: none;
     color: black;
@@ -30,6 +36,9 @@
 }
 
 #cont_vid{
+    margin-top: 0%;
+
+    /* padding: 0%; */
     border: 3px solid var(--visiniu);
     background-color: var(--portocaliu);
     text-decoration: none;

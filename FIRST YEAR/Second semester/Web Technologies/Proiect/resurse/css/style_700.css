@@ -63,3 +63,11 @@ html{
 #iframescreen{
     grid-area: z-topProduse;
 }
+
+
+
+/* Chestii de meniu */
+
+#hamburger{
+    display:none;
+}

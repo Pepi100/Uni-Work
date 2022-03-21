@@ -140,6 +140,14 @@ header>nav{
     
 }
 
+#hamburger{
+    display:none;
+}
+
+#ch-menu{
+    display: none;
+}
+
 ul.meniu{
     display: flex;
     padding: 0;
@@ -190,6 +198,7 @@ ul.meniu>li>a:hover{
     animation: umbra;
     animation-duration: 0.7s;
     animation-timing-function: linear;
+    animation-fill-mode: forwards;
 }
 
 
@@ -218,6 +227,22 @@ ul.meniu>li:hover>ul.submeniu{
     animation: aparitie_submeniu;
     animation-duration: 0.8s;
     transform-origin: top;
+    text-decoration: none;
+
+}
+
+
+ul.meniu>li>ul.submeniu>li>a{
+    
+    text-decoration: underline 0.15em rgba(57, 0, 153, 0);
+    transition:  1s;
+
+}
+
+ul.meniu>li>ul.submeniu>li>a:hover{
+    background-color: var(--roz);
+    text-decoration-color: rgba(57, 0, 153, 1);
+    
 
 }
 

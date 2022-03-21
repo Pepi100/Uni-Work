@@ -17,8 +17,9 @@
     <link href="./resurse/css/style.css" rel="stylesheet" type="text/css" />
     <link href="./resurse/css/iframe.css" rel="stylesheet" type="text/css" />
     <link href="./resurse/css/link_sus.css" rel="stylesheet" type="text/css" />
+    <link href="./resurse/css/tabel.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="resurse/css/style_700.css" type="text/css" media="screen and (max-width: 700px)" />
-	<link rel="stylesheet" href="resurse/css/style_400.css" type="text/css" media="screen and (max-width: 400px)" />
+	<link rel="stylesheet" href="resurse/css/style_500.css" type="text/css" media="screen and (max-width: 500px)" />
 
 </head>
 <body>
@@ -29,7 +30,6 @@
 
     <p>
                         
-        <p> <%- locals.ip %></p>
 
 
         <div id="galerie_statica">
@@ -69,7 +69,7 @@
         <div id="poster">
             <figure>
                 <picture >
-                <source srcset="./resurse/imagini/Firesoundicon.png" media="(max-width:400px)">
+                <source srcset="./resurse/imagini/Firesoundicon.png" media="(max-width:500px)">
                 <source srcset="./resurse/imagini/Firesoundlogomic.png" media="(max-width:700px)">
                 <img src="./resurse/imagini/Firesoundlogo.png" alt="Logo-ul Fyre">
     
@@ -87,7 +87,98 @@
 
 
         <div id="tabel">
-            <h2> Aici va veni un tabel</h2>
+            <section id="orar">
+                <h3>Orar Showroom</h3>
+                <table id="tab-orar">
+                    <thead>
+
+                        <tr>
+                            <th></th>
+                            <th>8:00 - 10:00</th>
+                            <th>10:00 - 12:00</th>
+                            <th>12:00 - 14:00</th>
+                            <th>16:00 - 18:00</th>
+                            <th>18:00 - 20:00</th>
+                            
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            
+                            
+                            <td>Luni</td>
+                            <td>✕</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+
+                        </tr>
+                        <tr>
+                           
+                            
+                            <td>Marti</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                        
+                            
+                            <td>Miercuri</td>
+
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            
+                            
+                            <td>Joi</td>
+
+                            <td colspan="5">✕</td>
+                            
+                        </tr>
+                        <tr>        
+                            <td>Vineri</td>
+                            
+                            <td>✕</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            
+                            <td>Sambata</td>
+                            
+                            <td>✕</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✕</td>
+                            <td>✕</td>
+                        </tr>
+                        <tr>
+                            <td>Duminica</td>
+                            
+                            <td>✕</td>
+                            <td>✓</td>
+                            <td>✕</td>
+                            <td>✕</td>
+                            <td>✕</td>
+
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <td colspan="6">Va asteptam sa testati produsele noastre</td>
+                    </tfoot>
+                </table> 
 
         </div>
 
@@ -126,7 +217,7 @@
         </div>
 
         <div id = "videoclipuri">
-            <video width="320" height="240" controls="controls" poster="./resurse/imagini/Firesoundlogo.png" preload="auto">
+            <video width="320" height="240" controls="controls" poster="./resurse/video/video.png" preload="auto">
                     <source src="./resurse/video/video.mp4" type="video/mp4">
                     <source src="./resurse/video/video.wmv" type="video/wmv">
                     <track default src="./resurse/tracks/video_romana.vtt" kind="captions" srclang="ro" label="romana" />
@@ -168,7 +259,7 @@
             <a href="https://www.youtube.com/embed/J-6z93SqEO0" target="ifr">Cum sa alegi un microfon pentru bugetul tau</a>
             <a href="https://www.youtube.com/embed/hJjcd5lZKrY" target="ifr">Cum sa alegi o interfata audio pentru bugetul tau</a>    
             <br>
-            <iframe width="400" height="240" src = "https://www.youtube.com/embed/J-6z93SqEO0" name = "ifr"></iframe>
+            <iframe width="500" height="240" src = "https://www.youtube.com/embed/J-6z93SqEO0" name = "ifr"></iframe>
 
         </section>
         
