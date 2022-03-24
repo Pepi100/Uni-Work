@@ -29,7 +29,7 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
                         "z-calendar z-tabel z-anunturi"
                         "z-utilizatori z-tabel z-anunturi"
                         "z-utilizatori z-statistici z-date"
-                        "z-videoclipuri z-videoclipuri z-videoclipuri";
+                        "z-iframe z-videoclipuri z-videoclipuri";
 
 
     
@@ -79,6 +79,12 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
     grid-area: z-videoclipuri;
 }
 
+#cont_iframe{
+    grid-area: z-iframe;
+     /* border: 2px solid black; */
+     
+ 
+ }
 ::cue{
     color: var(--mov);
     background: var(--galben-t);

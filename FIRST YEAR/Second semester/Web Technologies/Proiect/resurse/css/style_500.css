@@ -16,15 +16,16 @@ html{
 
 
 
-#gr {
+#main_grid  {
     display: grid;
     grid-template-areas: "z-poster"
-                        "z-mica"
-                        "z-despre"
+                        "z-calendar"
+                        "z-tabel"
                         "z-anunturi"
-                        "z-statistici"
+                        "z-utilizatori"
                         "z-date"
-                        "z-topProduse";
+                        "z-videoclipuri"
+                        "z-iframe";
 
 
     
@@ -35,14 +36,17 @@ html{
 
 #poster{
     grid-area: z-poster;
+    width: auto;
+    margin: auto;
+    text-align: center;
 }
 
-#cevamic{
-    grid-area: z-mica;
+#calendar{
+    grid-area: z-calendar;
 } 
 
-#despre_noi{
-    grid-area:z-despre;
+#tabel{
+    grid-area:z-tabel;
 }
 
 #anunturi{
@@ -50,21 +54,34 @@ html{
 }
 
 #utilizatori{
-    display: none;
+    grid-area: z-utilizatori;
 }
 
 #statistici{
     grid-area: z-statistici;
+    display: none;
 }
 
 #date{
     grid-area: z-date;
+    
 }
 
-#iframescreen{
-    grid-area: z-topProduse;
+#downloads a{
+    text-decoration: none;
+    color: black;
 }
 
+#videoclipuri{
+    grid-area: z-videoclipuri;
+}
+
+#cont_iframe{
+    grid-area: z-iframe;
+     /* border: 2px solid black; */
+     
+ 
+ }
 
 /* Chestii de meniu */
 
@@ -86,6 +103,7 @@ ul.meniu{
 
 /*aici facem vizibil meniul cand faem click pe hamburger meniu*/
 #ch-menu:checked+ul.meniu{
+    width:100%;
     display: block;
     z-index: 2;
     position: relative;
@@ -97,7 +115,7 @@ ul.meniu{
     animation-timing-function:linear;
 }
 #ch-menu:checked+ul.meniu>li>div,#ch-menu:checked+ul.meniu>li>a{
-    
+    width:100%;
     z-index: 2;
     position: relative;
     transform-origin: 50% 50%;
@@ -114,7 +132,8 @@ nav ul.meniu li{
 
 /*meniul sa vina deasupra continutul de mai jos, fara sa impinga continutul*/
 nav ul.meniu>li ul{
-    position:absolute;
+    position:relative;
+    text-align: center;
     width:100%;
     z-index:200;
     transform:scale(1,1);
@@ -125,10 +144,14 @@ nav ul.meniu>li ul{
     z-index:200;
 }
 nav ul.meniu>li:hover>ul{
-    
+    text-align: center;
+    align-self: auto;
     z-index:200;
     animation:none;
+    width:100%;
 }
+
+
 
 
 /* pentru fiecare element din submeniu generam un triunghiulet alb inaintea lui*/
@@ -138,14 +161,14 @@ nav ul.meniu>li li a:before{
 
 }
 
-/* @keyframes aparitie_meniu_p{
+@keyframes aparitie_meniu_p{
     0%{
         letter-spacing: -10px;
     } 
 	100%{
     	letter-spacing: 0px;
     }
-} */
+}
 
 @keyframes aparitie_meniu_p_btn{
     0%{

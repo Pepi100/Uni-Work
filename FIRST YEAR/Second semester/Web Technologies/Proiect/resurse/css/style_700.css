@@ -16,13 +16,14 @@ html{
 
 
 
-#gr {
+#main_grid  {
     display: grid;
-    grid-template-areas: "z-poster z-poster z-poster"
-                        "z-mica z-despre z-despre"
-                        "z-anunturi z-anunturi z-utilizatori"
-                        "z-statistici  z-statistici z-date"
-                        "z-topProduse z-topProduse z-topProduse";
+    grid-template-areas: "z-poster z-poster"
+                        "z-calendar z-tabel"
+                        "z-utilizatori z-utilizatori"
+                        "z-statistici z-date"
+                        "z-videoclipuri z-videoclipuri" 
+                        "z-iframe z-iframe";
 
 
     
@@ -31,21 +32,25 @@ html{
 }
 
 
+
 #poster{
     grid-area: z-poster;
-    
+    width: auto;
+    margin: auto;
+    text-align: center;
 }
 
-#cevamic{
-    grid-area: z-mica;
+#calendar{
+    grid-area: z-calendar;
 } 
 
-#despre_noi{
-    grid-area:z-despre;
+#tabel{
+    grid-area:z-tabel;
 }
 
 #anunturi{
     grid-area: z-anunturi;
+    display: none;
 }
 
 #utilizatori{
@@ -58,13 +63,25 @@ html{
 
 #date{
     grid-area: z-date;
+    
 }
 
-#iframescreen{
-    grid-area: z-topProduse;
+#downloads a{
+    text-decoration: none;
+    color: black;
 }
 
 
+#videoclipuri{
+    grid-area: z-videoclipuri;
+}
+
+#cont_iframe{
+   grid-area: z-iframe;
+    /* border: 2px solid black; */
+    
+
+}
 
 /* Chestii de meniu */
 
