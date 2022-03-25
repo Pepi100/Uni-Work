@@ -21,14 +21,14 @@
      * [Data Structures](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/Second%20semester/Data%20Structures)
      * [Formal Language and Automata](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/Second%20semester/FLA)
      * [Databases](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/Second%20semester/Databases)
-     * [Geometry and Linear Algebra](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/Second%20semester/Geometry%20and%20LInear%20Algebra)
+     * [Geometry and Linear Algebra](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/Second%20semester/Geometry%20and%20Linear%20Algebra)
      * [3D Modelling and Printing](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/Second%20semester/3D%20Modelling%20and%20Printing)
 
 **II. Second year:**
    * First semester:
    * Second semester:
 
-**III. Third year:***
+**III. Third year:**
    * First semester: 
    * Second semester:
   

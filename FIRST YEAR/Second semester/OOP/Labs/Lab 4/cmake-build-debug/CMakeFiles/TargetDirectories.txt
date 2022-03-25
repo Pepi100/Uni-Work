@@ -1,3 +1,0 @@
-D:/Uni-Work/FIRST YEAR/Second semester/OOP/Labs/Lab 4/cmake-build-debug/CMakeFiles/Labs_4.dir
-D:/Uni-Work/FIRST YEAR/Second semester/OOP/Labs/Lab 4/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Uni-Work/FIRST YEAR/Second semester/OOP/Labs/Lab 4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
