@@ -4,6 +4,8 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
 
 */
 
+
+
 :root {
     --mov: #390099;
     --visiniu: #9E0059;
@@ -17,11 +19,10 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
     --height-buton:2.5em;
     margin: 0px;
     padding: 0px;
+    font-family: Montserrat;
 
   }
   
-
-
 
 #main_grid {
     display: grid;
@@ -38,6 +39,7 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
 }
 
 #poster{
+    
     grid-area: z-poster;
     width: auto;
     margin: auto;
@@ -74,18 +76,22 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
     color: black;
 }
 
-
-#videoclipuri{
-    grid-area: z-videoclipuri;
-}
-
 #cont_iframe{
     grid-area: z-iframe;
      /* border: 2px solid black; */
      
  
  }
+
+#videoclipuri{
+    grid-area: z-videoclipuri;
+}
+
+
+
+
 ::cue{
+    line-height: 100%;
     color: var(--mov);
     background: var(--galben-t);
 }
@@ -99,42 +105,7 @@ main div{
 }
 
 
-#galerie_statica{
-    display:grid;
-    grid-template-columns: repeat(3,1fr);
-    grid-gap: 10px;
-}
 
-#galerie_statica figure:nth-child(7){
-    grid-area: 3/2/4/3;
-}
-
-#galerie_statica img{
-    width: 100%;
-}
-
-
-#galerie_statica.figcaption::before{
-    counter-increment: nr_imag;
-    content: counter(nr_imag) ") ";
-}
-
-#galerie_statica figcaption{
-    text-align: center;
-}
-
-#galerie_statica figure:hover figcaption{
-    transform: scale(1.45, 1.45);
-    
-}
-
-#galerie_statica figure:hover img{
-    filter: contrast(200%);
-}
-
-#galerie_statica figure *{
-    transition: all 1100ms linear;
-}
 
 body{
     padding: 0;
@@ -280,6 +251,10 @@ footer{
     text-align: right;
     }
 
+
+  #banner{
+      display:none;
+  }
 
    
     

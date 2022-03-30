@@ -46,7 +46,11 @@ html{
 } 
 
 #tabel{
+   
+    height:max-content;
     grid-area:z-tabel;
+    /* overflow-x: scroll; */
+    overflow-x: scroll;
 }
 
 #anunturi{
@@ -142,6 +146,7 @@ nav ul.meniu>li ul{
 #ch-menu:checked+ul.meniu>li ul>*{
     position:relative;
     z-index:200;
+    width:100%;
 }
 nav ul.meniu>li:hover>ul{
     text-align: center;

@@ -3,8 +3,8 @@ const fs = require("fs");
 const sharp = require("sharp");
 
 const { Client } = require("pg");
-var client = new Client({ database: "Proiect", user: "pepi", password: "1234", host: "localhost", port: "5432" });
-client.connect();
+     var client = new Client({ database: "Proiect", user: "pepi", password: "1234", host: "localhost", port: "8080" });
+    // client.connect();
 
 
 app = express();
@@ -82,8 +82,9 @@ function creeazaImagini() {
     //console.log(obImagini);
 
     for (let imag of obImagini.imagini) {
+        let descriere = imag.descriere;
         let nume_imag, extensie;
-        [nume_imag, extensie] = imag.fisier.split(".") // "abc.de".split(".") ---> ["abc","de"]
+        [nume_imag, extensie] = imag.cale_fisier.split(".") // "abc.de".split(".") ---> ["abc","de"]
         let dim_mic = 150
 
         imag.mic = `${obImagini.cale_galerie}/mic/${nume_imag}-${dim_mic}.webp` //nume-150.webp // "a10" b=10 "a"+b `a${b}`
@@ -91,7 +92,7 @@ function creeazaImagini() {
 
         let dim_mediu = 300
         imag.mediu = `${obImagini.cale_galerie}/mediu/${nume_imag}-${dim_mediu}.png`;
-        imag.mare = `${obImagini.cale_galerie}/${imag.fisier}`;
+        imag.mare = `${obImagini.cale_galerie}/${imag.cale_fisier}`;
         if (!fs.existsSync(imag.mic))
             sharp(__dirname + "/" + imag.mare).resize(dim_mic).toFile(__dirname + "/" + imag.mic);
 

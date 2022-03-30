@@ -1,0 +1,31 @@
+<link href="/resurse/css/galerie_statica.css" rel="stylesheet" type="text/css" />
+
+<div id="galerie">
+
+
+<section id="galerie_statica">
+    <% 
+    v_luni = ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie"]
+    d = new Date()
+    for(let imag of locals.imagini){ 
+        if(imag.luni && imag.luni.includes(v_luni[d.getMonth()])){
+        %>
+        <figure id="imagini_galerie_statica">
+            <picture>
+                <source srcset = "<%- imag.mic %>" media="(max-width:500px)" />
+                <source srcset = "<%- imag.mediu %>" media="(max-width:700px)" />
+                <img src="<%-imag.mare %>" alt="ceva" />
+
+            </picture>
+            <figcaption><%-imag.titlu %></figcaption>
+
+
+        </figure>
+  <%  }
+        } %>
+    
+
+</section>
+
+
+</div>

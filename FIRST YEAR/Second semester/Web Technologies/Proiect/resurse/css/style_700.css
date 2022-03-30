@@ -27,8 +27,8 @@ html{
 
 
     
-    grid-template-rows: 1fr 0.5fr repeat(3,1fr);
-    grid-template-columns: 0.5fr 0.5fr 1fr; 
+    grid-template-rows: 1fr 0.5fr 0.5fr ;
+    grid-template-columns: 0.5fr 0.5fr; 
 }
 
 
@@ -78,7 +78,7 @@ html{
 
 #cont_iframe{
    grid-area: z-iframe;
-    /* border: 2px solid black; */
+    border: 2px solid black;
     
 
 }

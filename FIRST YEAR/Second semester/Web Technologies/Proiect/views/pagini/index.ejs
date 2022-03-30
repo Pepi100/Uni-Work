@@ -24,50 +24,27 @@
     <link rel="stylesheet" href="./resurse/css/style.css"  type="text/css" />
     <link rel="stylesheet" href="/resurse/css/style_700.css" type="text/css" media="screen and (max-width:700px)" />
 	<link rel="stylesheet" href="/resurse/css/style_500.css" type="text/css" media="screen and (max-width:500px)" />
-    
+    <link href="/resurse/css/stil_printare.css" rel="stylesheet" type="text/css" media = "print" />
+
+
+    <script src="https://kit.fontawesome.com/58c167abb3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
     
 </head>
 <body>
 
     <%- include("../fragmente/header.ejs");  %> 
 
-    <h1>IP: <%- locals.ip %></h1>
 
-    <p>
-                        
+    <!-- <%- locals.ip %> -->
 
+    <p id = "watermark"></p>
 
-        <div id="galerie_statica">
-            <% 
-            v_luni = ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie"]
-            d = new Date()
-            for(let imag of locals.imagini){ 
-                if(imag.luni && imag.luni.includes(v_luni[d.getMonth()])){
-
-                
-                
-                %>
-                <figure>
-                    <picture>
-                        <source srcset = "<%- imag.mic %>" media="(max-width:800px)" />
-                        <source srcset = "<%- imag.mediu %>" media="(max-width:1200px)" />
-                        <img src="<%-imag.mare %>" alt="ceva" />
-   
-                    </picture>
-                    <figcaption>Descriere</figcaption>
-   
-   
-                </figure>
-          <%  }
-                } %>
-
-        </div>
-      
- 
-
-    </p>
-
-    
+    <div id="banner">
+        <p>
+            Acest site este un proiect scolar.
+        </p>
+    </div>
 
     <main id="main_grid">
 
@@ -93,7 +70,7 @@
 
         <div id="tabel">
             <section id="orar">
-                <h3>Orar Showroom</h3>
+                <caption id="captiune" ><b>Orar showroom</b></caption>
                 <table id="tab-orar">
                     <thead>
 
@@ -206,13 +183,15 @@
 
 
         <div id="statistici">
-            <h2>Statistici produse</h2>
+            <h2>Statistici produse <i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s;" ></i></h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         
         </div>
 
         <div id="date">
-            <h2>Date importante</h2>
+            <h2>Date importante </h2>
+            <span class="fa-solid fa-bowl-rice"></i>
+
             <section id="downloads">
                 <h3>Downloads:</h3>
                 <br>
@@ -276,7 +255,14 @@
 
         
 
-    </main>
+                        
+           
+
+
+    </main> 
+    <%- include("../fragmente/galerie_statica.ejs"); %>
+    
+    
 
     <%- include("../fragmente/footer.ejs");  %> 
     

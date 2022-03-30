@@ -1,6 +1,7 @@
 #cont_iframe{
-    display: flexbox;
+    display: block;
     padding: 0%;
+    width: 320px;
     /* border: 2px solid black; */
     
 
@@ -9,7 +10,7 @@
 #cont_linkuri{
     margin: 0 auto;
     padding: 0%;
-    
+    width: 320px;
     /* border: 2px solid black; */
     text-align: center;
 }

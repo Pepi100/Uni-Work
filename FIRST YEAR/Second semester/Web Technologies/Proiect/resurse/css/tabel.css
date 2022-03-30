@@ -2,6 +2,14 @@
     display: flex;
     flex-direction:column;
     align-items: center;
+    font-size: large;
+}
+
+#captiune{
+    /* text-align: center; */
+    /* caption-side:bottom; */
+    font-weight: bolder;
+    text-align: center;
 }
 
 #tab-orar{
@@ -20,8 +28,11 @@
     border-collapse:collapse;
 }
 
+#tab-orar tr{
+    transition: linear 0.5s;
+}
 
-#tab-orar tbody tr{
-    counter-increment: ct-orar;
+#tab-orar tr:hover{
+    box-shadow: inset 0em 0.2em black;
 }
 
