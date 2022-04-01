@@ -6,121 +6,111 @@
 			"cale_fisier":"audio-technica-at2035.jpg",
 			"titlu":"AT 2035",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
+			"anotimp":["primavara"]
 			
 		},
 		{
 			"cale_fisier":"audio-technica-at2040.jpg",
 			"titlu":"AT 2040",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
-			
+			"anotimp":["iarna","toamna"]
 		},
 		{
 			"cale_fisier":"audio-technica-atm710.jpg",
 			"titlu":"AT M710",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
+			"anotimp":["primavara"]
 			
 		},
 		{
 			"cale_fisier":"audio-technica-atr2500x-usb.jpg",
 			"titlu":"AT R2500x - USB",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
+			"anotimp":["vara","toamna"]
 			
 		},
 		{
 			"cale_fisier":"blue-microphones-bluebird-sl.jpg",
 			"titlu":"BLUE SL",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
-			
+			"anotimp":["primavara","toamna"]
 		},
 		{
 			"cale_fisier":"boya-by-m1.jpg",
 			"titlu":"BY M1",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
+			"anotimp":["primavara","iarna"]
 			
 		},
 		{
 			"cale_fisier":"boya-by-wm4-pro-k1.jpg",
 			"titlu":"BY WM4 PRO",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
+			"anotimp":["primavara"]
 			
 		},
 		{
 			"cale_fisier":"rode-nt-usb.jpg",
 			"titlu":"RODE NT USB",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
+			"anotimp":["primavara"]
 			
 		},
 		{
 			"cale_fisier":"neumann-kmr-82-i.jpg",
 			"titlu":"MKR 82",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
+			"anotimp":["primavara", "vara","toamna", "iarna"]
 			
 		},
 		{
 			"cale_fisier":"rode-podcaster.jpg",
 			"titlu":"RODE Podcaster",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
+			"anotimp":["primavara"]
 			
 		},
 		{
 			"cale_fisier":"rode-lavalier-go-w.jpg",
 			"titlu":"RODE Lavalier Go",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
+			"anotimp":["primavara"]
 			
 		},
 		{
 			"cale_fisier":"rode-podmic.jpg",
 			"titlu":"RODE Podmic",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
+			"anotimp":["primavara"]
 			
 		},
 		{
 			"cale_fisier":"rode-videomicro.jpg",
 			"titlu":"RODE Videomicro",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
+			"anotimp":["primavara"]
 			
 		},
 		{
 			"cale_fisier":"sennheiser-e-835-s.jpg",
 			"titlu":"E 832 S",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
+			"anotimp":["primavara"]
 			
 		},
 		{
 			"cale_fisier":"shure-super-55-deluxe.jpg",
 			"titlu":"Shure 55 Deluxe",
 			"text_descriere":"",
-			"anotimp":["primavara"],
-			"luni":["martie", "aprilie"]
+			"anotimp":["primavara"]
 			
+		},
+		{
+			"cale_fisier": "5265106022_33c0fefbc1_b.jpg",
+			"titlu": "De pe net",
+			"descriere": "Imagine preluata cu licenta Creative Commons",
+			"anotimp":["vara"],
+			"author": "Straffan Vilcans"
 		}
 	]
 }

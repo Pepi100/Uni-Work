@@ -4,12 +4,20 @@
 
 
 <section id="galerie_statica">
+    
     <% 
-    v_luni = ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie"]
+    anotimpuri = ["iarna", "iarna", "primavara", "primavara", "primavara", "vara", "vara", "vara", "toamna", "toamna", "toamna", "iarna"]
+
     d = new Date()
+    counter = 0
     for(let imag of locals.imagini){ 
-        if(imag.luni && imag.luni.includes(v_luni[d.getMonth()])){
+        
+        if(13 > counter  && imag.anotimp && imag.anotimp.includes( anotimpuri[d.getMonth()] )){
+            counter = counter + 1
+        
         %>
+
+        
         <figure id="imagini_galerie_statica">
             <picture>
                 <source srcset = "<%- imag.mic %>" media="(max-width:500px)" />
@@ -24,6 +32,10 @@
   <%  }
         } %>
     
+    <p id="despre1"></p>
+
+    <p id="despre2"></p>
+
 
 </section>
 
