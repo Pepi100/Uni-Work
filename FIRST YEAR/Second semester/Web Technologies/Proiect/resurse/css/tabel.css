@@ -1,38 +1,45 @@
-#orar{
+#orar {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
     font-size: large;
 }
 
-#captiune{
+#captiune {
     /* text-align: center; */
     /* caption-side:bottom; */
     font-weight: bolder;
     text-align: center;
 }
 
-#tab-orar{
+#tab-orar {
     counter-reset: ct-orar;
-    --tip-zi:"Lucr";
-    text-align:center;
+    --tip-zi: "Lucr";
+    text-align: center;
 }
 
-
-#tab-orar td, #tab-orar th{
-    border:1px solid var(--visiniu);
-    padding:0.2rem;
-    
-}
-#tab-orar{
-    border-collapse:collapse;
+#tab-orar td,
+#tab-orar th {
+    border: 1px solid var(--visiniu);
+    padding: 0.2rem;
 }
 
-#tab-orar tr{
+#tab-orar {
+    border-collapse: collapse;
+}
+
+#tab-orar thead {
+    border-bottom: 3px solid var(--visiniu);
+}
+
+#tab-orar tbody {
+    border-bottom: 3px solid var(--visiniu);
+}
+
+#tab-orar tr {
     transition: linear 0.5s;
 }
 
-#tab-orar tr:hover{
+#tab-orar tr:hover {
     box-shadow: inset 0em 0.2em black;
 }
-
