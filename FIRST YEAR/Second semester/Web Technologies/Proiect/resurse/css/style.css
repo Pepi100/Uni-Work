@@ -4,128 +4,113 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
 
 */
 
-
-
 :root {
+    /* culori noi */
+    --dark-grey: #1d1d1d;
+    --off-black: #121212;
+    --light-grey: #909596;
+    --off_white: #c4c8c5;
+    --red: #b81b24;
+    --blue: #0075ad;
+    /* culori vechi */
     --mov: #390099;
     --visiniu: #9E0059;
-    --visiniu-t:rgb(158, 0, 89, 0.3) ;
+    --visiniu-t: rgb(158, 0, 89, 0.3);
     --roz: #FF0054;
     --portocaliu: #FF5400;
     --galben: rgb(255, 221, 128);
-    --galben-t: rgb(255, 221, 128,0.3);
+    --galben-t: rgb(255, 221, 128, 0.3);
     --width-buton: 5em;
     --width-buton-produse: 10em;
-    --height-buton:2.5em;
+    --height-buton: 2.5em;
     margin: 0px;
     padding: 0px;
     font-family: Montserrat;
-
-  }
-  
+    background-color: var(--dark-grey);
+}
 
 #main_grid {
     display: grid;
-    grid-template-areas: "z-poster z-poster z-poster"
-                        "z-calendar z-tabel z-anunturi"
-                        "z-utilizatori z-tabel z-anunturi"
-                        "z-utilizatori z-statistici z-date"
-                        "z-iframe z-videoclipuri z-videoclipuri";
-
-
-    
+    grid-template-areas: "z-poster z-poster z-poster" "z-calendar z-tabel z-anunturi" "z-utilizatori z-tabel z-anunturi" "z-utilizatori z-statistici z-date" "z-iframe z-videoclipuri z-videoclipuri";
     grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
-    grid-template-columns: 1fr 3fr 1fr; 
+    grid-template-columns: 1fr 3fr 1fr;
 }
 
-#poster{
-    
+#poster {
     grid-area: z-poster;
     width: auto;
     margin: auto;
     text-align: center;
 }
 
-#calendar{
+#calendar {
     grid-area: z-calendar;
-} 
-
-#tabel{
-    grid-area:z-tabel;
 }
 
-#anunturi{
+#tabel {
+    grid-area: z-tabel;
+}
+
+#anunturi {
     grid-area: z-anunturi;
 }
 
-#utilizatori{
+#utilizatori {
     grid-area: z-utilizatori;
 }
 
-#statistici{
+#statistici {
     grid-area: z-statistici;
 }
 
-#date{
+#date {
     grid-area: z-date;
-    
 }
 
-#downloads a{
+#downloads a {
     text-decoration: none;
     color: black;
 }
 
-#cont_iframe{
+#cont_iframe {
     grid-area: z-iframe;
-     /* border: 2px solid black; */
-     
- 
- }
+    /* border: 2px solid black; */
+}
 
-#videoclipuri{
+#videoclipuri {
     grid-area: z-videoclipuri;
 }
 
-
-
-
-::cue{
+::cue {
     line-height: 100%;
-    color: var(--mov);
+    color: var(--light-grey);
     background: var(--galben-t);
 }
 
-
-
-main div{
-    /* border: 1px solid var(--mov); */
+main div {
+    /* border: 1px solid var(--light-grey); */
     margin: 5px;
     padding: 10px;
 }
 
-
-
-
-body{
+body {
     padding: 0;
     margin: 0;
 }
 
-header>nav{
-    background-color: var(--portocaliu);
-    
+header>nav {
+    background-color: var(--off-black);
 }
 
-#hamburger{
-    display:none;
-}
-
-#ch-menu{
+#hamburger {
     display: none;
 }
 
-ul.meniu{
+#ch-menu {
+    display: none;
+}
+
+ul.meniu {
     display: flex;
     padding: 0;
     margin: 0;
@@ -133,68 +118,66 @@ ul.meniu{
     padding-top: 0;
 }
 
-ul.submeniu{
+ul.submeniu {
     display: none;
 }
 
-
-ul.meniu li{
+ul.meniu li {
     width: var(--width-buton);
     height: var(--height-buton);
     list-style-type: none;
-    background-color: var(--portocaliu);
+    background-color: var(--off-black);
 }
 
-ul.meniu li ul li{
+ul.meniu li ul li {
     width: var(--width-buton-produse);
     height: var(--height-buton);
-
 }
 
-ul.meniu>li a{
+ul.meniu>li a {
     display: block;
     width: 100%;
     height: 100%;
     text-decoration: none;
     text-align: center;
     line-height: var(--height-buton);
-    color:#390099;
-
-    
-    
-    
+    color: var(--light-grey);
 }
 
+
 /* ul.meniu>li>a{
-    text-shadow: 2px -20px 4px var(--mov);
+    text-shadow: 2px -20px 4px var(--light-grey);
     display: none;
 } */
 
-ul.meniu>li>a:hover{
-    /* text-shadow: 2px 2px 4px var(--mov); */
+ul.meniu>li>a:hover {
+    /* text-shadow: 2px 2px 4px var(--light-grey); */
     animation: umbra;
     animation-duration: 0.7s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
 }
 
-
 @keyframes umbra {
-    0%{ text-shadow: 2px -15px 4px var(--mov); background-color: #FF5400;}
-    100%{text-shadow: 2px 2px 4px var(--mov);background-color: var(--roz);}
+    0% {
+        text-shadow: 2px -15px 4px var(--light-grey);
+        background-color: #FF5400;
+    }
+    100% {
+        text-shadow: 2px 2px 4px var(--light-grey);
+        background-color: var(--roz);
+    }
 }
 
-ul.meniu>li.meniu-produse:hover{
+ul.meniu>li.meniu-produse:hover {
     width: var(--width-buton-produse);
     height: var(--height-buton);
     animation: expansiune_produse;
     animation-duration: 0.5s;
     transform-origin: left;
-
 }
 
-
-ul.meniu>li:hover>ul.submeniu{
+ul.meniu>li:hover>ul.submeniu {
     width: var(--width-buton-produse);
     height: var(--height-buton);
     display: block;
@@ -205,56 +188,47 @@ ul.meniu>li:hover>ul.submeniu{
     animation-duration: 0.8s;
     transform-origin: top;
     text-decoration: none;
-
 }
 
-
-ul.meniu>li>ul.submeniu>li>a{
-    
+ul.meniu>li>ul.submeniu>li>a {
     text-decoration: underline 0.15em rgba(57, 0, 153, 0);
-    transition:  1s;
-
+    transition: 1s;
 }
 
-ul.meniu>li>ul.submeniu>li>a:hover{
+ul.meniu>li>ul.submeniu>li>a:hover {
     background-color: var(--roz);
     text-decoration-color: rgba(57, 0, 153, 1);
-    
-
 }
 
 @keyframes expansiune_produse {
-    0%{transform: scaleX(0.5);}
-    100%{transform: scaleX(1);}    
+    0% {
+        transform: scaleX(0.5);
+    }
+    100% {
+        transform: scaleX(1);
+    }
 }
 
 @keyframes aparitie_submeniu {
-    0%{transform: scaleY(0);}
-    100%{transform: scaleY(1);}    
+    0% {
+        transform: scaleY(0);
+    }
+    100% {
+        transform: scaleY(1);
+    }
 }
 
-
-
-
-footer{
+footer {
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;  
-    
-    margin:auto;
-
+    grid-template-rows: auto;
+    margin: auto;
 }
 
 .text-right {
-
     text-align: right;
-    }
+}
 
-
-  #banner{
-      display:none;
-  }
-
-   
-    
+#banner {
+    display: none;
+}
