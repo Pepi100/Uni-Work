@@ -108,8 +108,10 @@ creeazaImagini();
 
 
 
-
+process.on('uncaughtException', function (err) {
+    console.log(err);
+});
 
 
 app.listen(8080);
-console.log("A pornit")
+console.log("A pornit");
