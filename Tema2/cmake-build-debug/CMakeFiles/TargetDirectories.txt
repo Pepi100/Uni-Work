@@ -1,3 +1,0 @@
-C:/Users/radun/Desktop/Tema2/cmake-build-debug/CMakeFiles/Tema2.dir
-C:/Users/radun/Desktop/Tema2/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/radun/Desktop/Tema2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
