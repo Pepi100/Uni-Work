@@ -49,7 +49,7 @@ public:
 
 
 class Automat {
-private:
+protected:
 	int nrStari;
 	int stareInitiala;
 	int nrStariFinale;
@@ -202,6 +202,31 @@ public:
 
 		}
 	}
+
+
+	void addStare() {
+		vector<Salt> v;
+		muchii.push_back(v);
+		nrStari++;
+
+		int maxim = 0;
+		for (int i = 0; i < nrStari; i++)
+		{
+			maxim = max(maxim, stari[i]);
+		}
+
+		stari.push_back(maxim + 1);
+
+	}
+
+	void setStareFinala(int _stare) {
+		
+		stariFinale.push_back(_stare);
+		
+		nrStariFinale++;
+
+	}
+
 };
 
 
@@ -249,20 +274,7 @@ public:
 	}
 
 	DFA toMinimal() {
-		DFA d(getNrStari(), getStari(), getStareInitiala(), getNrStariFinale(), getStariFinale(), deadState);
 		
-
-		//eliminar starile la care nu se poate ajunge
-
-		set <int> reachable_states = { d.getStareInitiala() };
-		set <int> new_states = { d.getStareInitiala() };
-		
-
-		do {
-			set <int> temp;
-			
-
-		} while (true);
 		
 
 		
