@@ -15,6 +15,27 @@ using namespace std;
 ifstream fin("input.txt");
 ofstream fout("output.txt");
 
+
+
+set<int> setDiference( set<int> A, set<int> B  ){
+    for(auto value: B){
+        A.erase(value);
+    }
+
+    return A;
+}
+
+
+set<int> setUnion (set<int> A, set<int> B){
+    for(auto value: A){
+        if(B.count(value) == 0) A.erase(value);
+    }
+
+    return A;
+
+}
+
+
 class Salt {
 private:
     int destinatie = 0;
@@ -233,26 +254,22 @@ public:
 
     }
 
-    friend ofstream& operator << (ofstream& os, const Automat& a);
+    friend ofstream& operator << (ofstream& os, const Automat& a){
+        os << "Numar stari: " << a.nrStari << "\n";
+        os << "Salturi:\n";
+        for (int i = 0; i < a.nrStari; i++)
+            for (int j = 0; j < a.muchii[i].size(); j++)
+                os << i << " " << a.muchii[i][j].getDestinatie() << " " << a.muchii[i][j].getLitera() << "\n";
+        os << "Stare initiala: " << a.stareInitiala << "\nStarile finale: ";
+        for (int i = 0; i < a.nrStariFinale; i++)
+            os << a.stariFinale[i] << " ";
+        os << "\n";
+        return os;
+    }
 
 
 
 };
-
- ofstream& operator << (ofstream& os, const Automat& a){
-     os << "Numar stari: " << a.nrStari << "\n";
-     os << "Salturi:\n";
-     for (int i = 0; i < a.nrStari; i++)
-         for (int j = 0; j < a.muchii[i].size(); j++)
-             os << i << " " << a.muchii[i][j].getDestinatie() << " " << a.muchii[i][j].getLitera() << "\n";
-     os << "Stare initiala: " << a.stareInitiala << "\nStarile finale: ";
-     for (int i = 0; i < a.nrStariFinale; i++)
-         os << a.stariFinale[i] << " ";
-     os << "\n";
-     return os;
- }
-
-
 
 
 
@@ -294,16 +311,153 @@ public:
         deadState = _deadState;
     }
 
-    DFA toMinimal(){
+    DFA toMinimal() const{
         //eliminarea starilor la care nu se poate ajunge
 
+        set<int> reachable_states= {stareInitiala,};
+        set<int> new_states= {stareInitiala,};
 
+        do{
+            set<int> temp;
+            for(auto stare: new_states){ //pentru fiecare stare din setul actual trec adaug in temp toate starile la care se poate ajunge de acolo
+                for(auto salt: muchii[stare]){
+                    new_states.insert(salt.getDestinatie());
+                }
+            }
+
+            for(auto stare:reachable_states) //new_states := temp \ reachable_states
+                new_states.erase(stare);
+
+            for(auto stare: new_states)   // reachable_states := reachable_states ∪ new_states
+                reachable_states.insert(stare);
+
+
+
+
+        }while(!new_states.empty());
+
+        set<int> unreachable_states;
+        for(int i=0;i<nrStari;i++)
+            if(reachable_states.count(i) == 0)
+                unreachable_states.insert(i);
+
+        //acum scoatem starile la care nu se poate ajunge
+
+
+
+        //algoritmul lui Hopcroft -> partition refinement
+        set< set<int> > P ;
+        set<int> finale, nefinale;
+        for(auto stare: reachable_states){
+            if(count(stariFinale.begin(), stariFinale.end(), stare) ==  1)
+                finale.insert(stare);
+            else nefinale.insert(stare);
+        }
+        P.insert(finale);
+        P.insert(nefinale);
+
+        set< set<int> > W  = P;
+
+        //while W is not empty do
+        while(!W.empty()){
+            //choose and remove a set A from W
+            set<int>A = *W.begin();
+            W.erase(W.begin());
+
+
+                for(auto litera: alfabet){//for each c in the alphabet do
+                    set<int> X; //let X be the set of states for which a transition on c leads to a state in A
+                    for(auto stare: reachable_states){
+                        for(auto salt:muchii[stare]){
+                            if(salt.getLitera() == litera && A.count(salt.getDestinatie()) == 1) X.insert(stare);
+                        }
+
+                    }
+
+                    for(auto Y:P){
+                        if(!setDiference(Y, X).empty() && !setUnion(X, Y).empty()){
+                            P.erase(Y);
+                            P.insert(setDiference(Y, X));
+                            P.insert(setUnion(X, Y));
+
+                            if(W.count(Y) == 1){
+                                W.erase(Y);
+                                W.insert(setDiference(Y, X));
+                                W.insert(setUnion(X, Y));
+                            }else{
+                                if( setUnion(X, Y).size()  <=  setDiference(Y, X).size()){
+                                    W.insert(setUnion(X, Y));
+                                }else{
+                                    W.insert(setDiference(Y, X));
+                                }
+
+                            }
+                        }
+                    }
+
+
+
+            }
+
+        }
+        DFA result;
+        vector <vector<Salt>>m;
+        std::map<int, int> partitions;
+        int partition_index = 0;
+        for (const auto &s: P) {
+            for (int x: s) {
+                partitions[x] = partition_index;
+            }
+            partition_index++;
+            result.addStare();
+
+
+        }
+
+
+
+        partition_index = 0;
+
+        for (const auto &s: P) {
+            for (int x: s) {
+                //Daca starea a fost initial una finala, atuci si partitia din care va face parte va fi tot una finala
+                if (find(stariFinale.begin(), stariFinale.end(), x) != stariFinale.end() ) {
+                    result.setStareFinala(partition_index);
+                }
+
+                //Similar pentru starile initiale.
+                if (x == stareInitiala) {
+                    result.setStareInitiala( partition_index);
+                }
+
+
+
+                //For each edge from this state, add edges to the partition containing the neighbouring state.
+                    for(auto s:muchii[x]){
+                        if(reachable_states.count(x) == 1) //Only consider states that are valid
+                             result.addSalt(partition_index, partitions[s.getDestinatie()], s.getLitera());
+                    }
+
+
+
+
+            }
+            partition_index++;
+        }
+
+        return result;
 
     }
 
 
 
+
 };
+
+
+
+
+
 
 
 class NFA : public Automat {
@@ -380,19 +534,15 @@ public:
 
 int main()
 {
-    NFA a;
-    a.citireFisier();
-    char cuv[100];
-    cin >> cuv;
     DFA d;
-    d=a.toDFA();
-   cout<< a.verificareCuvant(cuv);
-   cout<<d.verificareCuvant(cuv);
-//    fout<<a;
+    d.citireFisier();
+    fout<<d;
+    fout<<endl<<endl;
+    d=d.toMinimal();
+    fout<<d;
 
 
 
-//    fout<<d;
 
 
 }
