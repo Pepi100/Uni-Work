@@ -1,17 +1,10 @@
-#galerie{
-    border: 2px solid black;
-    width: 100%;
-    margin: auto;
-    width: auto;
-    align-content: center;
-}
 
 #galerie_statica{
     display:grid;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(5,1fr);
     grid-gap: 10px;
-    border: 2px solid red;
+ 
     padding-left: 100px;
     padding-right: 100px;
     width: auto;
@@ -22,19 +15,31 @@
 }
 
 
+#galerie_statica > *{
+    background-color: var(--dark-grey);
+    box-shadow: var(--black) 5px 5px 15px;
 
+    border-radius: 30px;
+    width:4fr;
+    height: 4.4fr;
+    
+}
 
 
 
 #imagini_galerie_statica{
-    align-self: center;
-    border: 2px solid black;
-    width: 200px;
-    height: 200px;
+    
+    align-items: center;
+    max-width: 400px;
+    max-height: 470px;
+    
 }
 
 
 #imagini_galerie_statica figcaption{
+    line-height: 60px;
+    font-size: 25px;
+    
     counter-increment: nr_imag;
     text-align: center;
 }
@@ -47,7 +52,8 @@
 
 #galerie_statica img{
     width: 100%;
-    border-radius: 0px;
+    border: 3px solid var(--off-black);
+    border-radius: 2px;
 }
 
 
@@ -75,6 +81,20 @@
 
 #despre1{
     grid-area: 2/2/3/3;
+    text-align: center;
+    
+   
+    
+}
+
+#despre1 a{
+    text-decoration: none;
+    color: var(--off-white);
+    font-size: 20px;
+    margin:0;
+    top: 40%;
+    position: relative;
+    
 }
 
 #despre2{

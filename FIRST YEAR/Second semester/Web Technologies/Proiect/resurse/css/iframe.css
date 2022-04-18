@@ -1,8 +1,8 @@
 #cont_iframe{
     display: block;
     padding: 0%;
-    width: 320px;
-    /* border: 2px solid black; */
+    width: auto;
+    
     
 
 }
@@ -10,20 +10,20 @@
 #cont_linkuri{
     margin: 0 auto;
     padding: 0%;
-    width: 320px;
-    /* border: 2px solid black; */
+    width: auto;
+   
     text-align: center;
 }
 
 #cont_linkuri a{
     padding: 0%;
-    margin: 0 auto;
+    margin: auto 10px;
     display: inline-flex; 
     height: 40px;
-    width: 100px;
-    border: 2px solid var(--visiniu);
+    width: 120px;
+    border: 2px solid var(--dark-grey);
     border-bottom: 0px;
-    background-color: var(--portocaliu);
+    background-color: var(--light-grey);
     text-decoration: none;
     color: black;
     text-align: center;
@@ -33,17 +33,17 @@
 }
 
 #cont_linkuri a:hover{
-    background-color: var(--galben);
+    background-color: var(--off-white);
 }
 
 #cont_vid{
     margin-top: 0%;
 
-    /* padding: 0%; */
-    border: 3px solid var(--visiniu);
-    background-color: var(--portocaliu);
+    
+    border: 3px solid var(--dark-grey);
+    background-color: var(--light-grey);
     text-decoration: none;
-    /* 1280 x 720 */
-    width: 320px;
-    height: 180px;
+    
+    width: auto;
+    height: auto;
 }

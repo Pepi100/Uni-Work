@@ -14,7 +14,7 @@
   "author": "Radu Nedelcu",
   "license": "ISC",
   "dependencies": {
-    "ejs": "^3.1.6",
+    "ejs": "^3.0.2",
     "express": "^4.17.3",
     "fs": "^0.0.1-security",
     "mp4": "^0.5.2",

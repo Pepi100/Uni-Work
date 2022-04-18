@@ -6,20 +6,18 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
 
 :root {
     /* culori noi */
+
+    --black: #0d0d0d;
+
     --dark-grey: #1d1d1d;
     --off-black: #121212;
     --light-grey: #909596;
-    --off_white: #c4c8c5;
+    --off-white: #c4c8c5;
     --red: #b81b24;
     --blue: #0075ad;
+
     /* culori vechi */
-    --mov: #390099;
-    --visiniu: #9E0059;
-    --visiniu-t: rgb(158, 0, 89, 0.3);
-    --roz: #FF0054;
-    --portocaliu: #FF5400;
-    --galben: rgb(255, 221, 128);
-    --galben-t: rgb(255, 221, 128, 0.3);
+    
     --width-buton: 5em;
     --width-buton-produse: 10em;
     --height-buton: 2.5em;
@@ -27,13 +25,33 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
     padding: 0px;
     font-family: Montserrat;
     background-color: var(--dark-grey);
+    color: var(--off-white);
 }
 
 #main_grid {
+    padding: 10px;
     display: grid;
-    grid-template-areas: "z-poster z-poster z-poster" "z-calendar z-tabel z-anunturi" "z-utilizatori z-tabel z-anunturi" "z-utilizatori z-statistici z-date" "z-iframe z-videoclipuri z-videoclipuri";
-    grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:"z-poster z-poster z-poster" 
+                        "z-calendar z-tabel z-anunturi"
+                        "z-utilizatori z-tabel z-anunturi" 
+                        "z-utilizatori z-statistici z-date" 
+                        "z-iframe z-videoclipuri z-videoclipuri"
+                        "z-galerie_statica z-galerie_statica z-galerie_statica";
+    grid-template-rows: 2fr 1fr 1fr 1fr 1fr 10fr;
     grid-template-columns: 1fr 3fr 1fr;
+    
+}
+
+#main_grid > *{
+    background-color: var(--off-black);
+
+    border-radius: 30px;
+    border: 2px solid var(--black);
+
+    box-shadow: var(--off-black) 12px 12px 15px;
+
+    margin: 12px;
+    padding: 15px;
 }
 
 #poster {
@@ -68,8 +86,10 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
 }
 
 #downloads a {
-    text-decoration: none;
-    color: black;
+    text-decoration:none;
+    color: var(--off-white);
+    letter-spacing: 2px;
+    
 }
 
 #cont_iframe {
@@ -81,10 +101,14 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
     grid-area: z-videoclipuri;
 }
 
+#gal_statica{
+    grid-area: z-galerie_statica;
+}
+
 ::cue {
     line-height: 100%;
-    color: var(--light-grey);
-    background: var(--galben-t);
+    color: var(--off-black);
+    background: var(--light-grey);
 }
 
 main div {
@@ -141,7 +165,7 @@ ul.meniu>li a {
     text-decoration: none;
     text-align: center;
     line-height: var(--height-buton);
-    color: var(--light-grey);
+    color: var(--off-white);
 }
 
 
@@ -161,11 +185,11 @@ ul.meniu>li>a:hover {
 @keyframes umbra {
     0% {
         text-shadow: 2px -15px 4px var(--light-grey);
-        background-color: #FF5400;
+        background-color: var(--dark-grey);
     }
     100% {
         text-shadow: 2px 2px 4px var(--light-grey);
-        background-color: var(--roz);
+        background-color: var(--light-grey);
     }
 }
 
@@ -196,8 +220,8 @@ ul.meniu>li>ul.submeniu>li>a {
 }
 
 ul.meniu>li>ul.submeniu>li>a:hover {
-    background-color: var(--roz);
-    text-decoration-color: rgba(57, 0, 153, 1);
+    background-color: var(--light-grey);
+    text-decoration-color: var(--red);
 }
 
 @keyframes expansiune_produse {
