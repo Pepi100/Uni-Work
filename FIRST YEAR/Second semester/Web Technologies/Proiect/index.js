@@ -4,7 +4,7 @@ const sharp = require("sharp");
 
 const { Client } = require("pg");
      var client = new Client({ database: "Proiect", user: "pepi", password: "1234", host: "localhost", port: "8080" });
-    // client.connect();
+     client.connect();
 
 
 app = express();
@@ -40,21 +40,14 @@ app.get("/despre", function(req, res){
 
 app.get("/galerie", function(req, res) {
     //res.sendFile(__dirname+"/index1.html");
-    res.status(403).render("pagini/galerie_statica", { ip: req.ip, imagini: obImagini.imagini });
+    res.render("pagini/galerie_statica", { ip: req.ip, imagini: obImagini.imagini });
+    res.end();
 })
 
 
-app.get("/ceva", function(req, res, next) {
-    res.write("<p style='color:pink'>Salut-1</p>");
-    console.log("1");
-    next();
-    //res.end();
-})
-app.get("/ceva", function(req, res, next) {
-    res.write("Salut-2");
 
-    console.log("2");
-    next();
+app.get("/ceva", function(req, res, next) {
+    
 })
 
 
