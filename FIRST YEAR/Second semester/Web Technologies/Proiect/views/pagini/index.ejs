@@ -19,6 +19,7 @@
     <link href="/resurse/css/link_sus.css" rel="stylesheet" type="text/css" />
     
     <link href="/resurse/css/tabel.css" rel="stylesheet" type="text/css" />
+    <link href="/resurse/css/galerie_animata.css" rel="stylesheet" type="text/css" />
     
     
     <link rel="stylesheet" href="./resurse/css/style.css"  type="text/css" />
@@ -52,8 +53,8 @@
             <figure>
                 <picture >
                 <source srcset="./resurse/imagini/Firesoundicon.png" media="(max-width:500px)">
-                <source srcset="./resurse/imagini/Firesoundlogomic.png" media="(max-width:700px)">
-                <img src="./resurse/imagini/Firesoundlogo.png" alt="Logo-ul Fyre">
+                <source srcset="./resurse/imagini/site/LogoFullSize.png" media="(max-width:700px)">
+                <img src="./resurse/imagini/site/LogoFullSize.png" alt="Logo-ul Fyresound">
     
                 </picture>
                 <figcaption>Logo-ul Fyresound</figcaption>
@@ -208,6 +209,73 @@
                     <track  src="./resurse/tracks/video_engleza.vtt" kind="captions" srclang="en" label="engleza" />
             </video>
 
+            <!-- galerie animata -->
+
+            <!-- <style>
+                *{
+                margin:0;
+                padding:0;
+                }
+          
+                body{
+                  padding:3rem;
+                }
+
+            .galerie{
+                width:400px;
+                height:240px;
+                border:1px solid black;
+                position:relative;
+                overflow:hidden;
+        
+                  border:1px solid black;
+                margin-bottom:5rem;
+              }
+              .galerie figcaption{
+                position:absolute;
+                bottom:0;
+                background:rgba(255,255,255,0.7);
+                width:100%;
+                text-align:center;
+              }
+              .galerie figure{
+                position:relative;
+                width:400px;
+                height:400px;
+              }
+        
+              
+        
+            </style> -->
+
+
+            
+            <div id="galerie_exemplu" class="galerie">
+                <div >
+                    <% 
+                    anotimpuri = ["iarna", "iarna", "primavara", "primavara", "primavara", "vara", "vara", "vara", "toamna", "toamna", "toamna", "iarna"]
+
+                    d = new Date()
+                    counter = 0
+                    for(let imag of locals.imagini){ 
+                        
+                        if(13 > counter  && imag.anotimp && imag.anotimp.includes( anotimpuri[d.getMonth()] )){
+                            counter = counter + 1
+                        
+                        %>
+                        <figure>
+                            <img src="<%-imag.mediu %>" alt="Lipsa imagine" />
+                            <figcaption><%-imag.titlu %></figcaption>
+            
+                        </figure> 
+                        <%  }
+                    } %>
+                </div>
+            </div>
+                   
+
+            
+
         </div>
 
         
@@ -225,33 +293,6 @@
 
 
     
-
-        
-
-
-
-
-        <!-- 
-
-        <section id = "cum_sa_cumperi">
-            <h2>Cum sa alegi produsul perfect pentru tine.</h2>
-            <p><b>Microfoanele</b> prezente în magazin se împart in două mari categorii:  <i><a href= "https://www.neumann.com/homestudio/en/what-is-a-condenser-microphone">condenser</a></i> si  <i><a href="https://www.neumann.com/homestudio/en/what-is-a-dynamic-microphone">dinamic</a></i>. Ambele au rolul lor, dar primul lucru pe care trebuie să il știi atunci dacă te gândești să îți achiziționezi unul este că un microfon de tip condenser este mult mai sensibil și captează mai multă informație din jurul său. Astfel, acesta nu este o alegere bună pentru o cameră fără tratament acustic sau pentru un apartament.
-                Următorul aspect de interes în alegerea unui microfon este tipul de conector pe care acesta îl folosește: <i>XLR</i> și <i>USB</i> sunt principalele opțiuni. <a href="https://en.wikipedia.org/wiki/XLR_connector"><i>XLR</i></a> este un conector ce datează din anii 50, care foloseste 3 pini pentru a transmite un semnal audio analog. Pentru a folosi un astfel de microfon este necesară si achiziționarea unei interfețe audio care să transforme semnalul analog intr-unul digital care să poată fi înțeles de calculator.</p>
-            <p>În zona de <b>instrumente pentru studio </b> se regăsesc toate cele necesare pentru asamblarea de la 0 a unui <q>home studio</q>, cu oferte pentru toate nivelurile de preț. De la interfațe audio și mixere, controllere <abbr title="musical instrument digital interface">MIDI</abbr> pentru clape sau chitară și bineînteles, cablurile și conectorii necesari pentru a le lega pe toate.</p>
-            <iframe width="500" height="300" src="https://www.youtube.com/embed/-iaQHN45rxE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <br>
-            <a href="https://www.youtube.com/embed/J-6z93SqEO0" target="ifr">Cum sa alegi un microfon pentru bugetul tau</a>
-            <a href="https://www.youtube.com/embed/hJjcd5lZKrY" target="ifr">Cum sa alegi o interfata audio pentru bugetul tau</a>    
-            <br>
-            <iframe width="500" height="240" src = "https://www.youtube.com/embed/J-6z93SqEO0" name = "ifr"></iframe>
-
-        </section>
-        
-        <section id="downloads">
-            <h2>Downloads:</h2>
-            <br>
-            <a href="./resurse/downloads/AltoPro_LiveSound_Guide_final.pdf" target="_blank" download>Gid live audio</a>
-        </section> -->
 
         
 

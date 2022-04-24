@@ -4,7 +4,7 @@ const sharp = require("sharp");
 
 const { Client } = require("pg");
      var client = new Client({ database: "Proiect", user: "pepi", password: "1234", host: "localhost", port: "8080" });
-     client.connect();
+    //  client.connect();
 
 
 app = express();

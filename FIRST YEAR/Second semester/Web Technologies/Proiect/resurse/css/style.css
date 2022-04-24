@@ -23,7 +23,12 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
     --height-buton: 2.5em;
     margin: 0px;
     padding: 0px;
+
+
+
     font-family: Montserrat;
+
+    /* Font Logo: Baskerville Old Face */
     background-color: var(--dark-grey);
     color: var(--off-white);
 }
@@ -99,6 +104,7 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
 
 #videoclipuri {
     grid-area: z-videoclipuri;
+    display: inline-flex;
 }
 
 #gal_statica{
