@@ -1,197 +1,202 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <title>Fyresound - Magazinul pasionaților de audio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <meta name="keywords" content="audio, HIFI, echipamente_audio, casti, microfoane, monitoare_studio">
     <meta name="description" content="Site dedicat audiofililor si creatorilor de muzica.">
-    
-    
 
 
-    <%- include("../fragmente/head.ejs");  %> 
 
 
-    <!-- CSS -->
-    
-    <link href="/resurse/css/iframe.css" rel="stylesheet" type="text/css" />
-    <link href="/resurse/css/link_sus.css" rel="stylesheet" type="text/css" />
-    
-    <link href="/resurse/css/tabel.css" rel="stylesheet" type="text/css" />
-    <link href="/resurse/css/galerie_animata.css" rel="stylesheet" type="text/css" />
-    
-    
-    <link rel="stylesheet" href="./resurse/css/style.css"  type="text/css" />
-    <link rel="stylesheet" href="/resurse/css/style_700.css" type="text/css" media="screen and (max-width:700px)" />
-	<link rel="stylesheet" href="/resurse/css/style_500.css" type="text/css" media="screen and (max-width:500px)" />
-    <link href="/resurse/css/stil_printare.css" rel="stylesheet" type="text/css" media = "print" />
+    <%- include("../fragmente/head.ejs");  %>
 
 
-    <script src="https://kit.fontawesome.com/58c167abb3.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
-    
+        <!-- CSS -->
+
+        <link href="/resurse/css/iframe.css" rel="stylesheet" type="text/css" />
+        <link href="/resurse/css/link_sus.css" rel="stylesheet" type="text/css" />
+
+        <link href="/resurse/css/tabel.css" rel="stylesheet" type="text/css" />
+        <link href="/resurse/css/galerie_animata.css" rel="stylesheet" type="text/css" />
+
+
+        <link rel="stylesheet" href="./resurse/css/style.css" type="text/css" />
+        <link rel="stylesheet" href="/resurse/css/style_700.css" type="text/css" media="screen and (max-width:700px)" />
+        <link rel="stylesheet" href="/resurse/css/style_500.css" type="text/css" media="screen and (max-width:500px)" />
+        <link href="/resurse/css/stil_printare.css" rel="stylesheet" type="text/css" media="print" />
+
+
+        <script src="https://kit.fontawesome.com/58c167abb3.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+
 </head>
+
 <body>
 
-    <%- include("../fragmente/header.ejs");  %> 
+    <%- include("../fragmente/header.ejs");  %>
 
 
-    <!-- <%- locals.ip %> -->
+        <!-- <%- locals.ip %> -->
 
-    <p id = "watermark"></p>
+        <p id="watermark"></p>
 
-    <div id="banner">
-        <p>
-            Acest site este un proiect scolar.
-        </p>
-    </div>
+        <div id="banner">
+            <p>
+                Acest site este un proiect scolar.
+            </p>
+        </div>
 
-    <main id="main_grid">
+        <main id="main_grid">
 
-        <div id="poster">
-            <figure>
-                <picture >
-                <source srcset="./resurse/imagini/Firesoundicon.png" media="(max-width:500px)">
-                <source srcset="./resurse/imagini/site/LogoFullSize.png" media="(max-width:700px)">
-                <img src="./resurse/imagini/site/LogoFullSize.png" alt="Logo-ul Fyresound">
-    
-                </picture>
-                <figcaption>Logo-ul Fyresound</figcaption>
-            </figure>
+            <div id="poster">
+                <figure>
+                    <picture>
+                        <source srcset="./resurse/imagini/Firesoundicon.png" media="(max-width:500px)">
+                        <source srcset="./resurse/imagini/site/LogoFullSize.png" media="(max-width:700px)">
+                        <img src="./resurse/imagini/site/LogoFullSize.png" alt="Logo-ul Fyresound">
 
-            <div id="despre_noi">
-        
-                <p>Fyresound este cel mai nou magazin online dedicat audiofililor și creatorilor de muzica. Aici vei găsi atât produsele producătorilor mari, cu vechime, dar și ale celor noi, care încă nu au intrat în atenția distributorilor.</p>
-                <p>Misiunea noastră este să aducem cea mai variata gama de produse audio din romania, servind produsele renumite pentru profesioniști, într-un mediu simplu pentru începători.</p>
-                
+                    </picture>
+                    <figcaption>Logo-ul Fyresound</figcaption>
+                </figure>
+
+                <div id="despre_noi">
+
+                    <p>Fyresound este cel mai nou magazin online dedicat audiofililor și creatorilor de muzica. Aici vei găsi atât produsele producătorilor mari, cu vechime, dar și ale celor noi, care încă nu au intrat în atenția distributorilor.</p>
+                    <p>Misiunea noastră este să aducem cea mai variata gama de produse audio din romania, servind produsele renumite pentru profesioniști, într-un mediu simplu pentru începători.</p>
+
+                </div>
             </div>
-        </div>
 
 
-        <div id="tabel">
-            <section id="orar">
-                <caption id="captiune" ><b>Orar showroom</b></caption>
-                <table id="tab-orar">
-                    <thead>
+            <div id="tabel">
+                <section id="orar">
+                    <caption id="captiune"><b>Orar showroom</b></caption>
+                    <table id="tab-orar">
+                        <thead>
 
-                        <tr>
-                            <th></th>
-                            <th>8:00 - 10:00</th>
-                            <th>10:00 - 12:00</th>
-                            <th>12:00 - 14:00</th>
-                            <th>16:00 - 18:00</th>
-                            <th>18:00 - 20:00</th>
-                            
-                        </tr>
+                            <tr>
+                                <th></th>
+                                <th>8:00 - 10:00</th>
+                                <th>10:00 - 12:00</th>
+                                <th>12:00 - 14:00</th>
+                                <th>16:00 - 18:00</th>
+                                <th>18:00 - 20:00</th>
 
-                    </thead>
+                            </tr>
 
-                    <tbody>
-                        <tr>
-                            
-                            
-                            <td>Luni</td>
-                            <td>✕</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                            <td>✓</td>
+                        </thead>
 
-                        </tr>
-                        <tr>
-                           
-                            
-                            <td>Marti</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                        </tr>
-                        <tr>
-                        
-                            
-                            <td>Miercuri</td>
-
-                            <td>✓</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                        </tr>
-                        <tr>
-                            
-                            
-                            <td>Joi</td>
-
-                            <td colspan="5">✕</td>
-                            
-                        </tr>
-                        <tr>        
-                            <td>Vineri</td>
-                            
-                            <td>✕</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                        </tr>
-                        <tr>
-                            
-                            <td>Sambata</td>
-                            
-                            <td>✕</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                            <td>✕</td>
-                            <td>✕</td>
-                        </tr>
-                        <tr>
-                            <td>Duminica</td>
-                            
-                            <td>✕</td>
-                            <td>✓</td>
-                            <td>✕</td>
-                            <td>✕</td>
-                            <td>✕</td>
-
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <td colspan="6">Va asteptam sa testati produsele noastre</td>
-                    </tfoot>
-                </table> 
-
-        </div>
+                        <tbody>
+                            <tr>
 
 
-        <div id="calendar">
-            <h2>????</h2>
-            <h2>Aici va veni un calendar</h2>
-        </div>
+                                <td>Luni</td>
+                                <td>✕</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                                <td>✓</td>
 
-        
-        <div id="anunturi">
-            <h2>Anunturi</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-
-        <div id = "utilizatori">
-            <h2>Utilizatori</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
+                            </tr>
+                            <tr>
 
 
-        <div id="statistici">
-            <h2>Statistici produse <i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s;" ></i></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        
-        </div>
+                                <td>Marti</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                            </tr>
+                            <tr>
 
-        <div id="date">
-            <h2>Date importante </h2>
-            <span class="fa-solid fa-bowl-rice"></i>
+
+                                <td>Miercuri</td>
+
+                                <td>✓</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                            </tr>
+                            <tr>
+
+
+                                <td>Joi</td>
+
+                                <td colspan="5">✕</td>
+
+                            </tr>
+                            <tr>
+                                <td>Vineri</td>
+
+                                <td>✕</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                            </tr>
+                            <tr>
+
+                                <td>Sambata</td>
+
+                                <td>✕</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                                <td>✕</td>
+                                <td>✕</td>
+                            </tr>
+                            <tr>
+                                <td>Duminica</td>
+
+                                <td>✕</td>
+                                <td>✓</td>
+                                <td>✕</td>
+                                <td>✕</td>
+                                <td>✕</td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <td colspan="6">Va asteptam sa testati produsele noastre</td>
+                        </tfoot>
+                    </table>
+
+            </div>
+
+
+            <div id="calendar">
+                <h2>????</h2>
+                <h2>Aici va veni un calendar</h2>
+            </div>
+
+
+            <div id="anunturi">
+                <h2>Anunturi</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+
+            <div id="utilizatori">
+                <h2>Utilizatori</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+
+
+            <div id="statistici">
+                <h2>Statistici produse <i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s;"></i></h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            </div>
+
+            <div id="date">
+                <h2>Date importante </h2>
+                <span class="fa-solid fa-bowl-rice"></i>
 
             <section id="downloads">
                 <h3>Downloads:</h3>
@@ -256,16 +261,30 @@
                     anotimpuri = ["iarna", "iarna", "primavara", "primavara", "primavara", "vara", "vara", "vara", "toamna", "toamna", "toamna", "iarna"]
 
                     d = new Date()
+                    nrImagini = 0
+
+                    for(let imag of locals.imagini){
+                        if(imag.anotimp && imag.anotimp.includes( anotimpuri[d.getMonth()] )){
+                            nrImagini= nrImagini +1
+                        }
+                    }
+                    random_num = Math.random() * nrImagini + 1
+                    random_num = random_num - random_num % 2
+
+                    if(random_num < 2 ){
+                        random_num = 2
+                    }
+
                     counter = 0
+
                     for(let imag of locals.imagini){ 
                         
-                        if(13 > counter  && imag.anotimp && imag.anotimp.includes( anotimpuri[d.getMonth()] )){
+                        if(counter < random_num && imag.anotimp && imag.anotimp.includes( anotimpuri[d.getMonth()] )){
                             counter = counter + 1
-                        
                         %>
                         <figure>
                             <img src="<%-imag.mediu %>" alt="Lipsa imagine" />
-                            <figcaption><%-imag.titlu %></figcaption>
+                            <figcaption><%-counter %>   <%-nrImagini %> </figcaption>
             
                         </figure> 
                         <%  }

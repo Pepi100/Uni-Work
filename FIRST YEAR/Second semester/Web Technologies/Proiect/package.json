@@ -1,26 +1,29 @@
 {
-  "name": "proiect",
-  "version": "1.0.0",
-  "description": "Site despre instrumente audio",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "casti",
-    "microfoane",
-    "audio"
-  ],
-  "author": "Radu Nedelcu",
-  "license": "ISC",
-  "dependencies": {
-    "ejs": "^3.0.2",
-    "express": "^4.17.3",
-    "fs": "^0.0.1-security",
-    "mp4": "^0.5.2",
-    "nodemon": "^2.0.15",
-    "pg": "^8.7.3",
-    "sharp": "^0.30.3",
-    "webvtt": "^0.0.2"
-  }
+    "name": "proiect",
+    "version": "1.0.0",
+    "description": "Site despre instrumente audio",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "node-sass": "node-sass --output-style compressed -o dist/css src/scss"
+    },
+    "keywords": [
+        "casti",
+        "microfoane",
+        "audio"
+    ],
+    "author": "Radu Nedelcu",
+    "license": "ISC",
+    "dependencies": {
+        "ejs": "^3.0.2",
+        "express": "^4.17.3",
+        "fs": "^0.0.1-security",
+        "mp4": "^0.5.2",
+        "nodemon": "^2.0.15",
+        "pg": "^8.7.3",
+        "sass": "^1.50.1",
+        "sharp": "^0.30.3",
+        "webvtt": "^0.0.2",
+        "node-sass": "4.5.0"
+    }
 }

@@ -6,28 +6,20 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
 
 :root {
     /* culori noi */
-
     --black: #0d0d0d;
-
     --dark-grey: #1d1d1d;
     --off-black: #121212;
     --light-grey: #909596;
     --off-white: #c4c8c5;
     --red: #b81b24;
     --blue: #0075ad;
-
     /* culori vechi */
-    
     --width-buton: 5em;
     --width-buton-produse: 10em;
     --height-buton: 2.5em;
     margin: 0px;
     padding: 0px;
-
-
-
     font-family: Montserrat;
-
     /* Font Logo: Baskerville Old Face */
     background-color: var(--dark-grey);
     color: var(--off-white);
@@ -36,25 +28,16 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
 #main_grid {
     padding: 10px;
     display: grid;
-    grid-template-areas:"z-poster z-poster z-poster" 
-                        "z-calendar z-tabel z-anunturi"
-                        "z-utilizatori z-tabel z-anunturi" 
-                        "z-utilizatori z-statistici z-date" 
-                        "z-iframe z-videoclipuri z-videoclipuri"
-                        "z-galerie_statica z-galerie_statica z-galerie_statica";
+    grid-template-areas: "z-poster z-poster z-poster" "z-calendar z-tabel z-anunturi" "z-utilizatori z-tabel z-anunturi" "z-utilizatori z-statistici z-date" "z-iframe z-videoclipuri z-videoclipuri" "z-galerie_statica z-galerie_statica z-galerie_statica";
     grid-template-rows: 2fr 1fr 1fr 1fr 1fr 10fr;
     grid-template-columns: 1fr 3fr 1fr;
-    
 }
 
-#main_grid > *{
+#main_grid>* {
     background-color: var(--off-black);
-
     border-radius: 30px;
     border: 2px solid var(--black);
-
     box-shadow: var(--off-black) 12px 12px 15px;
-
     margin: 12px;
     padding: 15px;
 }
@@ -91,10 +74,9 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
 }
 
 #downloads a {
-    text-decoration:none;
+    text-decoration: none;
     color: var(--off-white);
     letter-spacing: 2px;
-    
 }
 
 #cont_iframe {
@@ -107,7 +89,7 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
     display: inline-flex;
 }
 
-#gal_statica{
+#gal_statica {
     grid-area: z-galerie_statica;
 }
 
