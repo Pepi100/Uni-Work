@@ -1,10 +1,13 @@
 const express = require("express");
 const fs = require("fs");
 const sharp = require("sharp");
-
 const { Client } = require("pg");
-     var client = new Client({ database: "Proiect", user: "pepi", password: "1234", host: "localhost", port: "8080" });
-    //  client.connect();
+const ejs = require("ejs");
+const sass = require ("sass");
+
+
+     var client = new Client({ database: "Proiect", user: "pepi", password: "1234", host: "localhost", port: "5432" });
+    //   client.connect();
 
 
 app = express();
