@@ -1,0 +1,3 @@
+/cygdrive/c/Users/Stefan/CLionProjects/poo2022-2021/Laborator 7 - 143/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/c/Users/Stefan/CLionProjects/poo2022-2021/Laborator 7 - 143/cmake-build-debug/CMakeFiles/edit_cache.dir
+/cygdrive/c/Users/Stefan/CLionProjects/poo2022-2021/Laborator 7 - 143/cmake-build-debug/CMakeFiles/main.dir

@@ -1,10 +1,10 @@
 const express = require("express");
 const fs = require("fs");
 const sharp = require("sharp");
-
 const { Client } = require("pg");
-     var client = new Client({ database: "Proiect", user: "pepi", password: "1234", host: "localhost", port: "8080" });
-    //  client.connect();
+
+var client = new Client({ database: "Proiect", user: "pepi", password: "1234", host: "localhost", port: "5432" });
+//  client.connect();
 
 
 app = express();
@@ -26,7 +26,7 @@ app.get(["/", "/index", "/home"], function(req, res) {
 })
 
 
-app.get("/*.ejs", function(req, res) {
+app.get(["/*.ejs", "/admin"], function(req, res) {
     //res.sendFile(__dirname+"/index1.html");
     res.status(403).render("pagini/403");
 })
@@ -47,7 +47,7 @@ app.get("/galerie", function(req, res) {
 
 
 app.get("/ceva", function(req, res, next) {
-    
+
 })
 
 
@@ -107,7 +107,7 @@ creeazaImagini();
 
 
 
-process.on('uncaughtException', function (err) {
+process.on('uncaughtException', function(err) {
     console.log(err);
 });
 

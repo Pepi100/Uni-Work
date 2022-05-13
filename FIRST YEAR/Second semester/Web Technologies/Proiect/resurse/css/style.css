@@ -29,7 +29,7 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
     padding: 10px;
     display: grid;
     grid-template-areas: "z-poster z-poster z-poster" "z-calendar z-tabel z-anunturi" "z-utilizatori z-tabel z-anunturi" "z-utilizatori z-statistici z-date" "z-iframe z-videoclipuri z-videoclipuri" "z-galerie_statica z-galerie_statica z-galerie_statica";
-    grid-template-rows: 2fr 1fr 1fr 1fr 1fr 10fr;
+    grid-template-rows: 1.4fr 1fr 1fr 1fr 1fr 5fr;
     grid-template-columns: 1fr 3fr 1fr;
 }
 
@@ -43,10 +43,17 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
 }
 
 #poster {
+    font-size: large;
     grid-area: z-poster;
     width: auto;
-    margin: auto;
+    margin: 10px;
     text-align: center;
+}
+
+#poster figcaption {
+    font-size: smaller;
+    padding: 0px;
+    margin-top: 0px;
 }
 
 #calendar {
@@ -91,6 +98,7 @@ Paleta culori: https://coolors.co/palette/390099-9e0059-ff0054-ff5400-ffbd00
 
 #gal_statica {
     grid-area: z-galerie_statica;
+    height: fit-content;
 }
 
 ::cue {
@@ -154,6 +162,10 @@ ul.meniu>li a {
     text-align: center;
     line-height: var(--height-buton);
     color: var(--off-white);
+}
+
+ul.meniu {
+    margin-left: 15px;
 }
 
 
@@ -235,6 +247,21 @@ footer {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
     margin: auto;
+}
+
+#copyright {
+    text-align: center;
+}
+
+#contact {
+    margin-top: 0px;
+    margin-left: 20px;
+    font-size: 90%;
+    height: 125%;
+}
+
+#contact h2 {
+    margin-top: 2px;
 }
 
 .text-right {

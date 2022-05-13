@@ -1,0 +1,17 @@
+main div {
+    background-color: var(--off-black);
+    border-radius: 30px;
+    border: 2px solid var(--black);
+    box-shadow: var(--off-black) 12px 12px 15px;
+    width: 12cm;
+    height: 12cm;
+    margin: auto;
+    margin-top: 30px;
+    text-align: center;
+}
+
+main div :nth-child(1) {
+    margin-top: 4cm;
+}
+
+main {}
