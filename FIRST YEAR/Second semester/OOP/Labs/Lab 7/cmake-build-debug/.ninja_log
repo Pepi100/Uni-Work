@@ -1,0 +1,8 @@
+# ninja log v5
+1735	2088	1648554665642169500	main.exe	e7ea58f2c0e80a20
+3	1784	1648550132364097000	CMakeFiles/main.dir/main.cpp.o	60daefaa07bd4f5a
+97	1772	1648550132351100400	CMakeFiles/main.dir/util/functions.cpp.o	4ea0f8423bb115df
+59	1762	1648550132334100100	CMakeFiles/main.dir/util/IoBase.cpp.o	d8ceb5b49cc84315
+4	479	1648554783032715900	build.ninja	9214bb17e41f8275
+16	1732	1648554665279201300	CMakeFiles/main.dir/main2.cpp.o	c4cceff642b245b7
+24	2770	1648552395921902800	CMakeFiles/main.dir/main1.cpp.o	7c3cafefa603baa9

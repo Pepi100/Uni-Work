@@ -1,103 +1,79 @@
-
-#galerie_statica{
-    display:grid;
-    grid-template-columns: repeat(3,1fr);
-    grid-template-rows: repeat(5,1fr);
+#galerie_statica {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     grid-gap: 10px;
- 
     padding-left: 100px;
     padding-right: 100px;
     width: auto;
     margin: auto;
-
     counter-reset: nr_imag;
-    
 }
 
+#galerie_statica div a {
+    font-size: x-large;
+}
 
-#galerie_statica > *{
+#galerie_statica>* {
     background-color: var(--dark-grey);
     box-shadow: var(--black) 5px 5px 15px;
-
     border-radius: 30px;
-    width:4fr;
+    width: 4fr;
     height: 4.4fr;
-    
 }
 
-
-
-#imagini_galerie_statica{
-    
+#imagini_galerie_statica {
     align-items: center;
     max-width: 400px;
     max-height: 470px;
-    
 }
 
-
-#imagini_galerie_statica figcaption{
+#imagini_galerie_statica figcaption {
     line-height: 60px;
     font-size: 25px;
-    
     counter-increment: nr_imag;
     text-align: center;
 }
 
-#imagini_galerie_statica figcaption::before{
-    
+#imagini_galerie_statica figcaption::before {
     content: counter(nr_imag, lower-roman) ") ";
 }
 
-
-#galerie_statica img{
+#galerie_statica img {
     width: 100%;
     border: 3px solid var(--off-black);
     border-radius: 2px;
 }
 
-
-
-
-#galerie_statica figure:hover figcaption{
+#galerie_statica figure:hover figcaption {
     transform: scale(1.45, 1.45);
-    
 }
 
-#galerie_statica figure:hover img{
+#galerie_statica figure:hover img {
     transform: scale(1.40, 1.40);
     filter: opacity(50%);
     transform-origin: top center;
     border-radius: 15px;
-
 }
 
-#galerie_statica figure *{
+#galerie_statica figure * {
     transition: all 800ms linear;
 }
 
-
-
-
-#despre1{
+#despre1 {
     grid-area: 2/2/3/3;
     text-align: center;
-    
-   
-    
 }
 
-#despre1 a{
+#despre1 a {
     text-decoration: none;
     color: var(--off-white);
     font-size: 20px;
-    margin:0;
+    margin: 0;
     top: 40%;
     position: relative;
-    
 }
 
-#despre2{
+#despre2 {
     grid-area: 4/2/5/3;
 }
-

@@ -1,0 +1,6 @@
+# ninja log v5
+1480	1819	1648555508589647300	main.exe	9a7379e1e1b6ad6d
+20	700	6738066393071655	CMakeFiles/main.dir/util/IoBase.cpp.obj	8bdbc5046d329d09
+26	769	6738066393700778	CMakeFiles/main.dir/util/functions.cpp.obj	67f319b33c63ce8
+1	869	6738066394688615	CMakeFiles/main.dir/main1.cpp.obj	e2664e91760bb0a0
+870	1038	6738066396368873	main.exe	d3c0cd8fc7ae9706

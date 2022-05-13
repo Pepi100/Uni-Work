@@ -1,3 +1,14 @@
-h1{
-    font-family: 'Montserrat', sans-serif; 
-   }
+header h1 {
+    margin: 0;
+    margin-left: 0.5cm;
+    padding: 15px;
+    text-align: left;
+    text-shadow: rgb(196, 200, 197, 0.2) 2px 2px 5px;
+    /* c4c8c5 */
+}
+
+header {}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+}

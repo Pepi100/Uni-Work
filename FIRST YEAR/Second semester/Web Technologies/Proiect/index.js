@@ -29,7 +29,7 @@ app.get(["/", "/index", "/home"], function(req, res) {
 })
 
 
-app.get("/*.ejs", function(req, res) {
+app.get(["/*.ejs", "/admin"], function(req, res) {
     //res.sendFile(__dirname+"/index1.html");
     res.status(403).render("pagini/403");
 })
@@ -50,7 +50,7 @@ app.get("/galerie", function(req, res) {
 
 
 app.get("/ceva", function(req, res, next) {
-    
+
 })
 
 
@@ -110,7 +110,7 @@ creeazaImagini();
 
 
 
-process.on('uncaughtException', function (err) {
+process.on('uncaughtException', function(err) {
     console.log(err);
 });
 
