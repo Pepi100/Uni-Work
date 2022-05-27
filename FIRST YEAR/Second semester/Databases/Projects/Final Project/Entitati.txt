@@ -1,0 +1,13 @@
+Entitati:
+	1. Client
+	2. Comanda
+	3. Adresa
+	4. Angajat
+	5. Departament
+	6. Produse
+	7. Microfoane
+	8. Casti
+	9. Interfete Audio
+     10. Ticket
+	
+	

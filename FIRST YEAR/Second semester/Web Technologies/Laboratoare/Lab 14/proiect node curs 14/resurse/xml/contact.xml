@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contact>
+    <mesaje>
+        <mesaj username="anonim" data="Sat Jun 12 2021 12:17:58 GMT+0300 (Eastern European Summer Time)">Salut!</mesaj>
+        <mesaj username="anonim" data="Sat Jun 12 2021 12:27:59 GMT+0300 (Eastern European Summer Time)">Hey!</mesaj>
+        <mesaj username="anonim" data="Sat Jun 12 2021 12:29:13 GMT+0300 (Eastern European Summer Time)">Bau!</mesaj>
+        <mesaj username="anonim" data="Sat Jun 12 2021 12:29:29 GMT+0300 (Eastern European Summer Time)">Bau!</mesaj>
+        <mesaj username="anonim" data="Sat Jun 12 2021 12:29:35 GMT+0300 (Eastern European Summer Time)">Cucubau!</mesaj>
+        <mesaj username="test" data="Sun Jun 13 2021 11:26:55 GMT+0300 (Eastern European Summer Time)">test</mesaj>
+        <mesaj username="admin" data="Sun Jun 13 2021 11:27:29 GMT+0300 (Eastern European Summer Time)">Hapciu!</mesaj>
+        <mesaj username="test" data="Fri Jun 25 2021 19:19:40 GMT+0300 (Eastern European Summer Time)">Hello world!!!!</mesaj>
+        <mesaj username="anonim" data="Thu Dec 23 2021 16:10:15 GMT+0200 (Eastern European Standard Time)">&lt;script&gt;alert("buahaha")&lt;/script&gt;</mesaj>
+        <mesaj username="anonim" data="Thu Dec 23 2021 17:49:38 GMT+0200 (Eastern European Standard Time)">ceva</mesaj>
+        <mesaj username="abcd" data="Mon Jan 03 2022 10:43:55 GMT+0200 (Eastern European Standard Time)">Happy new year!</mesaj>
+        <mesaj username="abcd" data="Mon Jan 03 2022 10:49:04 GMT+0200 (Eastern European Standard Time)">test</mesaj>
+        <mesaj username="anonim" data="Wed May 18 2022 07:54:44 GMT+0300 (Eastern European Summer Time)">bau</mesaj>
+        <mesaj username="anonim" data="Wed May 18 2022 09:51:12 GMT+0300 (Eastern European Summer Time)">ce mai faci?</mesaj>
+        <mesaj username="curs11" data="Wed May 18 2022 11:30:13 GMT+0300 (Eastern European Summer Time)">ceva</mesaj>
+        <mesaj username="curs11" data="Thu May 19 2022 09:48:06 GMT+0300 (Eastern European Summer Time)">buna ziua</mesaj>
+        <mesaj username="curs11" data="Thu May 19 2022 13:08:34 GMT+0300 (Eastern European Summer Time)">hello!!!</mesaj>
+        <mesaj username="anonim" data="Thu May 19 2022 13:08:49 GMT+0300 (Eastern European Summer Time)">hello anonim</mesaj>
+    </mesaje>
+</contact>
