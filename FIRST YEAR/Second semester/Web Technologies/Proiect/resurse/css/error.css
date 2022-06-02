@@ -14,4 +14,8 @@ main div :nth-child(1) {
     margin-top: 4cm;
 }
 
-main {}
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

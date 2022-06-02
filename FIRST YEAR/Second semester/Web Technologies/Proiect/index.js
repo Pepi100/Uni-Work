@@ -3,11 +3,14 @@ const fs = require("fs");
 const sharp = require("sharp");
 const { Client } = require("pg");
 const ejs = require("ejs");
-const sass = require ("sass");
+const sass = require("sass");
+const { Server } = require("http");
+// const jpg = require("jpg");
 
 
-     var client = new Client({ database: "Proiect", user: "pepi", password: "1234", host: "localhost", port: "5432" });
-    //   client.connect();
+// var client = new Client({ database: "Proiect", user: "pepi100", password: "1234", host: "localhost", port: "5432" });
+var client = new Client({ database: "d6htj14nvp5nb5", user: "raelwnowgnmmid", password: "6a60d479ec4ea7c3f7468c5a4acbaa777c22e20b27e961922604f2aa6ce07e2d", host: "ec2-54-165-178-178.compute-1.amazonaws.com", port: "5432" });
+client.connect();
 
 
 app = express();
@@ -23,7 +26,7 @@ console.log("Director proiect:", __dirname);
 app.get(["/", "/index", "/home"], function(req, res) {
     //res.sendFile(__dirname+"/index1.html");
     client.query("select * from tabel", function(err, rezQuery) {
-        console.log(rezQuery);
+        // console.log(rezQuery);
     });
     res.render("pagini/index", { ip: req.ip, imagini: obImagini.imagini });
 })
@@ -49,8 +52,22 @@ app.get("/galerie", function(req, res) {
 
 
 
-app.get("/ceva", function(req, res, next) {
+app.get("/produse", function(req, res) {
+    client.query("select * from produse", function(err, rezQuery) {
+        // console.log(err);
+        // console.log(rezQuery);
 
+        res.render("pagini/produse", { produse: rezQuery.rows });
+    });
+})
+
+app.get("/produs/:id", function(req, res) {
+    client.query(`select * from produse where id = ${req.params.id}`, function(err, rezQuery) {
+        // console.log(err);
+        // console.log(rezQuery);
+
+        res.render("pagini/produs", { prod: rezQuery.rows[0] });
+    });
 })
 
 
@@ -115,5 +132,8 @@ process.on('uncaughtException', function(err) {
 });
 
 
-app.listen(8080);
+// app.listen(8080);
+var s_port = process.env.PORT || 8080;
+Server.listen(s_port);
+
 console.log("A pornit");
