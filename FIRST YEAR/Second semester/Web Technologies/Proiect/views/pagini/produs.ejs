@@ -2,10 +2,12 @@
 <html lang="ro">
 
 <head>
-    <!-- <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
+    <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
     <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
 
-    <title>Cofetăria Dulcelind - home</title> -->
+    <title>
+        <%- locals.prod.nume %> - Fyresound
+    </title>
     <%- include("../fragmente/head") %>
         <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
 </head>
@@ -14,21 +16,94 @@
     <%- include("../fragmente/header") %>
 
         <main>
-            <section>
-                <h2>Pagină produs</h2>
-                <article id="art-produs">
-                    <h3><span class="nume"><%- locals.prod.nume %></span></h3>
-                    <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
-                    <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
-                    <p>Ingrediente: <span class="ingrediente"><%- locals.prod.dimensiuni %> </span></p>
-                    <p>Calorii: <span class="calorii"><%- locals.prod.an_fabricatie %> </span></p>
-                    <p>Gramaj: <span class="gramaj"><%- locals.prod.producator %> </span></p>
-                    <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
-                    <p>Pentru diabetici: <span class="pt_diabetici"><%- locals.prod.incl_cablu %> </span></p>
-                    <p>Data adăugare: <span class="categorie"><%- locals.prod.data_adaugare %> </span></p>
+            <section id="prod">
+                <h2>
+                    <%- locals.prod.producator %>
+                        <%- locals.prod.nume %>
+                </h2>
+                <div class="primary">
                     <figure class="imag-produs">
-                        <img src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
+                        <img src="/resurse/imagini/produse/microfoane/<%-locals.prod.imagine%>" alt="[imagine <%- locals.prod.nume %>]" />
                     </figure>
+
+                    <section class="descriere">
+                        <h3>
+                            <%- locals.prod.producator %>
+                                <%- locals.prod.nume %>
+                        </h3>
+                        <p>
+                            <%- locals.prod.descriere %>
+                        </p>
+
+
+                    </section>
+
+                    <div class="cos">
+                        <span class="pret"><%- locals.prod.pret %> lei</span>
+                        <button class="button-74" role="button">Adauga in cos</button>
+                    </div>
+
+                </div>
+
+
+                <article id="specificatii">
+                    <p>
+                        <%- locals.prod.descriere %>
+                    </p>
+
+                    <table id="specs">
+                        <tbody>
+                            <tr>
+                                <td>Categorie:</td>
+                                <td>
+                                    <%- locals.prod.categorie %>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td>Producator</td>
+                                <td>
+                                    <%- locals.prod.producator %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tip</td>
+                                <td>
+                                    <%- locals.prod.tip %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Dimensiuni</td>
+                                <td>
+                                    <%- locals.prod.dimensiuni[0] %> x
+                                        <%- locals.prod.dimensiuni[1] %> x
+                                            <%- locals.prod.dimensiuni[2] %> cm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>An fabricatie</td>
+                                <td>
+                                    <%- locals.prod.an_fabricatie %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Include cablu</td>
+                                <td>
+                                    <%- locals.prod.incl_cablu %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Data adaugare</td>
+                                <td>
+                                    <%- locals.prod.data_adaugare %>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
                 </article>
 
             </section>

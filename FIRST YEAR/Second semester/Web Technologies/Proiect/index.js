@@ -62,16 +62,16 @@ app.get("/galerie", function(req, res) {
 
 
 app.get("/produse", function(req, res) {
-    client.query("select * from produse", function(err, rezQuery) {
+    client.query("select * from microfoane", function(err, rezQuery) {
         // console.log(err);
         // console.log(rezQuery);
 
-        res.render("pagini/produse", { produse: rezQuery.rows });
+        res.render("pagini/produse", { microfoane: rezQuery.rows });
     });
 })
 
 app.get("/produs/:id", function(req, res) {
-    client.query(`select * from produse where id = ${req.params.id}`, function(err, rezQuery) {
+    client.query(`select * from microfoane where id = ${req.params.id}`, function(err, rezQuery) {
         // console.log(err);
         // console.log(rezQuery);
 

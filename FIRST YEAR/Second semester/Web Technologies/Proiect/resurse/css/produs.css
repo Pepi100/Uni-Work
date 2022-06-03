@@ -1,0 +1,96 @@
+#prod {
+    background-color: var(--dark-grey);
+    box-shadow: var(--black) 5px 5px 15px;
+    border-radius: 2rem;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: auto;
+}
+
+#prod h2 {
+    padding-top: 2%;
+    padding-left: 2%;
+}
+
+#prod .primary {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+}
+
+#prod .primary .descriere {
+    padding-top: 10%;
+    padding-left: 0%;
+    margin-left: 0%;
+}
+
+#prod .primary .imag-produs img {
+    width: 90%;
+    height: auto;
+}
+
+#specificatii {
+    margin-bottom: 5%;
+    margin-left: 5%;
+    padding-bottom: 5%;
+}
+
+#specs td,
+#specs th {
+    border: 1px solid var(--blue);
+    padding: 0.2rem;
+}
+
+.cos {
+    /* background-color: var(--light-grey); */
+    /* border: 4px solid var(--light-grey); */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: auto;
+    padding-top: 30%;
+}
+
+.pret {
+    font-size: xx-large;
+    text-align: center;
+    color: var(--green);
+    font-weight: 600;
+    margin-bottom: 10%;
+}
+
+.button-74 {
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: var(--light-grey);
+    border: 2px solid var(--blue);
+    border-radius: 30px;
+    box-shadow: var(--blue) 4px 4px 0 0;
+    color: var(--blue);
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    /* padding: 0 18px; */
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-74:hover {
+    background-color: var(--off-white);
+}
+
+.button-74:active {
+    box-shadow: var(--blue) 2px 2px 0 0;
+    transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+    .button-74 {
+        min-width: 120px;
+        padding: 0 25px;
+    }
+}
