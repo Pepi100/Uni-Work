@@ -1,3 +1,0 @@
-C:/Users/radun/Desktop/examen/cmake-build-debug/CMakeFiles/examen.dir
-C:/Users/radun/Desktop/examen/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/radun/Desktop/examen/cmake-build-debug/CMakeFiles/rebuild_cache.dir
