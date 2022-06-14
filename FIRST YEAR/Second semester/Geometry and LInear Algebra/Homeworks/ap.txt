@@ -1,0 +1,77 @@
+Barem
+
+Oficiu 1 punct
+
+Clasa Bilet: 1.4 puncte
+	0.3 puncte daca exista clasa Bilet
+	0.3 puncte daca exista cel putin data membru pret sau tip_bilet
+	0.8 puncte ierarhie clase Bilet
+	0.2 puncte pentru supraincarcarcarea operatorului <<
+
+Clasa Card: 2 puncte
+	0.3 puncte daca exista clasa Card
+	0.3 puncte pentru memorarea biletelor
+	0.5 puncte pentru memorarea a n obiecte de tipul Bilet
+	0.8 puncte ierarhie clase Card
+	0.2 puncte pentru supraincarcarcarea operatorului <<
+
+Clasa AparatValidare: 0.8 puncte
+	0.2 puncte daca exista clasa  AparatValidare
+	0.2 puncte daca exista data membru nrScanari
+	0.2 puncte daca se memoreaza tipul apartului de validare (metrou / suprafata)
+	0.2 puncte pentru supraincarcarcarea operatorului <<
+
+Principii Mostenire: 1 punct
+	0.5 pentru apelul unui constructor parametrizat al clasei baza
+	0.5 daca destructorul este declarat virtual in cel putin o clasa baza
+
+Metode const: 0.3 puncte 
+Date membru const: 0.3 puncte
+
+Declarare metode virtuale: 0.3 puncte
+
+Metode / atribute statice: 0.3 puncte
+
+Down-casting: 0.3 puncte
+
+Adaugare automata a unui nou bilet de tipul cardului: 0.6 puncte
+	0.2 puncte pentru fiecare tip de bilet; se acorda chiar daca exista buguri (ex. se adauga doar la a 	opta validare in loc sa se adauge la fiecare 8 validari, etc.)
+
+Exceptii: 0.6 puncte
+	0.2 definirea unei clase derivate din std::exception
+	0.2 try-catch
+	0.2 throw
+
+STL: 0.3 puncte std::vector, set, pair etc.
+
+Smart-Pointers: 0.3 puncte
+
+Se scad 0.3 puncte pentru fiecare memory-leak in destructor (sau in lipsa acestuia), operator=, sau in alte parti…
+
+Stergerea CC, si op= pentru carduri: 0.4 puncte (0.2 puncte pentru fiecare)
+	sau se acorda 0.4 puncte (0.2 pentru fiecare) daca ele sunt rescrise / sterse corect cel putin o data 	in alt context. (de ex. se rescriu pentru a demonstra cunoasterea lor / stergerea lor pe un 	signleton / etc.) 
+	op= se considera sters / rescris corect daca tipul de return este Clasa&, respectiv se returneaza 	*this.
+
+Calcul suma bilete: 0.3 puncte
+	se acorda chiar daca se iau si biletele folosite in calcul
+
+Validare bilet corespunzator mijlocului de transport: 0.3 puncte
+
+Nu se valideaza acelasi bilet de doua ori in cazul biletelor de metrou / suprafara 0.3 puncte
+
+Calcul timp ramas validitate: 0.2 puncte
+
+Mecanism de incadrare a timpului: 0.3 puncte
+	o clasa Ceas / transmiterea timpului ca parametru, memorarea momentului validarii
+
+Main: 0.7 puncte
+- crearea unui obiect de tipul Card: 0.10 puncte
+- adaugarea unui bilet la un Card: 0.10 puncte
+- crearea unui obiect de tipul Validator: 0.10 puncte
+- validarea unui obiect folosind obiectul un Validator: 0.10 puncte
+- ilustrarea modificarii timpului: 0.10 puncte
+- afisare detalii card printr-o metoda / operator<<: 0.10 puncte
+- afisare detalii validator printr-o metoda / operator<<: 0.10 puncte
+
+Total: 12 puncte
+
