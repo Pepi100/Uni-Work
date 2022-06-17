@@ -1,0 +1,150 @@
+## Pointeri si referinte:
+
+int* ptr = pointer de tip int, contine adresa unui obiect de tip int, de multe ori primeste 0;
+cout<<*ptr; = valoarea stocata in ptr;
+
+& = adresa unde este stocat obiectul
+ptr= &var = ptr pointeaza la adresa lui var; 
+
+int& ref = var; = ref este o referinta la obiectul var
+var si ref acum pointeaza la aceeasi adresa;
+
+
+
+- const int* = int const* =  nu pot modifica continutul acelui pointer, dar pot modifica adresa la care pointeaza 
+
+- int* const a =pot modifica continutul pointerului, nu pot modifica adresa
+
+- const int* const a = nu pot schimba niciuna
+
+- int getX() const{} = promit ca metoda nu va modifica obiectul
+
+
+-  pot overloada int getX() const{} si int getX() {}
+
+- atribute mutable pot fi modificate si in obiectele const / in metode const
+
+- Daca vreau sa transmit ca parametru un obiect care nu are adresa de memorie, de ex: f(23) in loc de int x=23; si f(x);
+	
+	Trebuie ca functia sa fie definita de forma int f(int x) sau int f(const int & x) (ca sa stie compilatorul ca nu il modific, presupun), nu doar cu &
+
+- mutable => face ca obiectul sa nu fie stocat in memorie, pentru a nu putea fi modificat
+
+- volatile => compilatorul il stocheaza in memorie si presupune ca acesta nu va fi modificat. Poate fi totusi modificat de bucati de cod despre care compilatorul nu stie
+
+
+## Operatori: 
+
+- operatorul implicit ' = ' copiaza bit cu bit
+
+- atentie la destructori de poineri => eroare la dubla eliberare de memorie in cazul a doi pointeri identici in obiecte diferie
+
+- int x=10; global, int x=5; in main
+	
+	cout<< x; // 5
+	cout<< ::x; //10
+
+- Operatori de tipul:  operator int () {return x;} pot fi folositi pentru a afisa obiecte in cazul in care nu exista alti operatori definiti;
+
+- ^ Daca am mai multi apare o eroare de ambiguitate ^
+
+- There are 4 operators that cannot be overloaded in C++. They are:
+	:: (scope resolution)
+	. (member selection)
+	.* (member selection through pointer to function)
+	?: (ternary operator)
+
+ 
+## Functii:
+
+- Nu se poate transmite prin referinta un obiect care nu este stocat in memorie!!
+
+- parametri optionali (aka cu valori implicite) trebuie sa fie scrisi la final
+
+- 2.0 = de tip double; 2.0f = de tip float
+
+- avem erori doar la ambiguitati, functie cu paramatru float va accepta si un parametru de al tip, daca nu exista mai multe functii care ar putea accepta acel parametru
+
+- nu pot intoarce const int & in int &
+
+- functiile statice pot accesa doar atributele/metodele statice
+
+- obiectele const pot accesa doar functiile constante, care nu modifica obiectul
+
+- !! Nu exista functii virtuale statice!! -> nu pot declara virtual static int f()
+
+- nu exista *this in static
+
+- !! NU putem returna o referinta dintr-o functie constanta -> int & get_x() const{return x} unde x de tip int NU MERGE
+
+- Totusi: int& get_x() const  { return *x;  } unde x de tip int* merge;
+
+
+## Clase:
+
+- Nu se poate face upcasting prin mostenirea private!!
+
+- Nu pot apela prin upcasting o functie care se afla doar in clasa derivata! Aceasta trebuie sa se afle si in clasa de baza (cea de tipul poiinterului) si eventual sa folosim "virtual"
+
+- Atributele private din clasa de baza NU pot fi accesate direct in clasa derivata!
+
+- clase locale = clase definite in alte clase / functii;
+
+- clasele locale nu pot avea functiile definite in afara clasei, neaparat in clasa (generate in-place)
+
+- clasele locale NU pot avea atribute statice, dar pot avea functii statice;
+
+- clase nested = clase care se afla in alte clase
+
+- clasele nested NU pot accesa direct atributele nestatice din clasa mare => pot accesa atributele statice (sau sa am un obiect)
+
+- clasele nested POT accesa atributele private ale OBIECTELOR din clasa mare.
+
+- creez un obiect dintr-o clasa ce contine alta clasa: se creeaza artibutele clasei mari, inclusiv clasele definite deci si constructorii acestora, in ordine, si ulterior constructorul clasei mari.
+
+- Clasele incluse in alte clase nu sunt vizibile in afara acelor clase:
+
+	class A{
+		int x;
+		class Y{
+		int y;
+		public:
+			Y() = default;
+		
+		}ob1;
+	
+	}
+
+	
+	int main(){
+	Y obiect; // eroare => Y nu este vizibil in main
+	
+	}
+
+
+## Constructori & Destructori:
+
+- In C++ constructorul este chemat automat la crearea unui obiect, NU il chemi tu.
+
+- Constructor: se apeleaza de la clasa de baza spre cea derivata, destructori => invers
+
+- Daca D deriva din B:
+	
+	B* p = new D => Apeleaza constr lui B apoi lui D
+	
+	delete p => apeleaza doar destructorul lui B;
+
+	-------------------------------------------------------
+
+	D* p = new D => Apeleaza constr lui B apoi lui D
+	
+	delete p => apeleaza destructorul lui D, ulterior pe al lui B;
+
+	-------------------------------------------------------
+
+	D p(1,2); => Apeleaza constr lui B apoi lui D
+	
+	terminarea programului => apeleaza destructorul lui D, ulterior pe al lui B;
+
+- Pe upcasting, la comanda delete este apelat doar constructorul clasei de baza. Exceptie cand destructorul din clasa de baza este virtual: sunt apelati TOTI destructorii, in ordinea normala.
+ 
