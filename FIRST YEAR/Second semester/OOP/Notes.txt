@@ -147,4 +147,7 @@ var si ref acum pointeaza la aceeasi adresa;
 	terminarea programului => apeleaza destructorul lui D, ulterior pe al lui B;
 
 - Pe upcasting, la comanda delete este apelat doar constructorul clasei de baza. Exceptie cand destructorul din clasa de baza este virtual: sunt apelati TOTI destructorii, in ordinea normala.
- 
+
+- Daca folosim functii cu parametri de tip int f(D ob) {fara referinta &) va fi apelat destructorul pentru obiectul ob, desi constructorul nu este apelat la intrarea in functie. Pentru a evita acest lucru putem transmite prin referinta
+
+- La terminarea programului, obiectele ramase sunt distruse incepand cu ultimul creat

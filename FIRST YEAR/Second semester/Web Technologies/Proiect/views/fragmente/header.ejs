@@ -4,6 +4,14 @@
 <link rel="stylesheet" href="/resurse/css/style_500.css" type="text/css" media="screen and (max-width:500px)" />
 
 
+<script>
+    var tema = localStorage.getItem("tema");
+    if (tema)
+        document.body.classList.add("light");
+    else
+        document.body.classList.remove("light");
+</script>
+
 
 <header>
 
@@ -20,6 +28,7 @@
 
         <ul class="meniu">
             <li> <a href="index">Acasa</a></li>
+            <li><a href="despre">Despre</a></li>
 
             <li class="meniu-produse"><a href="/produse">Produse</a>
                 <ul class="submeniu">
@@ -30,6 +39,9 @@
             </li>
 
             <li><a href="#">Promotii</a></li>
+            <li><a href="/inregistrare">Inregistrare</a></li>
+
+            <li><button id="btn_tema">Schimba tema</button></li>
 
 
 

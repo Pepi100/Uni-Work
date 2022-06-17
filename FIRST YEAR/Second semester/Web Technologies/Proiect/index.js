@@ -3,8 +3,11 @@ const fs = require("fs");
 const sharp = require("sharp");
 const { Client } = require("pg");
 const ejs = require("ejs");
-const sass = require("sass");
+// const sass = require("sass");
 const { Server } = require("http");
+const formidable = require('formidable');
+const crypto = require('crypto');
+const session = require('express-session');
 // const jpg = require("jpg");
 
 
@@ -53,11 +56,33 @@ app.get("/despre", function(req, res){
 })
 */
 
+
+// --------------------------------ulitizatori--------------------------------
+parolaServer = "tehniciweb";
+app.post("/inreg", function(req, res) {
+    var formular = new formidable.IncomingForm()
+    formular.parse(req, function(err, campuriText, campuriFisier) {
+
+        var parolaCriptata = crypto.scryptSync(campuriText.parola, parolaServer, 64).toString('hex');
+        var comandaInserare = `insert into utilizatori (username, nume, prenume, parola, email, culoare_chat) values ('${campuriText.username}', '${campuriText.nume}','${campuriText.prenume}', '${parolaCriptata}', '${campuriText.email}', '${campuriText.culoare_chat}')`;
+        client.query(comandaInserare, function(err, rezInserare) {
+            if (err) {
+                console.log(err);
+            }
+        })
+
+        res.send("OK");
+    })
+
+
+});
+
+
 app.get("/galerie", function(req, res) {
     //res.sendFile(__dirname+"/index1.html");
     res.render("pagini/galerie_statica", { ip: req.ip, imagini: obImagini.imagini });
     res.end();
-})
+});
 
 
 
@@ -68,7 +93,7 @@ app.get("/produse", function(req, res) {
 
         res.render("pagini/produse", { microfoane: rezQuery.rows });
     });
-})
+});
 
 app.get("/produs/:id", function(req, res) {
     client.query(`select * from microfoane where id = ${req.params.id}`, function(err, rezQuery) {
@@ -77,10 +102,11 @@ app.get("/produs/:id", function(req, res) {
 
         res.render("pagini/produs", { prod: rezQuery.rows[0] });
     });
-})
+});
 
 
 app.get("/*", function(req, res) {
+
     res.render("pagini" + req.url, function(err, rezRender) {
         if (err) {
             if (err.message.includes("Failed to lookup view")) {
@@ -91,14 +117,14 @@ app.get("/*", function(req, res) {
                 res.render("pagini/eroare_generala");
             }
         } else {
-            console.log(rezRender);
+            // console.log(rezRender);
             res.send(rezRender);
         }
     });
 
-    //console.log("generala:",req.url);
+
     res.end();
-})
+});
 
 
 
