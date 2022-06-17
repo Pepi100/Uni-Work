@@ -7,7 +7,8 @@ Entitati:
 	6. Produse
 	7. Microfoane
 	8. Casti
-	9. Interfete Audio
+	9. Producator
      10. Ticket
-	
+     11. Com-Prod
+     12. Reducere
 	
