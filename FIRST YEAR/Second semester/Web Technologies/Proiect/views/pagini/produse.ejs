@@ -3,6 +3,7 @@
 
 
 <head>
+    <title>Fyresound - Produse</title>
     <link href="/resurse/css/produse.css" rel="stylesheet" type="text/css" />
     <%- include("../fragmente/head") %>
         <script type="text/javascript" src=/resurse/js/produse.js></script>
@@ -14,23 +15,57 @@
         <main>
             <section id="filtre">
                 <h2>Aici vor fi niste filtre</h2>
+                <label> Nume: <input type="text" id="inp-nume"></label>
+                <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
+                <div> Tip Microfon:
+                    <!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
+                    <p><label>Dinamic<input id="i_rad1"  name="gr_rad" value="dinamic" type="radio"/></label></p>
+                    <p><label>Condensator<input id="i_rad2"  name="gr_rad" value="condenser" type="radio"/></label></p>
+                    <p><label>Stereo<input id="i_rad3" name="gr_rad" value="stereo" type="radio"/></label></p>
+                    <p><label>Toate<input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/></label></p>
+                </div>
+
+                <div>
+                    <label>Include cablu: <input id="cablu" type="checkbox"></label>
+                </div>
+
+
+                <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="800"> <span id="infoRange">(0)</span></label>
+                <p><label>Select simplu:
+            <select id="inp-categorie">
+                <option id="sel-toate" selected value="toate">Toate</option>
+                <% for (let opt of locals.optiuni) { %>
+                    <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                <% } %>
+            </select>
+        </label></p>
+                <p>
+                    <button id="filtrare">Filtreaza</button>
+                    <button id="resetare">Reseteaza</button><br/>
+                    <button id="sortCrescNume">Sorteaza crescator dupa pret si categorie</button>
+                    <button id="sortDescrescNume">Sorteaza descrescator dupa pret si categorie</button><br/>
+                    <button id="numarProd">Numar produse afisate:</button>
+                </p>
+
             </section>
 
 
             <section id="produse">
-                <h2>Produse</h2>
+                <h2> Produse:</h2>
                 <div class="grid-produse">
                     <% for( let prod of locals.microfoane) { %>
                         <article class="produs">
                             <p class="categorie">
-                                <%- prod.categorie%>
+                                <span class="val-categorie"><%- prod.categorie%></span>
                             </p>
                             <figure>
                                 <a href="/produs/<%-prod.id %>"><img src="/resurse/imagini/produse/microfoane/<%-prod.imagine%>"  alt="[imagine <%- prod.nume %>]" /></a>
                             </figure>
 
                             <h3 class="nume"> <a href="/produs/<%-prod.id %>"><span class="val-nume"><%- prod.producator%> <%- prod.nume%></span></a></h3>
-                            <p class="pret"><span class="val-pret"><%- prod.pret%> lei</span></p>
+                            <p class="pret"><span class="val-pret"><%- prod.pret%></span> lei</p>
+                            <span class="val-tip"><%- prod.tip%></span>
+                            <span class="val-cablu"><%- prod.incl_cablu%></span>
 
 
 

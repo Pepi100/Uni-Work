@@ -96,6 +96,18 @@ main {
     position: relative;
 }
 
+.val-tip {
+    display: none;
+}
+
+.val-anFabricatie {
+    display: none;
+}
+
+.val-cablu {
+    display: none;
+}
+
 .selecteaza-cos {
     display: inline-block;
     background-color: var(--culoare-mov);

@@ -87,11 +87,14 @@ app.get("/galerie", function(req, res) {
 
 
 app.get("/produse", function(req, res) {
-    client.query("select * from microfoane", function(err, rezQuery) {
-        // console.log(err);
-        // console.log(rezQuery);
 
-        res.render("pagini/produse", { microfoane: rezQuery.rows });
+    client.query("select * from unnest(enum_range(null::subcategorie))", function(err, rezCateg) {
+        client.query("select * from microfoane", function(err, rezQuery) {
+            // console.log(err);
+            // console.log(rezQuery);
+
+            res.render("pagini/produse", { microfoane: rezQuery.rows, optiuni: rezCateg.rows });
+        });
     });
 });
 
