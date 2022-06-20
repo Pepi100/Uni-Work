@@ -1,0 +1,131 @@
+
+--11.
+
+-- Sa se obtină clientul care a cumpărat cel mai ieftin produs
+-- prodmin = produsul cel mai ieftin din stocul magazinului
+WITH prodmin AS    (SELECT p.ID_PRODUS
+                    FROM PRODUS p
+                    WHERE p.pret = (SELECT MIN(pret)
+                                    FROM PRODUS))
+SELECT c.NUME, c.PRENUME ,c.EMAIL
+FROM client c
+JOIN COMANDA com ON c.ID_CLIENT = com.ID_CLIENT
+JOIN PRODUS_COMANDAT pc ON pc.ID_COMANDA = com.ID_COMANDA
+ WHERE pc.ID_PRODUS IN (SELECT * FROM prodmin);
+
+-- sa se obtina adresa clientului care a cumparat produsele cu valoarea totala maxima
+
+SELECT *
+FROM ADRESA a
+JOIN client c ON c.ID_ADRESA = a.ID_ADRESA
+WHERE c.ID_CLIENT IN (SELECT ID_CLIENT
+                      FROM (SELECT c.ID_CLIENT, sum(p.PRET)
+                            FROM client c
+                                    JOIN COMANDA com ON c.ID_CLIENT = com.ID_CLIENT
+                                    JOIN PRODUS_COMANDAT pc ON pc.ID_COMANDA = com.ID_COMANDA
+                                    JOIN PRODUS p ON pc.ID_PRODUS = p.ID_PRODUS
+                            GROUP BY c.ID_CLIENT
+                            ORDER BY sum(p.PRET) DESC)
+                      WHERE rownum = 1);
+
+
+-- sa se afiseze pentru fiecare reducere valida care este pretul redus al produsului
+
+SELECT nvl(p2.nume, 'Nu este asociata unui produs') as "Producator" , nvl(p.nume,'Nu este asociata unui produs') as "Nume" ,
+    CASE
+        WHEN (p.nume is not null AND r.DATA_SFARSIT >= SYSDATE AND r.DATA_INCEPUT <= SYSDATE  AND r.TIP LIKE 'suma') THEN CONCAT ('Costa ', ( p.PRET - r.VALOARE)) || ' lei'
+        WHEN ( p.nume is not null AND r.DATA_SFARSIT >= SYSDATE AND r.DATA_INCEPUT <= SYSDATE AND r.TIP LIKE 'procent') THEN CONCAT ('Costa ', (p.PRET*(100 - r.VALOARE)/100) ) || ' lei'
+        ELSE 'N/A'
+    END as "Pret dupa reducere", r.TIP as "Tip reducere", r.VALOARE as "Valoare"
+
+FROM REDUCERE r
+LEFT JOIN PRODUS P on R.ID_REDUCERE = P.ID_REDUCERE
+LEFT JOIN PRODUCATOR P2 on P.ID_PRODUCATOR = P2.ID_PRODUCATOR;
+
+-- sa se afiseze pentru fiecare producator numarul de produse vandute
+
+SELECT pr.ID_PRODUCATOR, (SELECT nume FROM PRODUCATOR where ID_PRODUCATOR = pr.ID_PRODUCATOR) as "Nume", DECODE( COUNT(pc.ID_PRODUS), 0, 'Nu a vandut nimic', COUNT(pc.ID_PRODUS)  ) as "Numar Produse"
+FROM PRODUCATOR PR
+LEFT JOIN PRODUS P on PR.ID_PRODUCATOR = P.ID_PRODUCATOR
+LEFT JOIN PRODUS_COMANDAT PC on P.ID_PRODUS = PC.ID_PRODUS
+GROUP BY pr.ID_PRODUCATOR
+ORDER BY COUNT(pc.ID_PRODUS) DESC;
+
+-- Sa se afiseze pentru fiecare reducere cate zile, si separat, cate luni a fost valabila, dar si acum cate zile s-a terminat
+
+SELECT r.ID_REDUCERE, (r.DATA_SFARSIT - r.DATA_INCEPUT) as "Zile", months_between(r.DATA_SFARSIT, r.DATA_INCEPUT) as "Luni", (TO_DATE('20220619', 'YYYYMMDD') - DATA_SFARSIT)
+FROM REDUCERE r;
+
+
+--12.
+    --mariti salariu tuturor angajatilor din departamentul vanzari cu 10%
+    UPDATE ANGAJAT a
+    SET a.SALARIU = 1.1*a.SALARIU
+    WHERE a.ID_DEPARTAMENT IN (SELECT d.ID_DEPARTAMENT FROM DEPARTAMENT d WHERE lower(d.titlu) = 'vanzari');
+
+    --stergeti ticketele care contin cuvantul "sediu"
+
+    DELETE ticket t
+    WHERE INSTR( lower(t.TITLU), 'sediu') != 0 OR INSTR( lower(t.continut), 'sediu') !=0;
+
+    -- marimi salariul angajatului care a pregatit cele mai multe comenzi
+
+    UPDATE ANGAJAT a
+    SET a.SALARIU = a.SALARIU*1.20
+    WHERE a.ID_ANGAJAT = (  SELECT *
+                            FROM (SELECT  a1.ID_ANGAJAT
+                                FROM ANGAJAT a1
+                                FULL OUTER JOIN COMANDA C2 on a1.ID_ANGAJAT = C2.ID_ANGAJAT
+                                GROUP BY a1.ID_ANGAJAT
+                                ORDER BY COUNT(c2.ID_COMANDA) DESC)
+                            WHERE rownum =1);
+
+
+--13.
+CREATE SEQUENCE INCR
+    START WITH 20
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
+
+INSERT INTO ANGAJAT
+VALUES (INCR.nextval, 'Ion', 'Badea', 12, NULL, 'legit@email.tru', '24-MAR-1969', 12000);
+
+--14.
+
+    --pe baza tabelului produs, sa se creeze o vizualizare care afiseaza pentru fiecare produs producatorul + numele + pretul calculat dupa reducere
+
+    CREATE OR REPLACE VIEW PRETURI
+    AS (
+        SELECT (p2.NUME || ' ' || p.NUME) as Nume,
+        CASE
+            WHEN ( r.DATA_SFARSIT >= SYSDATE AND r.DATA_INCEPUT <= SYSDATE  AND r.TIP LIKE 'suma') THEN   p.PRET - r.VALOARE
+            WHEN (  r.DATA_SFARSIT >= SYSDATE AND r.DATA_INCEPUT <= SYSDATE AND r.TIP LIKE 'procent') THEN  p.PRET*(100 - r.VALOARE)/100
+        ELSE p.PRET
+        END as Pret
+        FROM PRODUS p
+        LEFT JOIN PRODUCATOR P2 on p.ID_PRODUCATOR = P2.ID_PRODUCATOR
+        LEFT JOIN REDUCERE r on p.ID_REDUCERE = r.ID_REDUCERE
+
+       );
+
+    --LMD care nu functioneaza:
+    UPDATE PRETURI p
+    SET p.Pret = 100
+    WHERE p.Pret <100;
+
+    --LMD care functioneaza:
+    DELETE PRETURI
+    WHERE pret <10;
+
+--15.
+
+
+CREATE INDEX  index_clienti
+ON CLIENT(NUME, PRENUME);
+
+SELECT
+    (c.NUME || c.PRENUME) as "Nume",
+    (SELECT COUNT(ID_COMANDA) FROM COMANDA WHERE c.ID_CLIENT = ID_CLIENT GROUP BY c.ID_CLIENT) as "Numar comenzi"
+FROM CLIENT c
+WHERE lower(c.PRENUME) = 'prichindelu' AND lower(c.NUME) = 'marcel';
