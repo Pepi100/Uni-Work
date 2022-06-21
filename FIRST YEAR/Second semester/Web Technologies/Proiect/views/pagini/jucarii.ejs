@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+    <link href="/resurse/css/jucarii.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/resurse/css/jucarii2.css" type="text/css" media="screen and (max-width:1000px)" />
+    <script type="text/javascript" src="/resurse/js/test.js"></script>
+
+    <script type="text/javascript" src="/resurse/js/jucarii.js"></script>
+</head>
+
+<body>
+    <div> Butoane:
+        <!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
+        <p><label>Ascendent<input id="i_rad1"  name="gr_rad" value="ascendent" type="radio"/></label></p>
+        <p><label>Descendent<input id="i_rad2"  name="gr_rad" value="descendent" type="radio"/></label></p><br>
+        <p><button id="sortare">Sortare</button></p>
+        <p><button id="filtrare">Filtrare</button></p>
+        <select id="sel_culori" multiple size="6">
+            <option class = "opt" selected value="toate">Toate</option>
+            <option class = "opt" value="rosu">Rosu</option>
+            <option  class = "opt" value="alb">Alb</option>
+            <option class = "opt" value="verde">verde</option>
+            <option class = "opt" value="galben">Galben</option>
+            <option class = "opt" value="roz">Roz</option>
+          </select>
+    </div>
+
+
+    <div class="grid_jucarii">
+        <% for( let prod of locals.jucarii) { %>
+            <section class="sec_jucarie">
+                <h2 class="jucarie">
+                    <%- prod.id_jucarii%>
+                        <%- prod.nume%>
+                </h2>
+                <p class="pret">
+                    <%- prod.pret%>
+                </p>
+
+                <p class="varsta">
+                    <%- prod.varsta_minima%>
+                </p>
+                <ol class="culori" type="a">
+                    <% var counter = 0;%>
+                        <% for( let cul of prod.culori){ %>
+
+                            <li>
+                                <%- cul%>
+                                    <%  counter= counter+1; %>
+                            </li>
+                            <% }%>
+                </ol>
+
+                <p>
+                    <%- counter%> culori disponibile</p>
+                <% if(prod.varsta_minima <=2 ){ %>
+                    <p>Potrivit pentru bebelusi</p>
+                    <% }%>
+
+            </section>
+            <% }%>
+    </div>
+
+</body>
+
+</html>

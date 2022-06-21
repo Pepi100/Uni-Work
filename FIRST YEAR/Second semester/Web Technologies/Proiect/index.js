@@ -35,6 +35,9 @@ app.use(["/resurse", "/resurse123"], express.static(__dirname + "/resurse"))
 
 console.log("Director proiect:", __dirname);
 
+
+
+
 app.get(["/", "/index", "/home"], function(req, res) {
     //res.sendFile(__dirname+"/index1.html");
     client.query("select * from tabel", function(err, rezQuery) {
@@ -84,6 +87,19 @@ app.get("/galerie", function(req, res) {
     res.end();
 });
 
+
+
+app.get("/jucarii", function(req, res) {
+
+    // client.query("select * from unnest(enum_range(null::subcategorie))", function(err, rezCateg) {
+    client.query("select * from jucarii", function(err, rezQuery) {
+        // console.log(err);
+        console.log(rezQuery);
+
+        res.render("pagini/jucarii", { jucarii: rezQuery.rows });
+    });
+    // });
+});
 
 
 app.get("/produse", function(req, res) {
