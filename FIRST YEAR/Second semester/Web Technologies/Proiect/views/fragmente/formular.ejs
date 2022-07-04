@@ -1,4 +1,4 @@
-<form id="form_inreg"  method="post" class="date"  action="<%= locals.action %>"  enctype="multipart/form-data">
+<form id="form_inreg" method="post" class="date" action="<%= locals.action %>" enctype="multipart/form-data">
     <p>
         <label>
             Username: <input type="text" name="username" id="inp-username" value="prof<%= Math.floor(Math.random()*100000) %>" required pattern="[A-Za-z0-9]+">
@@ -20,7 +20,7 @@
         </label>
     </p>
     <p id="p-reintrod">
-        <label >
+        <label>
             Reintroduceti parola: <input id="rparl" required type="password" name="rparola" value="">
         </label>
     </p>
@@ -31,15 +31,27 @@
     </p>
     <p>
         <label>
+            Ocupatie: <select name="ocupatie" id="sel-ocupatie">
+                <option value="none" selected>Nu doresc sa spun</option>
+                <option value="medic">Medic</option>
+                <option value="programator">Programator</option>
+                <option value="profesor">Profesor</option>
+                <option value="tamplat">Tâmplar</option>
+                <option value="student">Student</option>
+            </select>
+        </label>
+    </p>
+    <p>
+        <label>
             Culoare text chat: <select name="culoare_chat" id="sel-culoare"><option value="red" selected>rosu</option><option value="green">verde</option><option value="blue">albastru</option></select>
         </label>
     </p>
     <p>
         <label>
             Poza: <input type="file" name="poza">
-        </label>			
+        </label>
     </p>
-    <p>		
+    <p>
         <input type="submit" value="Trimite">
         <input type="reset" value="Reseteaza">
     </p>

@@ -3,6 +3,7 @@
 
 <head>
 
+    <title>Fyresound</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="keywords" content="audio, HIFI, echipamente_audio, casti, microfoane, monitoare_studio">
@@ -29,8 +30,7 @@
         <link href="/resurse/css/stil_printare.css" rel="stylesheet" type="text/css" media="print" />
 
 
-        <script src="https://kit.fontawesome.com/58c167abb3.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+
 
 </head>
 
@@ -169,8 +169,8 @@
 
 
             <div id="calendar">
-                <h2>????</h2>
                 <h2>Aici va veni un calendar</h2>
+
             </div>
 
 
@@ -196,27 +196,27 @@
 
             <div id="date">
                 <h2>Date importante </h2>
-                <span class="fa-solid fa-bowl-rice"></i>
+                <i class="fa-solid fa-bowl-rice"></i>
 
-            <section id="downloads">
-                <h3>Downloads:</h3>
-                <br>
-                <a href="./resurse/downloads/AltoPro_LiveSound_Guide_final.pdf" target="_blank" download>Ghid live audio</a>
-            </section>
-            
-        </div>
+                <section id="downloads">
+                    <h3>Downloads:</h3>
+                    <br>
+                    <a href="./resurse/downloads/AltoPro_LiveSound_Guide_final.pdf" target="_blank" download>Ghid live audio</a>
+                </section>
 
-        <div id = "videoclipuri">
-            <video width="320" height="240" controls="controls" poster="./resurse/video/video.png" preload="auto">
+            </div>
+
+            <div id="videoclipuri">
+                <video width="320" height="240" controls="controls" poster="./resurse/video/video.png" preload="auto">
                     <source src="./resurse/video/video.mp4" type="video/mp4">
                     <source src="./resurse/video/video.wmv" type="video/wmv">
                     <track default src="./resurse/tracks/video_romana.vtt" kind="captions" srclang="ro" label="romana" />
                     <track  src="./resurse/tracks/video_engleza.vtt" kind="captions" srclang="en" label="engleza" />
             </video>
 
-            <!-- galerie animata -->
+                <!-- galerie animata -->
 
-            <!-- <style>
+                <!-- <style>
                 *{
                 margin:0;
                 padding:0;
@@ -254,10 +254,10 @@
             </style> -->
 
 
-            
-            <div id="galerie_exemplu" class="galerie">
-                <div >
-                    <% 
+
+                <div id="galerie_exemplu" class="galerie">
+                    <div>
+                        <% 
                     anotimpuri = ["iarna", "iarna", "primavara", "primavara", "primavara", "vara", "vara", "vara", "toamna", "toamna", "toamna", "iarna"]
 
                     d = new Date()
@@ -282,55 +282,58 @@
                         if(counter < random_num && imag.anotimp && imag.anotimp.includes( anotimpuri[d.getMonth()] )){
                             counter = counter + 1
                         %>
-                        <figure>
-                            <img src="<%-imag.mediu %>" alt="Lipsa imagine" />
-                            <figcaption><%-counter %>   <%-nrImagini %> </figcaption>
-            
-                        </figure> 
-                        <%  }
+                            <figure>
+                                <img src="<%-imag.mediu %>" alt="Lipsa imagine" />
+                                <figcaption>
+                                    <%-counter %>
+                                        <%-nrImagini %>
+                                </figcaption>
+
+                            </figure>
+                            <%  }
                     } %>
+                    </div>
                 </div>
+
+
+
+
             </div>
-                   
 
-            
 
-        </div>
 
-        
+            <div id="cont_iframe">
+                <div id="cont_linkuri">
+                    <a href="https://www.youtube.com/embed/J-6z93SqEO0" target="ifr">Alegearea microfonului</a>
+                    <a href="https://www.youtube.com/embed/hJjcd5lZKrY" target="ifr">Alegerea interfetei</a>
+                </div>
+                <div id="cont_vid">
+                    <iframe width="320" height="180" src="https://www.youtube.com/embed/J-6z93SqEO0" name="ifr"></iframe>
+                </div>
 
-        <div id="cont_iframe">
-            <div id="cont_linkuri">
-                <a href="https://www.youtube.com/embed/J-6z93SqEO0" target="ifr">Alegearea microfonului</a>
-                <a href="https://www.youtube.com/embed/hJjcd5lZKrY" target="ifr">Alegerea interfetei</a>  
             </div>
-            <div id="cont_vid">
-                 <iframe width="320" height="180" src = "https://www.youtube.com/embed/J-6z93SqEO0" name = "ifr"></iframe>
+
+
+
+
+
+
+            <div id="gal_statica">
+                <%- include("../fragmente/galerie_statica.ejs"); %>
             </div>
-           
-        </div>
 
 
-    
-
-        
-
-        <div id="gal_statica">
-            <%- include("../fragmente/galerie_statica.ejs"); %>
-        </div>
-        
-        
-           
 
 
-    </main> 
-    
-    
-    
 
-    <%- include("../fragmente/footer.ejs");  %> 
-    
-    
+        </main>
+
+
+
+
+        <%- include("../fragmente/footer.ejs");  %>
+
+
 
 </body>
 

@@ -18,6 +18,7 @@ body {
     --width-buton: 5em;
     --width-buton-produse: 10em;
     --height-buton: 2.5em;
+    --width-buton-inregistrare: 7em;
     margin: 0px;
     padding: 0px;
     font-family: Montserrat;
@@ -39,6 +40,7 @@ body.light {
     /* culori vechi */
     --width-buton: 5em;
     --width-buton-produse: 10em;
+    --width-buton-inregistrare: 7em;
     --height-buton: 2.5em;
     margin: 0px;
     padding: 0px;
@@ -52,7 +54,7 @@ body.light {
     padding: 10px;
     display: grid;
     grid-template-areas: "z-poster z-poster z-poster" "z-calendar z-tabel z-anunturi" "z-utilizatori z-tabel z-anunturi" "z-utilizatori z-statistici z-date" "z-iframe z-videoclipuri z-videoclipuri" "z-galerie_statica z-galerie_statica z-galerie_statica";
-    grid-template-rows: 1.4fr 1fr 1fr 1fr 1fr 5fr;
+    grid-template-rows: 1.4fr 0.7fr 0.7fr 1fr 1fr 10fr;
     grid-template-columns: 1fr 3fr 1fr;
 }
 
@@ -163,6 +165,19 @@ ul.meniu {
 
 ul.meniu li:last-child {
     padding-right: 0;
+    margin-right: 0%;
+}
+
+#btn_tema {
+    background-color: transparent;
+    border: none;
+    color: var(--off-white);
+    font-size: xx-large;
+}
+
+#btn_tema>* {
+    height: 100%;
+    vertical-align: middle;
 }
 
 ul.submeniu {
@@ -170,10 +185,20 @@ ul.submeniu {
 }
 
 ul.meniu li {
+    /* margin-left: 1rem; */
+    margin-right: 1rem;
     width: var(--width-buton);
     height: var(--height-buton);
     list-style-type: none;
     background-color: var(--off-black);
+}
+
+ul.meniu li:nth-child(5) {
+    width: var(--width-buton-inregistrare);
+}
+
+ul.meniu li:nth-child(6) {
+    width: 60rem;
 }
 
 ul.meniu li ul li {

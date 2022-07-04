@@ -3,9 +3,13 @@
 
 
 <head>
+    <meta name="description" content="Magazinul Fyresound pentru microfoane si casti online si livrare prin curier.">
+    <meta name="keywords" content="audio, sunet, microfoane, dinamic, produs, produse">
     <title>Fyresound - Produse</title>
     <link href="/resurse/css/produse.css" rel="stylesheet" type="text/css" />
+
     <%- include("../fragmente/head") %>
+
         <script type="text/javascript" src=/resurse/js/produse.js></script>
 </head>
 
@@ -15,8 +19,9 @@
     <%- include("../fragmente/header") %>
 
         <main>
+
             <section id="filtre">
-                <h2>Aici vor fi niste filtre</h2>
+
                 <label> Nume: <input type="text" id="inp-nume"></label>
                 <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
                 <div> Tip Microfon:
@@ -53,7 +58,6 @@
 
 
             <section id="produse">
-                <h2> Produse:</h2>
                 <div class="grid-produse">
                     <% for( let prod of locals.microfoane) { %>
                         <article class="produs">
