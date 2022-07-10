@@ -1,17 +1,17 @@
 <form id="form_inreg" method="post" class="date" action="<%= locals.action %>" enctype="multipart/form-data">
     <p>
         <label>
-            Username: <input type="text" name="username" id="inp-username" value="prof<%= Math.floor(Math.random()*100000) %>" required pattern="[A-Za-z0-9]+">
+            Username: <input type="text" name="username" id="inp-username" value="user<%= Math.floor(Math.random()*100000) %>" required pattern="[A-Za-z0-9]+">
         </label>
     </p>
     <p>
         <label>
-            Nume: <input type="text" name="nume" id="inp-nume"  value="Gogulescu" >
+            Nume: <input type="text" name="nume" id="inp-nume"  value="Ionescu" >
         </label>
     </p>
     <p>
         <label>
-            Prenume: <input type="text" name="prenume" id="inp-prenume" value="Gogu"  >
+            Prenume: <input type="text" name="prenume" id="inp-prenume" value="Ion"  >
         </label>
     </p>
     <p>
@@ -26,7 +26,7 @@
     </p>
     <p>
         <label>
-            Email: <input type="text" name="email" id="inp-email" required value="profprofprof007@gmail.com"  size="50">
+            Email: <input type="text" name="email" id="inp-email" required pattern= "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="emailgeneric@gmail.com"  size="50">
         </label>
     </p>
     <p>

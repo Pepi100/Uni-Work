@@ -8,16 +8,56 @@
 <script src="/resurse/js/tema.js"></script>
 <script>
     var tema = localStorage.getItem("tema");
-    if (tema)
+    if (tema == "light") {
         document.body.classList.add("light");
-    else
+        document.getElementById("icon_tema").classList.replace("fa-sun", "fa-moon");
+    } else {
         document.body.classList.remove("light");
+        document.getElementById("icon_tema").classList.replace("fa-moon", "fa-sun");
+    }
 </script>
 
 
 <header>
+    <div id="upper">
+        <h1>Magazinul pasionaților de audio!</h1>
+        <div>
+            <% if(!locals.utilizator){ %>
+                <form id="form_inreg" method="post" class="date" action="/login" enctype="multipart/form-data">
+                    <p>
+                        <label>
+                Username: <input type="text" name="username" id="inp-username" value="prof<%= Math.floor(Math.random()*100000) %>" required pattern="[A-Za-z0-9]+">
+            </label>
+                    </p>
 
-    <h1>Magazinul pasionaților de audio!</h1>
+                    <p>
+                        <label>
+                Parola: <input id="parl" type="password" required  name="parola" value="">
+            </label>
+                    </p>
+
+
+                    <p>
+                        <input type="submit" value="Logare">
+                        <% if(locals.mesajLogin){ %>
+                            Login esuat!
+                            <% } %>
+                    </p>
+                </form>
+                <% }else{ %>
+                    <figure class="imag-user">
+                        <img width="60" height="60" src="/poze_uploadate/<%-locals.utilizator.username%>/imagine.png" onerror="this.onerror=null; this.src='./resurse/imagini/user.png'" alt="./resurse/imagini/user.png" />
+                    </figure>
+
+                    <p>Bine ai venit,
+                        <%-locals.utilizator.username %>
+                    </p>
+                    <% } %>
+
+        </div>
+
+    </div>
+
 
 
 
@@ -34,25 +74,48 @@
 
             <li class="meniu-produse"><a href="/produse">Produse</a>
                 <ul class="submeniu">
-                    <li><a href="#">Casti</a></li>
-                    <li><a href="#">Microfoane</a></li>
-                    <li><a href="#">Instrumente Studio</a></li>
+                    <% for(let categ of locals.categorii) { %>
+                        <li>
+                            <a href="#">
+                                <%-categ %>
+                            </a>
+                        </li>
+                        <% } %>
                 </ul>
             </li>
 
             <li><a href="#">Promotii</a></li>
-            <li><a href="/inregistrare">Inregistrare</a></li>
-            <li>
-                <div id="empty_space"></div>
-            </li>
-            <li><button id="btn_tema">
-                <i class="fa-solid fa-sun" ></i> 
+
+            <% if(locals.utilizator){ %>
+                <li class="meniu-produse">
+                    <a href="#">
+                        <%- locals.utilizator.username%>
+                    </a>
+                    <ul class="submeniu">
+                        <li><a href="/profil">Profil</a></li>
+                        <li><a href="/logout">Log out</a></li>
+                    </ul>
+                </li>
+                <% if(locals.utilizator.rol =="admin"){ %>
+                    <li><a href="/useri">Utilizatori</a></li>
+                    <%  } %>
+
+
+                        <% }else{ %>
+                            <li><a href="/inregistrare">Inregistrare</a></li>
+                            <%  } %>
+
+                                <li>
+                                    <div id="empty_space"></div>
+                                </li>
+                                <li><button id="btn_tema">
+                <i id="icon_tema" class="fa-solid fa-sun" ></i> 
             </button></li>
 
 
 
 
-            <!-- <li><div>Acasa</div>
+                                <!-- <li><div>Acasa</div>
                 <ul>
                     <li><a href="#despre_noi">Despre noi</a></li>
                     <li><a href="#producatori">Producatori</a></li>

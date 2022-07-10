@@ -17,6 +17,7 @@ body {
     /* culori vechi */
     --width-buton: 5em;
     --width-buton-produse: 10em;
+    --width-buton-categ: 15em;
     --height-buton: 2.5em;
     --width-buton-inregistrare: 7em;
     margin: 0px;
@@ -197,8 +198,8 @@ ul.meniu li:nth-child(5) {
     width: var(--width-buton-inregistrare);
 }
 
-ul.meniu li:nth-child(6) {
-    width: 60rem;
+ul.meniu>li:nth-last-child(2) {
+    width: 55rem;
 }
 
 ul.meniu li ul li {
@@ -254,7 +255,7 @@ ul.meniu>li.meniu-produse:hover {
 }
 
 ul.meniu>li:hover>ul.submeniu {
-    width: var(--width-buton-produse);
+    width: var(--width-buton-categ);
     height: var(--height-buton);
     display: block;
     position: relative;
@@ -264,6 +265,10 @@ ul.meniu>li:hover>ul.submeniu {
     animation-duration: 0.8s;
     transform-origin: top;
     text-decoration: none;
+}
+
+ul.meniu>li:nth-child(3):hover>ul.submeniu>* {
+    width: var(--width-buton-categ);
 }
 
 ul.meniu>li>ul.submeniu>li>a {
@@ -326,5 +331,57 @@ footer {
 }
 
 #banner {
-    display: none;
+    width: 100%;
+    padding-top: 40px;
+    /* margin-right: 20px; */
+    height: 15%;
+    border-radius: 20px;
+    display: block;
+    position: fixed;
+    background-color: var(--dark-grey);
+    bottom: 0px;
+    text-align: center;
+    font-size: larger;
+    box-shadow: var(--black) 5px 5px 15px;
+    border-radius: 2rem;
+    animation: animatieBanner;
+    animation-duration: 3s;
+}
+
+@keyframes animatieBanner {
+    0% {
+        transform: translateY(+100%);
+    }
+    75% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+
+/* HEADER */
+
+header #upper h1 {
+    /* height: 100%; */
+    line-height: 100%;
+    margin-top: 2rem;
+    /* text-align: center; */
+    font-size: 250%;
+}
+
+header #upper {
+    display: inline-flex;
+    width: 100%;
+}
+
+header #upper div {
+    margin-right: 2rem;
+    margin-left: auto;
+}
+
+.imag-user {
+    /* height: 50px;
+    width: 50px; */
 }

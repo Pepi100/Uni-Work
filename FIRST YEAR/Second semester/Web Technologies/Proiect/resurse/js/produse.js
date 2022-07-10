@@ -7,6 +7,21 @@ window.addEventListener("load", function() {
     }
 
 
+    function setCookie(nume, val, timpExp, path = "/") {
+        //timpul este dat in milisecunde
+        d = new Date();
+        d.setTime(d.getTime() + timpExp);
+        document.cookie = `${nume}=${val}; expires= ${d.toUTCString()}; path=${path}`;
+    }
+
+    var produse = this.document.getElementsByClassName("fig_produs");
+    for (let produs of produse) {
+        console.log(produs.id);
+        produs.onclick = function() {
+            setCookie("lastVisited", produs.id, 30000);
+        }
+    }
+
 
 
     document.getElementById("filtrare").onclick = function() {

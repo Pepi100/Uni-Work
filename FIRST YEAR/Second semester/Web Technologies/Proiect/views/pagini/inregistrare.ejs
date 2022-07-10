@@ -16,13 +16,15 @@
         <main>
             <div class="afisaj">
                 <h1>Inregistrare utilizator</h1>
-                <%-include("../fragmente/formular", {action: "/inreg"}) %>
-                    <% if(locals.raspuns) { %>
-                        <%- locals.raspuns+"<br/>"%>
-                            <% } %>
-                                <% if(locals.err) { %>
-                                    <%- locals.err %>
-                                        <% } %>
+                <% if(!locals.raspuns) { %>
+                    <%-include("../fragmente/formular", {action: "/inreg"}) %>
+                        <% } %>
+                            <% if(locals.raspuns) { %>
+                                <%- locals.raspuns+"<br/>"%>
+                                    <% } %>
+                                        <% if(locals.err) { %>
+                                            <%- locals.err %>
+                                                <% } %>
             </div>
         </main>
 
