@@ -54,6 +54,7 @@ public:
 
     friend istream& operator>>(istream& is, Bilet &ob);
 
+
     friend ostream& operator<<(ostream& os, Bilet &ob);
 
 };
