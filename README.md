@@ -26,6 +26,10 @@
 
 **II. Second year:**
    * First semester:
+
+      * [Functional Programming](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/Functional%20Programming)
+
+
    * Second semester:
 
 **III. Third year:**
