@@ -1,0 +1,120 @@
+leetcode:
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+int componente[10001];
+void parcurgere(int nod, int componenta, int n, vector<vector<int>>& edges){
+    componente[nod] = componenta;
+
+    for(int i=0;i<edges.size();i++){
+        if( edges[i][0] == nod && componente[ edges[i][1] ] == 0  ){
+            parcurgere(edges[i][1], componenta, n, edges);
+        }
+
+        if( edges[i][1] == nod && componente[ edges[i][0] ] == 0  ){
+            parcurgere(edges[i][0], componenta, n, edges);
+        }
+    }
+
+}
+
+
+long long countPairs(int n, vector<vector<int>>& edges) {
+    int comp =0;
+    for(int i=0;i<n;i++){
+        
+    }
+}
+
+int main() {
+
+}
+
+
+infoarena:muzeu
+
+
+
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int p[300][2];
+int pmax=0;
+int m[300][300];
+int n;
+
+void bfs(int poz){
+    int i= p[poz][0], j = p[poz][1];
+
+    if(i>1 && m[i-1][j]==-1){
+        pmax++;
+        p[pmax][0]=i-1;
+        p[pmax][1]=j;
+        m[i-1][j] = m[i][j]+1;
+    }
+
+    if(j>1 && m[i][j-1]==-1){
+        pmax++;
+        p[pmax][0]=i;
+        p[pmax][1]=j-1;
+        m[i][j-1] = m[i][j]+1;
+    }
+
+    if(i<n && m[i+1][j]==-1){
+        pmax++;
+        p[pmax][0]=i+1;
+        p[pmax][1]=j;
+        m[i+1][j] = m[i][j]+1;
+    }
+
+    if(j<n && m[i][j+1]==-1){
+        pmax++;
+        p[pmax][0]=i;
+        p[pmax][1]=j+1;
+        m[i][j+1] = m[i][j]+1;
+    }
+    if(poz<pmax)
+        bfs(poz+1);
+
+
+}
+
+int main() {
+    cin>>n;
+    char c;
+    int poz=0;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n;j++){
+            cin>>c;
+            if(c=='.') m[i][j]= -1;
+            if(c=='P'){
+                m[i][j]= 0;
+                poz++;
+                pmax++;
+                p[poz][0]=i;
+                p[poz][1]=j;
+            }
+            if(c=='#')m[i][j]= -2;
+        }
+    }
+
+    bfs(0);
+
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n;j++){
+            cout<<m[i][j]<<" ";
+        }
+        cout<<endl;
+
+    }
+
+
+}
+

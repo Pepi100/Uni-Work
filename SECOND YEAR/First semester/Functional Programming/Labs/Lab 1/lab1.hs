@@ -43,6 +43,7 @@ paritate a = if( odd a)
                     then "impar"
           else "par"
 
+
 factorial a =  if(a==0)
                     then 1
                else let
