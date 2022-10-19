@@ -28,6 +28,11 @@
    * First semester:
 
       * [Functional Programming](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/Functional%20Programming)
+      * [ASP.NET](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/ASP.NET)
+      * [Probabilities and Statistics](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/Probabilities%20And%20Statistics)
+      * [Fundamental Algorithms](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/Fundamental%20Algorithms)
+      * [Operating Systems](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/Operating%20Systems)
+      * [Database Management System](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/DBMS)
 
 
    * Second semester:
