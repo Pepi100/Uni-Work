@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Pagename = "View-ul index din controllerul Articles";
+
+}
+
+<h2>@ViewBag.Pagename</h2>
+
+@foreach (var art in ViewBag.Articles){
+    <h1>@art.Title</h1>
+    <p>@art.Content</p>
+    <small>@art.Date</small>
+    <br/>
+    <a href="/Articles/Show/@art.Id">Afisare articol</a>
+    <br />
+    <hr/>
+}
+
+<a href="/Articles/New">Adaugare articol</a>
