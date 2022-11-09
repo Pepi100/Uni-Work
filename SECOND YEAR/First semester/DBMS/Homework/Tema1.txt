@@ -1,0 +1,90 @@
+MEMBER(member_id,last_name,first_name,address, city, phone, join_date)
+TITLE(title_id,title,description,rating,category, release_date)
+TITLE_COPY(copy_id, title_id, status)
+RENTAL(book_date,copy_id, member_id, title_id, act_ret_date, exp_ret_date)
+RESERVATION(res_date, member_id, title_id)
+
+
+
+8:
+
+SELECT
+	CASE
+		WHEN ( COUNT(*) = ( SELECT COUNT(*)
+            FROM rental r, reservation res
+            WHERE r.title_id = res.title_id and res.res_date = r.book_date)) THEN 'DA'
+	ELSE 'NU'
+FROM rental r
+JOIN reservation res ON r.title_id = res.title_id
+
+
+
+9:
+SELECT m.last_name || " " || m.first_name   as "Membru", t.title as "Titlu", COUNT(r.title_id) as "Numar imprumutari"
+FROM member m
+JOIN rental r ON m.member_id = r.member_id
+JOIN title t ON r.title_id = t.title_id
+GROUP BY t.title_id
+
+
+10:
+SELECT m.last_name || " " || m.first_name   as "Membru", t.title as "Titlu", r.copy_id as "Copie", COUNT(r.copy_id) as "Numar imprumutari"
+FROM member m
+JOIN rental r ON m.member_id
+JOIN title_copy ON r.copy_id = 
+JOIN title t ON r.title_id
+GROUP BY r.copy_id;
+
+11:
+//popularitate numara de cate ori a fost imprumutata fiecare copie
+//maxime va fi copia cu numarul maxim de aparitii
+
+WITH popularitate AS (	SELECT r.copy_id , r.title_id , COUNT(*) as "numar"
+					FROM rental r
+					GROUP BY r.copy_id	),
+	maxime AS (	SELECT p.title_id, p.copy_id,
+				FROM popularitate p
+				WHERE p."numar" = (	SELECT MAX("numar")
+								FROM popularitate po
+								WHERE po.copy_id = p.copy_id
+								GROUP BY po.copy_id)
+SELECT t.title, tc.copy_id, tc.status
+FROM title t
+JOIN maxime m ON t.title_id = m.title_id
+JOIN title_copy tc ON tc.copy_id = m.copy_id
+
+12:
+a)
+//luna reprezinta zilele din luna curenta
+WITH luna AS (	SELECT TRUNC(SYSDATE, 'MM') + LEVEL - 1 AS zi
+			FROM dual
+			CONNECT BY TRUNC(TRUNC(SYSDATE, 'MM') + LEVEL - 1, 'MM') = TRUNC(SYSDATE, 'MM'))
+SELECT l.zi, COUNT(*)
+FROM luna l
+LEFT JOIN rental r ON l.zi = r.book_date
+WHERE MONTH (r.book_date ) IN SELECT ( SELECT MONTH(sysdate) FROM dual) AND DAY(r.book_date) <= 2
+GROUP BY r.book_date;
+
+b)
+WITH luna AS (	SELECT TRUNC(SYSDATE, 'MM') + LEVEL - 1 AS zi
+			FROM dual
+			CONNECT BY TRUNC(TRUNC(SYSDATE, 'MM') + LEVEL - 1, 'MM') = TRUNC(SYSDATE, 'MM'))
+SELECT l.zi, COUNT(*)
+FROM luna l
+LEFT JOIN rental r ON l.zi = r.book_date
+WHERE MONTH (r.book_date ) IN SELECT ( SELECT MONTH(sysdate) FROM dual) AND count(r.copy_id) >0
+GROUP BY r.book_date;
+
+WITH luna AS (	SELECT TRUNC(SYSDATE, 'MM') + LEVEL - 1 AS zi
+			FROM dual
+			CONNECT BY TRUNC(TRUNC(SYSDATE, 'MM') + LEVEL - 1, 'MM') = TRUNC(SYSDATE, 'MM'))
+SELECT l.zi, COUNT(*)
+FROM luna l
+LEFT JOIN rental r ON l.zi = r.book_date
+WHERE MONTH (r.book_date ) IN SELECT ( SELECT MONTH(sysdate) FROM dual)
+GROUP BY r.book_date;
+				
+
+
+
+

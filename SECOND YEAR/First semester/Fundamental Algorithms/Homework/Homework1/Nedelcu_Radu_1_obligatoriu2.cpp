@@ -10,7 +10,7 @@ using namespace std;
 //astfel, daca sortam listele de adiacenta astfel incat i sa fie inainte lui j, ca o parcurgere dfs facuta de noi ar trebui ca i sa fie inaintea lui j
 // ulterior pornim noi un dfs din nodul 1 si verificam daca ordineDfsinea este aceeasi
 
-
+//check dfs
 
 
 

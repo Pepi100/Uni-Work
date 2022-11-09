@@ -11,8 +11,8 @@ ofstream fout("ctc.out");
 
 //Algoritmul Tarjan
 //pentru fiecare nod nevizitat pornim o parcurgere dfs
-//Adaugam la vizitarea unui nod acesta este adaugat pe stiva si primeste un id
-//pentru nodul curent vizitam totate nodurile adiacente
+//La vizitarea unui nod acesta este adaugat pe stiva si primeste un id
+//pentru nodul curent vizitam toate nodurile adiacente
 //deoarece oferim id-urile in ordine crescatoare, primul nod vizitat dintr-o componenta conexa ca vi nodul cu id-ul cel mai mic
 //astfel, cand ajungem cu parcurgerea la un nod cu un id mai mic, stim ca apartin aceleiasi componente conexe
 

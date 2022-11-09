@@ -4,9 +4,11 @@
 using namespace std;
 
 //Este necesar sa verificam daca graful dat este bipartit
-//Folosind o parcurgere de tip BFS, nodurile in 2 grupuri astfel:
+// Folosind o parcurgere de tip BFS, impartim nodurile in 2 grupuri astfel:
 // pentru fiecare nod din grupul 1, nodurile adiacente lui vor fi puse in grupul 2 si invers
 // daca gasim un nod adiacent celui curent, care a fost deja pus in grupul celui curent atunci graful nu este bipartit
+
+
 
 class Solution {
 public:

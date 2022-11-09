@@ -3,9 +3,12 @@
 #include <queue>
 using namespace std;
 
+//sortare topoligica
 //Pentru a merge la un curs este necesar sa parcurgem inainte toate cursurile pe care aceasta il necesita
 //Astfel, vom putea parcurge initial doar cursurile care nu au unul necesar inainte
 //De din acestea pornim o parcurgere de tip BFS
+
+//course schedule
 
 class Solution {
 public:
