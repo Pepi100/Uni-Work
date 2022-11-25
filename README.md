@@ -17,7 +17,7 @@
    * Second semester:
      * [Object Oriented Programming](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/Second%20semester/OOP)
      
-     * [Web Technology](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/Second%20semester/Web%20Technologies)
+     * [Web Technologies](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/Second%20semester/Web%20Technologies)
      * [Data Structures](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/Second%20semester/Data%20Structures)
      * [Formal Language and Automata](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/Second%20semester/FLA)
      * [Databases](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/Second%20semester/Databases)
