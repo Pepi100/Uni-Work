@@ -1,4 +1,6 @@
-#Useful links:
+
+
+## Useful links:
 
 Base Converter:
 https://www.rapidtables.com/convert/number/decimal-to-binary.html
@@ -20,3 +22,6 @@ https://www.emathhelp.net/en/calculators/calculus-2/series-calculator/
 
 Unit Converter:
 https://unitconverter.io/kilobytes/bytes/16
+
+
+### :sunglasses:[Team project](https://github.com/Pepi100/Criptare-XOR):sunglasses:
