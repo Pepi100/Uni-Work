@@ -2,7 +2,7 @@
 
 ###  :notebook: This repository is dedicated to my university projects and homework. :notebook:
 
-### As of 2021, I am currently enrolled in a 3-year program at the University of Bucharest, studying Computer Science.
+### As of 2022, I am currently enrolled in a 3-year program at the University of Bucharest, studying Computer Science.
 
 **I. First year:**
    * First semester:
