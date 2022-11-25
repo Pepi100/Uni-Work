@@ -6,7 +6,7 @@
 
 **I. First year:**
    * First semester:
-     * [System Arhitecture](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/First%20semester/System%20Architecture)
+     * [System Architecture](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/First%20semester/System%20Architecture)
      
      * [Algorithm Programming](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/First%20semester/Algorithm%20Programming)
      * [Critical and Ethical Thinking](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/First%20semester/Critical%20and%20Ethical%20Thinking)
