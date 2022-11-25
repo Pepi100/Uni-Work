@@ -1,12 +1,12 @@
 # Uni-Work
 
-###  :notebook: This repository is dedicated to my university projects and homeworks. :notebook:
+###  :notebook: This repository is dedicated to my university projects and homework. :notebook:
 
-### As of 2021, I am currently enrolled in a 3-year program at the University of Bucharest, studying Computer Science.
+### As of 2022, I am currently enrolled in a 3-year program at the University of Bucharest, studying Computer Science.
 
 **I. First year:**
    * First semester:
-     * [System Arhitecture](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/First%20semester/System%20Architecture)
+     * [System Architecture](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/First%20semester/System%20Architecture)
      
      * [Algorithm Programming](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/First%20semester/Algorithm%20Programming)
      * [Critical and Ethical Thinking](https://github.com/Pepi100/Uni-Work/tree/master/FIRST%20YEAR/First%20semester/Critical%20and%20Ethical%20Thinking)
@@ -26,8 +26,8 @@
 
 **II. Second year:**
    * First semester:
-
       * [Functional Programming](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/Functional%20Programming)
+      
       * [ASP.NET](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/ASP.NET)
       * [Probabilities and Statistics](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/Probabilities%20And%20Statistics)
       * [Fundamental Algorithms](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/Fundamental%20Algorithms)
