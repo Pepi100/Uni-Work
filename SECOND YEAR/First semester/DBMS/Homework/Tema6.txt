@@ -1,0 +1,265 @@
+-- 1. Definiţi un pachet care să permită gestiunea angajaţilor companiei. Pachetul va conţine:
+-- a. o procedură care determină adăugarea unui angajat, dându-se informaţii complete despre
+-- acesta:
+-- - codul angajatului va fi generat automat utilizându-se o secvenţă;
+-- - informaţiile personale vor fi date ca parametrii (nume, prenume, telefon, email);
+-- - data angajării va fi data curentă;
+
+
+CREATE OR REPLACE PACKAGE pachetAngajati AS
+
+    cursor c_ang(cod_job employees.job_id%type) return emp_rne%rowtype;
+
+
+    cursor get_jobs return jobs%rowtype;
+
+
+    -- - salariul va fi cel mai mic salariu din departamentul respectiv, pentru jobul respectiv (se
+    -- vor obţine cu ajutorul unei funcţii stocate în pachet);
+    FUNCTION getMInSalary(v_dep_id employees.department_id%TYPE,v_job_id jobs.job_id%TYPE) RETURN employees.salary%TYPE;
+
+        -- - codul managerului se va obţine cu ajutorul unei funcţii stocate în pachet care va avea ca
+    -- parametrii numele şi prenumele managerului);
+    FUNCTION getEmpCode(v_man_l employees.last_name%TYPE, v_man_f employees.first_name%TYPE) RETURN employees.employee_id%TYPE;
+
+
+    -- - codul departamentului va fi obţinut cu ajutorul unei funcţii stocate în pachet, dându-se
+    -- ca parametru numele acestuia;
+    FUNCTION getDeptCode(v_dep departments.department_name%TYPE) RETURN departments.department_id%TYPE;
+
+    -- codul jobului va fi obţinut cu ajutorul unei funcţii stocate în pachet, dându-se ca
+-- parametru -- numele acesteia.
+
+    FUNCTION getJobCode(v_job jobs.job_title%TYPE) RETURN jobs.job_id%TYPE;
+
+    PROCEDURE insertEmployee(v_fst_name employees.first_name%TYPE,
+                        v_lst_name employees.last_name%TYPE,
+                        v_email employees.email%TYPE,
+                        v_tel employees.phone_number%TYPE,
+                        v_dep_i departments.department_name%TYPE,
+                        v_job_i jobs.job_title%TYPE,
+                        v_man_f_i employees.first_name%TYPE,
+                        v_man_l_i employees.last_name%TYPE);
+
+
+    PROCEDURE changeDepartment(v_fst_name employees.first_name%TYPE,
+                        v_lst_name employees.last_name%TYPE,
+                        v_dep_i departments.department_name%TYPE,
+                        v_job_i jobs.job_title%TYPE,
+                        v_man_f_i employees.first_name%TYPE,
+                        v_man_l_i employees.last_name%TYPE);
+
+
+
+    -- e. o procedură prin care se actualizează cu o valoare dată ca parametru salariul unui angajat al
+    -- cărui nume este dat ca parametru:
+    -- - se va verifica dacă valoarea dată pentru salariu respectă limitele impuse pentru acel job;
+    -- - dacă sunt mai mulţi angajaţi care au acelaşi nume, atunci se va afişa un mesaj
+    -- corespunzător şi de asemenea se va afişa lista acestora;
+    -- - dacă nu există angajaţi cu numele dat, atunci se va afişa un mesaj corespunzător;
+
+    PROCEDURE updateSalary(v_fst_name employees.first_name%TYPE,
+                        v_lst_name employees.last_name%TYPE,
+                        v_sal employees.salary%TYPE);
+
+
+     -- h. o procedură care utilizează cele două cursoare definite anterior şi obţine pentru fiecare job
+    -- numele acestuia şi lista angajaţilor care lucrează în prezent pe acel job; în plus, pentru
+    -- fiecare angajat să se specifice dacă în trecut a mai avut sau nu jobul respectiv.
+    PROCEDURE printJobs;
+
+END pachetAngajati;
+/
+
+CREATE OR REPLACE PACKAGE BODY pachetAngajati AS
+
+
+     -- f. un cursor care obţine lista angajaţilor care lucrează pe un job al cărui cod este dat ca
+     -- parametru; 
+    cursor c_ang(cod_job employees.job_id%type) return emp_rne%rowtype is
+    select *
+    from emp_rne
+    where job_id = cod_job;
+
+    --g. un cursor care obţine lista tuturor joburilor din companie;
+    cursor get_jobs return jobs%rowtype is
+    select *
+    from jobs;
+
+
+    FUNCTION getDeptCode(v_dep departments.department_name%TYPE)
+        RETURN departments.department_id%TYPE IS
+        v_dep_id departments.department_id%TYPE;
+    BEGIN
+        SELECT department_id
+        INTO v_dep_id
+        FROM departments
+        WHERE department_name = v_dep;
+        RETURN v_dep_id;
+
+    END;
+    
+    FUNCTION getJobCode(v_job jobs.job_title%TYPE)
+        RETURN jobs.job_id%TYPE IS
+        v_job_id jobs.job_id%TYPE;
+    BEGIN 
+        SELECT job_id
+        INTO v_job_id
+        FROM jobs
+        WHERE job_title = v_job;
+        RETURN v_job_id;
+
+    END;
+    
+    FUNCTION getEmpCode(v_man_l employees.last_name%TYPE,
+                        v_man_f employees.first_name%TYPE)
+        RETURN employees.employee_id%TYPE IS
+        v_man_id employees.employee_id%TYPE;
+    BEGIN
+        SELECT employee_id
+        INTO v_man_id
+        FROM employees
+        WHERE first_name = v_man_f and last_name = v_man_l;
+        RETURN v_man_id;
+
+    END;
+    FUNCTION getMInSalary(v_dep_id employees.department_id%TYPE,
+                        v_job_id jobs.job_id%TYPE)
+        RETURN employees.salary%TYPE IS
+        rezultat employees.salary%TYPE;
+    BEGIN
+        SELECT min(salary)
+        INTO rezultat
+        FROM employees
+        GROUP BY department_id, job_id
+        HAVING department_id = v_dep_id and job_id =  v_job_id;
+        RETURN rezultat;
+    END;
+
+
+    PROCEDURE insertEmployee(v_fst_name employees.first_name%TYPE,
+                        v_lst_name employees.last_name%TYPE,
+                        v_email employees.email%TYPE,
+                        v_tel employees.phone_number%TYPE,
+                        v_dep_i departments.department_name%TYPE,
+                        v_job_i jobs.job_title%TYPE,
+                        v_man_f_i employees.first_name%TYPE,
+                        v_man_l_i employees.last_name%TYPE) IS
+            v_dep_id departments.department_id%TYPE;
+            v_job_id employees.job_id%TYPE;
+            v_id employees.employee_id%TYPE;
+    BEGIN
+            v_dep_id := getDeptCode(v_dep_i);
+            v_job_id := getJobCode(v_job_i);
+            SELECT max(employee_id) + 1 
+            INTO v_id
+            FROM emp_rne;
+            INSERT INTO emp_rne
+                VALUES (v_id, v_fst_name, v_lst_name, v_email, v_tel,
+                        sysdate,
+                        v_job_id,
+                        getMInSalary(v_dep_id, v_job_id),
+                        NULL,
+                        getEmpCode(v_man_l_i, v_man_f_i),
+                        v_dep_id);
+    END insertEmployee;
+
+
+
+    PROCEDURE updateSalary(v_fst_name employees.first_name%TYPE,
+                        v_lst_name employees.last_name%TYPE,
+                        v_sal employees.salary%TYPE) IS
+            v_emp_id employees.employee_id%TYPE;
+            v_sal_min jobs.min_salary%TYPE;
+            v_sal_max jobs.max_salary%TYPE;
+        BEGIN
+            v_emp_id := f_get_emp(v_fst_name, v_lst_name);
+            SELECT j.min_salary, j.max_salary
+            INTO v_sal_min, v_sal_max
+            FROM emp_rne e join jobs j using (job_id)
+            WHERE employee_id = v_emp_id;
+            IF v_sal >= v_sal_min and v_sal <= v_sal_max THEN
+                UPDATE EMP_rne
+                SET salary = v_sal
+                WHERE employee_id = v_emp_id;
+            END IF;
+    END updateSalary;
+        
+        
+
+        PROCEDURE changeDepartment(v_fst_name employees.first_name%TYPE,
+                        v_lst_name employees.last_name%TYPE,
+                        v_dep_i departments.department_name%TYPE,
+                        v_job_i jobs.job_title%TYPE,
+                        v_man_f_i employees.first_name%TYPE,
+                        v_man_l_i employees.last_name%TYPE) IS
+            v_dep_id departments.department_id%TYPE;
+            v_job_id employees.job_id%TYPE;
+            v_man_id employees.employee_id%TYPE;
+            v_act_sal employees.salary%TYPE;
+            v_new_sal  employees.salary%TYPE;
+            v_cms employees.commission_pct%TYPE;
+            v_emp_id employees.employee_id%TYPE;
+
+    BEGIN
+            v_dep_id := pachetAngajati.getDeptCode(v_dep_i);
+            v_job_id := pachetAngajati.getJobCode(v_job_i);
+            v_man_id := pachetAngajati.getEmpCode(v_man_l_i, v_man_f_i);
+            v_emp_id := f_get_emp(v_fst_name, v_lst_name);
+
+            SELECT salary
+            INTO v_act_sal
+            FROM emp_rne
+            WHERE employee_id = v_emp_id;
+
+            v_new_sal := pachetAngajati.getMInSalary(v_dep_id, v_job_id);
+
+            if v_new_sal < v_act_sal then
+                v_new_sal := v_act_sal;
+            end if;
+
+            SELECT min(commission_pct)
+            INTO v_cms
+            from emp_rne
+            WHERE department_id = v_dep_id and job_id = v_job_id;
+
+            UPDATE emp_rne
+            SET department_id = v_dep_id, job_id = v_job_id, manager_id = v_man_id, salary = v_new_sal, commission_pct = v_cms, hire_date = sysdate
+            WHERE employee_id = v_emp_id;
+
+    END changeDepartment;
+
+    PROCEDURE printJobs  IS
+    v_job_found number := 0;
+    BEGIN
+
+    For i in get_jobs loop
+
+      dbms_output.put_line(i.job_title || ':');
+
+      for j in c_ang(i.job_id) loop
+
+        dbms_output.put_line(j.last_name || ', ' || j.first_name);
+
+        select count(*) into v_job_found
+
+        from job_history
+
+        where employee_id = j.employee_id and
+
+        job_id = i.job_id and
+
+        department_id = j.department_id;
+
+        if v_job_found <> 0 then
+          dbms_output.put_line('A mai lucrat in trecut');
+        else
+          dbms_output.put_line('Nu a mai lucrat in trecut');
+        end if;
+      END LOOP;
+    END LOOP;
+  END printJobs;
+
+
+END pachetAngajati;
+

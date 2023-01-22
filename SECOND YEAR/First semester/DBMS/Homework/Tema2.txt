@@ -1,0 +1,140 @@
+
+--2.Se dă următorul enunț: Pentru fiecare zi a lunii octombrie(se vor lua în considerare și zilele din lună în care nu au fost realizate împrumuturi)
+-- obțineți numărul de împrumuturi efectuate.a.Încercați să rezolvați problema în SQL fără a folosi structuri ajutătoare.
+
+--am rulat pe noiembrie, deoarece nu exista inregistrari pentru octombrie
+
+SELECT DT, (
+    select count(*) 
+    from rental where 
+    extract(day from book_date) = extract(day from DT)
+    and extract(month from book_date) = extract(month from DT))  as "Imprumuturi"
+FROM(SELECT TRUNC (last_day(DATE '2022-11-01') - ROWNUM +1) dt
+     FROM DUAL CONNECT BY ROWNUM <= extract(day from last_day(DATE '2022-11-01'))
+     )
+ORDER BY DT;
+
+
+-- b.Definiți  tabelul octombrie_*** (id,  data).
+-- Folosind  PL/SQL  populați  cu  date  acest  tabel. Rezolvați în SQL problema dată.
+create table noiembrie_rne(zi number(10), book_date date);
+delete from noiembrie_rne;
+SET SERVEROUTPUT ON;
+DECLARE
+    rentals NUMBER(3) := 0;
+    d NUMBER(3) := extract(day from last_day(DATE '2022-11-01'));
+BEGIN
+    FOR i IN 1..d LOOP
+        select count(*) into rentals from rental 
+        where extract(day from book_date) = i
+        and extract(month from book_date) = extract(month from DATE '2022-11-01');
+        --INSERT INTO noiembrie_rne VALUES (i , rentals);
+        INSERT INTO noiembrie_rne VALUES (i, TO_DATE(i ||' 10'||' 2022', 'DD MM YYYY'));
+    END LOOP;
+END;
+
+
+
+--3.Definițiun  bloc  anonim  în  care să se determine numărul de filme  (titluri)  împrumutate  de  un membru al cărui nume
+    -- este introdus de la tastatură. Tratațiurmătoarele două situații: nu există nici un membru cu numedat; există mai mulți membrii cu același nume.
+DECLARE
+    r NUMBER(3) := 0;
+    name VARCHAR(101) := '&name';
+BEGIN
+    select count(title) into r
+    from rental rr join member mm on (rr.member_id=mm.member_id) join title tt on (tt.title_id=rr.title_id) 
+    where lower(last_name) like '%'||lower(name)||'%' or lower(first_name) like '%'||lower(name)||'%' 
+    and rownum = 1;
+    dbms_output.put_line(name || ': '||r);
+END;
+
+
+
+-- .Modificați problema anterioară astfel încât să afișați și următorul text:
+    -- -Categoria 1 (a împrumutat mai mult de 75% din titlurile existente)
+    -- -Categoria 2 (a împrumutat mai mult de 50% din titlurile existente)
+    -- -Categoria 3 (a împrumutat mai mult de 25% din titlurile existente)
+    -- -Categoria 4 (altfel)
+DECLARE
+    r NUMBER(3) := 0;
+    t NUMBER(3) := 0;
+    procent NUMBER(3) := 0;
+    name VARCHAR(101) := '&name';
+BEGIN
+    select count(title) into t
+    from rental join title using (title_id);
+    
+    select count(title_id) into r
+    from rental rr join member mm using (member_id)
+    where lower(last_name) like '%' || lower(name) || '%' or lower(first_name) like '%' || lower(name) || '%' 
+    and rownum = 1;
+    
+    dbms_output.put_line(name || ': '||r);
+    
+   procent := (r/t)*100;
+    ifprocent > 75 then
+        dbms_output.put_line('Categoria 1');
+    elsifprocent>50 then
+        dbms_output.put_line('Categoria 2');
+    elsifprocent>25 then
+        dbms_output.put_line('Categoria 3');
+    else
+        dbms_output.put_line('Categoria 4');
+    end if;
+END;
+
+
+-- 5.Creați  tabelul member_***  (o  copie  a  tabelului member).
+    -- Adăugați  în  acest  tabel  coloana discount,  care  va  reprezenta  procentul  de  reducere  aplicat  pentru  membrii,
+    -- în  funcție  de  categoria din care fac parte aceștia:
+    -- -10% pentru membrii din Categoria 1
+    -- -5% pentru membrii din Categoria 2
+    -- -3% pentru membrii din Categoria 3
+    -- -nimic
+create table member_rne as (select * from member);
+
+ALTER TABLE member_rne ADD CONSTRAINT PK_member_rne PRIMARY KEY (member_id);
+
+alter table member_rne
+add discount number;
+
+DECLARE
+    cod_membru member_rne.member_id%TYPE: = &cod;
+    nr_titles_b number;
+    nr_titles_t number;
+BEGIN
+    select count(*)
+    into nr_titles_t
+    from title;
+    
+    select count(distinct title_id)
+    into nr_titles_b
+    from rental r join member_rne m using (member_id)
+    group by member_id
+    having member_id = cod_membru;
+    
+    CASE WHEN nr_titles_b * 100 / nr_titles_t >= 75 THEN 
+            UPDATE member_rne
+            SET DISCOUNT = 10
+            WHERE MEMBER_ID = cod_membru;
+            COMMIT;
+            DBMS_OUTPUT.PUT_LINE('Am modificat!');
+        WHEN nr_titles_b * 100 / nr_titles_t >= 50 THEN 
+            UPDATE member_rne
+            SET DISCOUNT = 5
+            WHERE MEMBER_ID = cod_membru;
+            COMMIT;
+            DBMS_OUTPUT.PUT_LINE('Am modificat!');
+        WHEN nr_titles_b * 100 / nr_titles_t >= 25 THEN
+            UPDATE member_rne
+            SET DISCOUNT = 3
+            WHERE MEMBER_ID = cod_membru;
+            COMMIT;
+            DBMS_OUTPUT.PUT_LINE('Am modificat!');
+        ELSE 
+            DBMS_OUTPUT.PUT_LINE('Nicio modificare facuta');
+    END CASE;        
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+    DBMS_OUTPUT.PUT_LINE('Nicio modificare facuta');
+END;

@@ -1,0 +1,351 @@
+--1. Creați tabelul info_*** cu următoarele coloane:
+-- utilizator (numele utilizatorului care a inițiat o comandă)
+-- data (data și timpul la care utilizatorul a inițiat comanda)
+-- comanda (comanda care a fost inițiată de utilizatorul respectiv)
+-- nr_linii (numărul de linii selectate/modificate de comandă)
+-- eroare (un mesaj pentru excepții).
+
+CREATE TABLE info_rne (
+    id           NUMBER(10, 2) PRIMARY KEY,
+    utilizator   VARCHAR2(50),
+    data         DATE,
+    comanda      VARCHAR2(50),
+    nr_linii     NUMBER(10, 2),
+    eroare       VARCHAR2(200)
+);
+
+
+--2. Modificați funcția definită la exercițiul 2, respectiv procedura definită la exercițiul 4 astfel încât
+--să determine inserarea în tabelul info_*** a informațiile corespunzătoare fiecărui caz
+--determinat de valoarea dată pentru parametru:
+-- există un singur angajat cu numele specificat;
+-- există mai mulți angajați cu numele specificat;
+-- nu există angajați cu numele specificat.
+
+CREATE OR REPLACE FUNCTION angajati (v_nume employees.last_name%TYPE DEFAULT 'Bell') RETURN NUMBER IS
+
+    salariu        employees.salary%TYPE;
+    counter     info_rne.nr_linii%TYPE := 0;
+    v_err          info_rne.eroare%TYPE := NULL;
+BEGIN
+    SELECT salary
+    INTO salariu
+    FROM employees
+    WHERE last_name = v_nume;
+
+    counter := SQL%rowcount;
+    INSERT INTO info_rne VALUES (
+        (
+            SELECT nvl(MAX(id), 0) + 1
+            FROM info_rne
+        ), (SELECT user FROM dual), sysdate, NULL, counter, NULL);
+
+    RETURN salariu;
+EXCEPTION
+    WHEN no_data_found THEN
+        v_err := sqlerrm;
+        INSERT INTO info_rne VALUES (
+            (
+                SELECT nvl(MAX(id), 0) + 1
+                FROM info_rne
+            ), (SELECT user FROM dual), sysdate, NULL, counter, v_err);
+         
+        raise_application_error(-20000, 'Nu exista angajati cu numele dat');
+    
+    WHEN too_many_rows THEN
+        v_err := sqlerrm;
+        INSERT INTO info_rne VALUES (
+            (
+                SELECT nvl(MAX(id), 0) + 1
+                FROM info_rne
+            ), (SELECT user FROM dual), sysdate, NULL, counter, v_err);
+
+         
+        raise_application_error(-20001, 'Exista mai multi angajati cu numele dat');
+    
+    WHEN OTHERS THEN
+        v_err := sqlerrm;
+        INSERT INTO info_rne VALUES (
+            (
+                SELECT nvl(MAX(id), 0) + 1
+                FROM info_rne
+            ), (SELECT user FROM dual), sysdate, NULL, counter, v_err);
+        
+        raise_application_error(-20002, 'Alta eroare!');
+        RETURN 0;
+END angajati;
+
+
+
+-- 3. Definiți o funcție stocată care determină numărul de angajați care au avut cel puțin 2 joburi
+-- diferite și care în prezent lucrează într-un oraș dat ca parametru. Tratați cazul în care orașul dat
+-- ca parametru nu există, respectiv cazul în care în orașul dat nu lucrează niciun angajat. Inserați
+-- în tabelul info_*** informațiile corespunzătoare fiecărui caz determinat de valoarea dată pentru
+-- parametru.
+
+CREATE OR REPLACE FUNCTION minim_2_joburi (v_nume_oras locations.city%TYPE DEFAULT 'London') RETURN NUMBER IS
+        nr_angajati number;
+        nu_exista_oras number;
+
+        v_err info_rne.eroare%TYPE;
+        v_comanda info_rne.comanda%TYPE;
+        
+    BEGIN
+        SELECT count(*)
+        INTO nu_exista_oras
+        FROM locations
+        WHERE city = v_nume_oras;
+        
+        SELECT count(*)
+        INTO nr_angajati
+        FROM employees e join departments d on (d.department_id = e.department_id) 
+        join locations l on (l.location_id = d.location_id)
+        WHERE l.city = v_nume_oras and (SELECT COUNT (*)
+                                        FROM JOB_HISTORY h
+                                        WHERE h.employee_id = e.employee_id) >= 1;
+        SELECT user
+        INTO (SELECT user FROM dual)
+        FROM dual;                                
+        if nu_exista_oras > 0 then 
+            v_err := NULL;
+        else 
+            v_err := 'Nu exista orasul';
+        end if;
+        
+          v_comanda := NULL;
+        
+        INSERT INTO info_rne VALUES (
+        (
+            SELECT nvl(MAX(id), 0) + 1
+            FROM info_rne
+        ), (SELECT user FROM dual), sysdate, v_comanda, nr_angajati, v_err);
+         
+        RETURN nr_angajati;
+END minim_2_joburi;
+
+
+
+
+
+-- 4. Definiți o procedură stocată care mărește cu 10% salariile tuturor angajaților conduși direct sau
+-- indirect de către un manager al cărui cod este dat ca parametru. Tratați cazul în care nu există
+-- niciun manager cu codul dat. Inserați în tabelul info_*** informațiile corespunzătoare fiecărui
+-- caz determinat de valoarea dată pentru parametru.
+
+CREATE OR REPLACE PROCEDURE crestereSalariu
+    (v_manager emp_rne.employee_id%TYPE)
+    IS
+        TYPE angajat IS RECORD
+        (id_ang emp_rne.employee_id%TYPE,
+         id_mng emp_rne.manager_id%TYPE);
+        TYPE tab_imbricat IS TABLE OF angajat; 
+        t tab_imbricat := tab_imbricat();
+        
+        TYPE tablou_imbricat IS TABLE OF emp_rne.employee_id%TYPE; 
+        mng tablou_imbricat := tablou_imbricat();
+        
+        curr_mng emp_rne.manager_id%TYPE;
+        modificare number := 1;
+        
+        exista_manager NUMBER;
+        v_err info_rne.eroare%TYPE;
+        v_comanda info_rne.comanda%TYPE;
+    BEGIN
+    
+        mng.extend;
+        mng(1) := v_manager;
+        
+        SELECT employee_id, manager_id 
+        BULK COLLECT INTO t
+        FROM emp_rne
+        WHERE employee_id != v_manager;
+        
+        WHILE modificare  = 1 LOOP
+            modificare := 0;
+            FOR i in t.first..t.last LOOP
+                IF t.exists(i) THEN
+                    FOR j in 1.. mng.count LOOP
+                     IF t(i).id_mng = mng(j) THEN
+                        mng.extend;
+                        mng(mng.count) := t(i).id_ang;
+                        modificare := 1;
+                        t.delete(i);
+                     END IF;
+                    END LOOP;
+                END IF;
+            END LOOP;
+        END LOOP;
+        
+        SELECT count(*)
+        INTO exista_manager
+        FROM emp_rne
+        WHERE manager_id = v_manager;
+            
+        FOR i in 2..mng.count LOOP    
+            UPDATE emp_rne
+            SET salary = salary * 1.1
+            WHERE employee_id = mng(i);
+        END LOOP;
+        
+        SELECT user
+        INTO (SELECT user FROM dual)
+        FROM dual; 
+        
+        if exista_manager > 0 then 
+            v_err := NULL;
+            exista_manager := mng.count - 1;
+        else 
+            v_err := 'Nu exista managerul';
+        end if;
+        
+        --v_comanda := 'UPDATE employees SET salary = salary * 1.1 WHERE manager_id = v_manager;';
+        v_comanda := NULL;
+        
+        INSERT INTO info_rne VALUES (
+        (
+            SELECT nvl(MAX(id), 0) + 1
+            FROM info_rne
+        ), (SELECT user FROM dual), sysdate, v_comanda, exista_manager, v_err);
+        
+END crestereSalariu;
+/
+
+BEGIN 
+    crestereSalariu(205); 
+END;
+/
+
+SELECT *
+FROM info_rne;
+
+ROLLBACK;
+   
+-- 5. Definiți un subprogram care obține pentru fiecare nume de departament ziua din săptămână în
+-- care au fost angajate cele mai multe persoane, lista cu numele acestora, vechimea și venitul lor
+-- lunar. Afișați mesaje corespunzătoare următoarelor cazuri:
+-- - într-un departament nu lucrează niciun angajat;
+-- - într-o zi din săptămână nu a fost nimeni angajat
+-- a 
+CREATE OR REPLACE PROCEDURE  maximAngajari
+IS
+    CURSOR deps IS  
+    SELECT department_id FROM departments;
+    curr_dep departments.department_id%TYPE;
+    
+    max_angajati NUMBER;
+    max_zi VARCHAR(10);
+    curr_angajati NUMBER;
+    
+    TYPE angajat IS RECORD
+        (nume_angajat employees.last_name%TYPE,
+         vechime number(4,4),
+         venit employees.salary%TYPE);
+         
+
+    
+    TYPE tablou_imbricat IS TABLE OF angajat; 
+    t tablou_imbricat := tablou_imbricat();
+
+    TYPE zile IS TABLE OF VARCHAR(10);
+    z zile := zile();
+    
+BEGIN
+    SELECT DISTINCT TO_CHAR(hire_date, 'DAY')
+    BULK COLLECT INTO z
+    FROM employees; 
+    
+    OPEN deps;
+    LOOP 
+        FETCH deps INTO curr_dep;
+        EXIT WHEN deps%NOTFOUND;
+        max_angajati := 0;
+        FOR i in 1..z.count LOOP
+            SELECT count(*)
+            INTO curr_angajati
+            FROM employees
+            WHERE department_id = curr_dep and TO_CHAR(hire_date, 'DAY') = z(i);
+            if curr_angajati > max_angajati then 
+                max_angajati := curr_angajati;
+                max_zi := z(i);
+            end if;
+            if curr_angajati = 0 then 
+                DBMS_OUTPUT.PUT_LINE('Departamentul ' || curr_dep || ' nu a angajat pe nimeni ' || z(i));
+            end if;
+        END LOOP; 
+        
+        if max_angajati = 0 then
+            DBMS_OUTPUT.PUT_LINE('Departamentul ' || curr_dep || ' nu a angajat pe nimeni');
+        else
+            DBMS_OUTPUT.PUT_LINE('Departamentul ' || curr_dep || ' a angajat cei mai multi angajati ' || max_angajati ||' ' || max_zi); 
+           
+        end if;
+    END LOOP;
+    CLOSE deps;
+END  maximAngajari;
+
+
+-- b. Rezolvați problema în două variante, după cum se ține cont sau nu de istoricul joburilor
+-- angajaților.
+CREATE OR REPLACE PROCEDURE  maximAngajariIstoric
+IS
+    CURSOR deps IS  
+    SELECT department_id FROM departments;
+    curr_dep departments.department_id%TYPE;
+    
+    max_angajati NUMBER;
+    max_zi VARCHAR(10);
+    curr_angajati NUMBER;
+    
+    TYPE angajat IS RECORD
+        (nume_angajat employees.last_name%TYPE,
+         vechime number(4,4),
+         venit employees.salary%TYPE);
+         
+    TYPE zile IS TABLE OF VARCHAR(10);
+    z zile := zile();
+    
+    TYPE tablou_imbricat IS TABLE OF angajat; 
+    t tablou_imbricat := tablou_imbricat();
+    
+BEGIN
+    SELECT DISTINCT TO_CHAR(hire_date, 'DAY')
+    BULK COLLECT INTO z
+    FROM employees; 
+    
+    OPEN deps;
+    LOOP 
+        FETCH deps INTO curr_dep;
+        EXIT WHEN deps%NOTFOUND;
+        max_angajati := 0;
+        FOR i in 1..z.count LOOP
+            SELECT count(*)
+            INTO curr_angajati
+            FROM employees
+            WHERE department_id = curr_dep and TO_CHAR(hire_date, 'DAY') = z(i);
+            
+            SELECT count(*) + curr_angajati
+            INTO curr_angajati
+            FROM job_history
+            WHERE department_id = curr_dep and TO_CHAR(start_date, 'DAY') = z(i);
+            
+            if curr_angajati > max_angajati then 
+                max_angajati := curr_angajati;
+                max_zi := z(i);
+            end if;
+            
+            if curr_angajati = 0 then 
+                DBMS_OUTPUT.PUT_LINE('Departamentul ' || curr_dep || ' nu a angajat pe nimeni ' || z(i));
+            end if;
+        END LOOP; 
+        
+        if max_angajati = 0 then
+            DBMS_OUTPUT.PUT_LINE('Departamentul ' || curr_dep || ' nu exista angajati');
+        else
+            DBMS_OUTPUT.PUT_LINE('Departamentul ' || curr_dep || ' a angajat cei mai multi angajati ' || max_angajati ||' ' || max_zi); 
+           
+        end if;
+    END LOOP;
+    CLOSE deps;
+END  maximAngajariIstoric;
+/
+

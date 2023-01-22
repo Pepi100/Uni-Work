@@ -1,0 +1,75 @@
+-- 1. Definiți un declanșator care să permită ștergerea informațiilor din tabelul dept_*** decât dacă
+-- utilizatorul este SCOTT.
+
+
+CREATE OR REPLACE TRIGGER doarSCOTT
+    BEFORE DELETE ON dep_rne
+    BEGIN IF UPPER(USER) !='SCOTT'
+    THEN RAISE_APPLICATION_ERROR(-20900,'Doar SCOTT poate modifica acest tabel');
+    END IF; 
+END; 
+
+-- 2. Creați un declanșator prin care să nu se permită mărirea comisionului astfel încât să depășească
+-- 50% din valoarea salariului.
+
+
+
+CREATE OR REPLACE TRIGGER modificareComision
+    BEFORE UPDATE OF commission_pct ON emp_rne
+    FOR EACH ROW
+    BEGIN
+        IF :NEW.commission_pct > 0.5 THEN
+            RAISE_APPLICATION_ERROR(-20002,'comisionul este prea mare');
+END; 
+
+
+--3. a. Introduceți în tabelul info_dept_*** coloana numar care va reprezenta pentru fiecare
+--departament numărul de angajați care lucrează în departamentul respectiv. Populați cu date
+--această coloană pe baza informațiilor din schemă.
+
+CREATE TABLE info_dept_rne( 
+      id NUMBER(10, 2) PRIMARY KEY, 
+      nume_dept VARCHAR2(50), 
+      plati NUMBER(10, 2)); 
+
+BEGIN 
+    FOR i IN (SELECT * FROM dep_rne) 
+    LOOP 
+      INSERT INTO info_dept_rne VALUES
+        ( i.department_id, 
+          i.department_name, 
+          (SELECT SUM(salary) FROM emp_rneWHERE department_id = i.department_id )); 
+    END LOOP; 
+END; 
+
+
+CREATE OR REPLACE PROCEDURE modificarePlati
+    (v_codd info_dept_rne.id%TYPE, 
+    v_plati info_dept_rne.plati%TYPE) AS 
+BEGIN 
+    UPDATE info_dept_rne
+    SET plati = NVL (plati, 0) + v_plati 
+    WHERE id = v_codd; 
+END; 
+/
+
+
+
+-- b. Definiți un declanșator care va actualiza automat această coloană în funcție de actualizările
+-- realizate asupra tabelului info_emp_***
+
+
+CREATE OR REPLACE TRIGGER numarAngajatiAuto
+    BEFORE INSERT OR DELETE ON info_emp_rne
+    FOR EACH ROW 
+BEGIN 
+    IF INSERTING THEN 
+        UPDATE info_dept_rne
+        SET NUMAR = NUMAR + 1
+        WHERE id = :NEW.id_dept;   
+    ELSIF DELETING THEN  
+        UPDATE info_dept_rne
+        SET numar = numar - 1 
+        WHERE id = :OLD.id_dept;
+END IF; 
+END; 
