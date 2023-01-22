@@ -1,0 +1,87 @@
+
+Notiuni introductive:
+
+Multiset = o multime unde elementele se pot repeta;
+
+Drum =  secventa de varfuri cu proprietatea ca intre oricare doua varfuri consecutive exista arc;
+
+Drum simplu =  nu contine un arc de mai multe ori;
+
+Drum elementar = nu contine un varf de mai multe ori;
+
+Lungimea unui drum = numarul de arce;
+
+Circuit = drum simplu cu capetele identice;
+
+Circuit elementar = drum elementar cu capetele identice;
+
+
+GRAFURI:
+
+Graf partial =  scoatem muchii
+
+Subgraf =  scoatem noduri si muchii
+
+Subgraf indus = scoatem doar noduri si muchiile asociate lor
+
+Graf bibartit =  exista o colorare cu 2 culori;
+
+K a,b = graf bipartit complet, 2 multimi de a, respectiv b elemente
+
+
+Muchie critică = nu este conținută într-un ciclu
+
+Un vârf v este punct critic =  există două vârfuri x,y !=  v astfel 
+încât v aparține oricărui x,y-lanț
+
+
+Parcurgeri:
+BFS = parcurgere in latime, imi da distanta intre 2 noduri
+Complexitate: O(n + m)
+
+Aplicatii: iesirea din labirint
+
+DFS = parcurgere in adancime
+
+
+
+Clasificarea muchiilor:
+1. Muchiile de arbore sunt muchii din pădurea de adâncime Gπ. Muchia (u, v) este o muchie de 
+arbore dacă v a fost descoperit explorând muchia (u, v).
+2. Muchiile înapoi sunt acele muchii (u, v) care unesc un vârf u cu un strămoş v într-un arbore de 
+adâncime. Buclele (muchii de la un vârf la el însuşi) care pot apărea într-un graf orientat sunt 
+considerate muchii înapoi.
+3. Muchiile înainte sunt acele muchii (u, v) ce nu sunt muchii de arbore şi conectează un vârf u cu 
+un descendent v într-un arbore de adâncime.
+4. Muchiile transversale sunt toate celelalte muchii. Ele pot uni vârfuri din acelaşi arbore de 
+adâncime, cu condiţia ca unul să nu fie strămoşul celuilalt, sau pot uni vârfuri din arbori, de 
+adâncime, diferiţi.
+
+-- Lemă. Dacă G este aciclic, atunci G are cel puţin un vârf v cu 
+gradul intern 0 ( d-(v) = 0 ).
+
+
+Algoritmul lui Kruskal:
+
+- **Sortam muchiile crescator
+- La fiecare pas adaugam muchia cu cost minim care nu formeaza un ciclu ( =  care uneste 2 componente conexe diferite)
+- Repetam pana cand avem n-1 muchii adaugate
+
+Model:
+
+sorteaza(E)
+
+for(v=1;v<=n;v++) 
+	Initializare(v);
+
+nrmsel=0
+for(uv in E)
+	if(Reprez(u)!=Reprez(v))
+	{ 
+		E(T) = E(T) U {uv};
+		Reuneste(u,v);
+		nrmsel=nrmsel+1; 
+		if(nrmsel==n-1)
+			STOP; //break;
+	}
+

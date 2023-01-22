@@ -55,6 +55,7 @@ int main(){
 
     }
 
+        //bfs din fiecare fortareata
     while(!q.empty()){
 
         pair<int,int> p = q.top();
