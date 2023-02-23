@@ -1,0 +1,13 @@
+letrec fct = \n -> if (isZero n) 1 (* n (fct (pred n))) in fct 4
+
+let squareSum = \x ->(\y -> (+ (*x x)  (*y y) ) ) in squareSum 2 3
+
+letrec revRange = \n -> if(== n 1) [0] ( ++ [- n 1] (revRange (- n 1) ) ) in revRange 4
+
+letrec range = \n -> if(== n 1) [0] ( ++ (revRange (- n 1) ) [- n 1] ) in range 4
+
+let justList = ... in justList [Just 4, Nothing, Just 5, Just 7, Nothing]
+
+let justList = \n -> (map (\y ->fromMaybe y y) ( filter ( \x -> if ( == x Nothing ) False True) n ) ) in justList [Just 4, Nothing, Just 5, Just 7, Nothing]
+
+let all = \f -> (\x -> foldr (\a -> (\b -> && b (f a))) True x) in all isZero [0, 0, 0]
