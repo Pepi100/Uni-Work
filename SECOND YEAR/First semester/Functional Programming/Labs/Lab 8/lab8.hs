@@ -4,8 +4,8 @@ data Arb = Vid | F Int | N Arb Arb
           deriving Show
 
 class ToFromArb a where
- 	    toArb :: a -> Arb
-	    fromArb :: Arb -> a
+        toArb :: a -> Arb
+        fromArb :: Arb -> a
 -- Pt [1,2,3]
 -- (1, 2, 3)
 
@@ -40,8 +40,8 @@ class GeoOps g where
 
 
 instance GeoOps Geo where
-    perimeter :: Floating a => Geo a -> as
-    perimeter (Square a) = 4*a
+    perimeter :: Floating a => Geo a -> a
+    perimeter (Square a) = 4 * a
     perimeter (Circle a) = 2*a*pi
     perimeter (Rectangle a b) = 2*a + 2*b
 

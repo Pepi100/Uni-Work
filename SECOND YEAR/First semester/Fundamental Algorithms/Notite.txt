@@ -25,6 +25,7 @@ Subgraf =  scoatem noduri si muchii
 Subgraf indus = scoatem doar noduri si muchiile asociate lor
 
 Graf bibartit =  exista o colorare cu 2 culori;
+-- sa nu aiba cicluri de lungime negativa
 
 K a,b = graf bipartit complet, 2 multimi de a, respectiv b elemente
 

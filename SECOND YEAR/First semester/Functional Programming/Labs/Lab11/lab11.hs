@@ -17,7 +17,10 @@ data List a = Nil
         deriving (Eq, Show)
 
 instance Functor List where
-    fmap = undefined
+    fmap :: (a -> b) -> List a -> List b
+    fmap f Nil = Nil
+    fmap f (Cons a l) = Cons (f a) (fmap f l ) 
+
 instance Applicative List where
     pure = undefined
     (<*>) = undefined

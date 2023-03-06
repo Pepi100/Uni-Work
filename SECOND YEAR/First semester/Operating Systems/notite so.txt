@@ -1,0 +1,123 @@
+Curs 1:
+
+- Sistemul de operare se ocupa de utlilizarea resurselor
+
+- Scheduling
+
+- kernelul este creierul si inima sistemului de operare. ORICE se executa trece si prin ceva care are legatura cu kernelul
+
+- la acest nivel, 90% este scris in C si ASM
+
+- Firmware este software ul care porneste cand pornesti PC ul si face verificarile necesare pentru hardware.
+	Apoi, acesta acceseaza bootloaderul sistemului de operare
+
+- CPU, controllerele, RAMul si alte adapters comunica prin BUS
+
+- controllerele (pentru USB sau RAM de exemplu) au si ele processing units si putina memorie
+
+Exemplu: CPU cere ceva din RAM, controllerul de RAM executa si trimite pe bus ce i s-a cerut. CPU nu stie cum se executa in RAM
+
+
+CPU nu sta sa astepte ca un controller sa termine treaba. In schimb, controllerele anunta CPU printr-un interrupt asincron.
+
+O intrerupere poate fi implementata prin polling sau vectored.
+
+Tastatura pe USB e polling,  tastatura pe PS/2 e vectored.
+
+Curs 2:
+
+Intreruperile dese pot fi nasoale pentru performanta.
+
+Tipuri de intreruperi:
+	Polling => CPU tot intreaba dispozitivele daca au ceva de prezentat
+	Vectored => CPU primeste un prin bus intreruperea, vede de la cine e si se uita intr-un tabel ce trebuie sa faca.
+
+Driverul este locul in care CPU sare atunci cand un dispozitiv vrea sa comunice cu el. El ii spune cum sa comunice cu dispozitivele.
+
+PCIe = the main BUS
+
+System calls = cand rulam un program, acesta cere sistemului de operare sa faca operatiile pentru care a primit permisiune. de exemplu sa afiseze ceva pe ecran
+
+Cache vine din franceza, aka cea mai naspa limba, e intre RAM si registri ca marime si viteza. L-urile
+
+Asymmetric multiprocessing = each processor is assigned a specific task
+
+OpenCL vede toate dispozitivele de calcul => e cool, merita inteles
+
+
+Curs 3:
+
+In sisteme de operare folosim arbori pentru cautare, arbori balansati pe care sa facem cautare binara.
+Acestia apar la procese dar si la sistemul de fisiere.
+
+Policy = Ce vrem sa facem.
+Mechanism = Cum se va realiza.
+
+C e slab la memory management, Rust e mai smecher (mai multa securitate si putin mai slaba performanta).
+
+Segmentation fault este o eroare de la sistemul de operare care omoara programul atunci cand incearca sa apeleze
+ceva la care nu are acces.
+
+Curs 4:
+	Limbajele de programare cele mai lente sunt cele necompilate, Haskell, JS, PHP.
+	Cand rulezi ceva pe net care este compilat se numbeste web assembly. Exemplul ala cu DOOM in browser.
+
+Procese:
+	Un proces este un program care se afla in executie. In RAM avem si codul sursa (text section / program code) si variabilele cu care lucram, avem si nivelul la care am ajuns cu exececutia (program counter, linia la de assembly la care am ajuns).
+
+Ce alocam dinamic e in heap, ce alocam static e in stack
+
+	Fiecare program are alocat o zona de memorie. Un program nu poate accesa zona de memorie a uui alt program. Sistemul de operare se ocupa de asta.
+
+Cand SO sare de la un program la altul, toti registrii sunt salvati, salveaza si limitele de memorie. Se salveza in memorie principala (RAM).
+
+SO pastreaza in memorie si importanta unui program, in functie de aceasta importanta, procesul primeste mai mult sau mai putin timp pe CPU.
+
+Toate aceste informatii sunt tinute intr-un PCB (process control board) care e o structura de C.
+
+La un moment dat, pe CPU, poate rula un singur procces, dar un procces poate avea mai multe threaduri.
+
+Process Scheduling foloseste 3 cozi:
+	Una pentru toate procesele
+	Una pentru procesele in starea ready
+	Una pentru procesele care asteapta de la I/O
+
+
+Curs 5: 
+	Arbore de procese cu radacina in init (initd / init_daemon)
+	Cand un proces face un copil, toate variabilele se copiaza, ce modific in copil nu afecteaza parintele.
+
+Dupa fork, pid == 0 inseamna ca ma aflu in copil, daca pid >0, atunci pid este process id-ul copilului, deci sunt in parinte.
+
+Un parinte responsabil isi omoara toti copiii inainte sa se sinucida.
+
+Daca niciun parinte nu asteapta un copil, acel copil este zombie;
+Daca parintele se sinucide inainte, copilul este orfan.
+
+	Aceastea 2 sunt inchise de SO atunci cand sunt gasite.
+
+In Chrome, fiecare tab este un proces copil.
+
+Procesele au fiecare memoria lor, threadurile impart zona de memorie a procesului din car fac parte.
+
+IPC:
+
+	Modele:
+		Message queue, message passing
+		Shared memory
+
+Producer-Consumer Problem:
+	Producatorul produce non stop si asteapta atunci cand nu mai are spatiu liber in buffer sa produca.
+
+
+Curs 6:
+
+Pipes:
+	Folosit intre 2 programe intre care avem o conexiune mai puternica.
+	Pipe-ul se face inainte de fork.
+	Il folosim intre printe si copil.
+
+Fiecare thread are propriul set de registri si propriul stack. Codul si fisierele la care au acces sunt aceleasi.
+La procese totul este separat, implicit totul se copiaza de la unul la celalalt.
+
+
