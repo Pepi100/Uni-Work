@@ -1,5 +1,4 @@
 
-#include <iostream>
 #include <bits/stdc++.h>
 #define pre  (i==0)?(n-1):(i-1)
 
@@ -12,10 +11,42 @@ struct Pt{
     long long x,y;
 };
 
-
 long long determinant(Pt a, Pt b, Pt c){
     return b.x * c.y + a.x * b.y + c.x * a.y - b.x * a.y - c.x * b.y - a.x * c.y;
     // det < 0 -> la dreapta
+}
+
+long long determinant(Pt a, Pt b, Pt c, Pt d){
+    long long A[5][5];
+
+    A[1][1] = a.x;A[2][1] = b.x;A[3][1] = c.x;A[4][1] = d.x;
+    A[1][2] = a.y;A[2][2] = b.y;A[3][2] = c.y;A[4][2] = d.y;
+    A[1][3] = a.y*a.y + a.x*a.x ;A[2][3] = b.y*b.y + b.x*b.x;A[3][3] = c.y*c.y + c.x*c.x;A[4][3] = d.y*d.y + d.x*d.x;
+    for(int i=0;i<=4;i++)A[i][4] =1;
+
+//    for(int i=1;i<=4;i++){
+//        for(int j=1;j<=4;j++){
+//            cout<<A[i][j]<<" ";
+//
+//        }
+//        cout<<endl;
+//    }
+
+
+
+    long long det =0;
+    long long s1,s2,s3,s4;
+
+    s1=A[1][1]*(A[2][2]*(A[3][3]*A[4][4]-A[4][3]*A[3][4])-A[2][3]*(A[3][2]*A[4][4]-A[3][4]*A[4][2])+A[2][4]*(A[3][2]*A[4][3]-A[3][3]*A[4][2]));
+    s2=A[1][2]*(A[2][1]*(A[3][3]*A[4][4]-A[4][3]*A[3][4])-A[2][3]*(A[3][1]*A[4][4]-A[3][4]*A[4][1])+A[2][4]*(A[3][1]*A[4][3]-A[3][3]*A[4][1]));
+    s3=A[1][3]*(A[2][1]*(A[3][2]*A[4][4]-A[4][2]*A[3][4])-A[2][2]*(A[3][1]*A[4][4]-A[3][4]*A[4][1])+A[2][4]*(A[3][1]*A[4][2]-A[3][2]*A[4][1]));
+    s4=A[1][4]*(A[2][1]*(A[3][2]*A[4][3]-A[4][2]*A[3][3])-A[2][2]*(A[3][1]*A[4][3]-A[3][3]*A[4][1])+A[2][3]*(A[3][1]*A[4][2]-A[3][2]*A[4][1]));
+    det=s1-s2+s3-s4;
+
+
+
+    return det;
+
 }
 
 int isBetween(Pt a, Pt b, Pt c){
@@ -32,7 +63,7 @@ bool comp(Pt a, Pt b){
 
 
 class Polygon{
-private:
+protected:
     int n;
     vector<Pt> points;
 
@@ -50,7 +81,7 @@ public:
     }
 
 
-    void read(){
+    virtual void read(){
         cin>>n;
         Pt p;
         iLeftMost = 0;
@@ -97,7 +128,7 @@ public:
     }
 
 
-    int position(Pt x) {
+    virtual int position(Pt x) {
         int lower = 1;
         int upper = n-1;
 
@@ -226,46 +257,96 @@ public:
 
 class Triangle: public Polygon{
 
+public:
+    Triangle(){
+        n=3;
+
+    }
+
+    void read(){
+        Pt p;
+        iLeftMost = 0;
+        for(int i=0;i<n;i++){
+            cin>>p.x>>p.y;
+            points.push_back(p);
+            //unused
+
+            if(p.x < points[iLeftMost].x){
+                iLeftMost = i;
+            }else{
+                if(p.x == points[iLeftMost].x && p.y < points[iLeftMost].y)
+                    iLeftMost = i;
+            }
+        }
+    }
+
+    short circumscribedPosition(Pt x){
+
+
+        long long det= determinant(points[0],points[1],points[2],x);
+
+        if(det == 0) return 0;
+        return det / abs(det);
+    }
+
+};
+
+class Quadrilateral: public Polygon{
+
+public:
+    Quadrilateral(){
+        n=4;
+
+    }
+
+    void read(){
+        Pt p;
+        for(int i=0;i<n;i++){
+            cin>>p.x>>p.y;
+            points.push_back(p);
+        }
+    }
+
+
+    void illegalEdges(){
+        //AC
+        cout<<"AC: ";
+
+        if(determinant(points[0],points[1],points[2],points[3])>0)
+            cout<<"ILLEGAL\n";
+        else
+            cout<<"LEGAL\n";
+
+
+        //BD
+        cout<<"BD: ";
+
+        if(determinant(points[1],points[2],points[3],points[0])>0)
+            cout<<"ILLEGAL\n";
+        else
+            cout<<"LEGAL\n";
+    }
 
 
 };
 
+
 int main()
 {
+    Quadrilateral t;
+    t.read();
+    t.illegalEdges();
 
-    Polygon p;
-    p.read();
-    // rezolvare
-    p.reorder();
-    p.removeExtras();
-//    p.afisare();
-
-    int m;
-    Pt x;
-    cin>>m;
-    while(m--){
-        cin>>x.x>>x.y;
-
-        switch(p.position(x)){
-            case 1:
-                cout<<"INSIDE\n";
-                break;
-            case 0:
-                cout<<"BOUNDARY\n";
-                break;
-            default:
-                cout<<"OUTSIDE\n";
-                break;
-        }
-
-    }
 
 
 }
 
 /*
-
-
-
-
+-2 4
+-3 0
+0 -2
+3
+1 2
+3 3
+6 -1
 */
