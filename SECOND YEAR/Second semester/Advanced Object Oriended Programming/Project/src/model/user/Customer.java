@@ -16,4 +16,17 @@ public class Customer extends User{
     public void setAddress(Address address) {
         this.address = address;
     }
+
+
+    //toString
+
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                "address=" + address +
+                '}';
+    }
 }

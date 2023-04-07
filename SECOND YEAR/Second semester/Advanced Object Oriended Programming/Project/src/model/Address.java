@@ -8,6 +8,10 @@ public class Address {
 
     //constructor
 
+
+    public Address() {
+    }
+
     public Address(String city, String county, String street, int number) {
         this.city = city;
         this.county = county;
@@ -57,17 +61,10 @@ public class Address {
     //toString
     @Override
     public String toString() {
-        return "Address{" +
-                "city='" + city + '\'' +
-                ", county='" + county + '\'' +
-                ", street='" + street + '\'' +
-                ", number=" + number +
-                '}';
+        return "Address: " +
+                 city + ", " + street + ", " + "number " + number ;
     }
 
-    public void read(){
 
-        
-    }
 
 }

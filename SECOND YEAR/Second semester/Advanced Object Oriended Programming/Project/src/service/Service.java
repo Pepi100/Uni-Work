@@ -1,4 +1,5 @@
 package service;
+import model.Address;
 import model.Manufacturer;
 import model.product.*;
 import model.user.*;
@@ -42,7 +43,7 @@ public class Service {
             System.out.println("3 - Print all manufacturers.");
             System.out.println("4 - Add a new product.");
             System.out.println("5 - Add a new manufacturer.");
-            System.out.println("7 - Add a new user.");
+            System.out.println("6 - Add a new user.");
             System.out.println("0 - Exit the program.");
 
 
@@ -51,10 +52,10 @@ public class Service {
 
             switch (input){
                 case 1 -> {
-
+                    printProducts();
                 }
                 case 2 -> {
-
+                    printUsers();
                 }
                 case 3 -> {
                     printManufacturers();
@@ -66,7 +67,7 @@ public class Service {
                     addManufacturer();
                 }
                 case 6 -> {
-
+                    addUser();
                 }
                 case 7 -> {
 
@@ -87,6 +88,7 @@ public class Service {
 
     }
 
+    //adding
     private static void addManufacturer(){
         Scanner sc=new Scanner(System.in);
         Manufacturer newMan = new Manufacturer();
@@ -106,24 +108,18 @@ public class Service {
         manufacturers.add(newMan);
     }
 
-    private static void printManufacturers(){
-            if(manufacturers.size() >0)
-                System.out.println(manufacturers);
-            else
-                System.out.println("There are no manufacturers at the moment.");
-    }
-
-    private static void printProducts(){
-        System.out.println(products);
-    }
-
-    private static void printUsers(){
-        System.out.println(users);
-    }
-
     private static void addProduct(){
         Scanner sc=new Scanner(System.in);
         Product newProd;
+
+        System.out.println("Enter a name for the product: ");
+        String name = sc.nextLine();
+
+        System.out.println("Enter a price for the product: ");
+        float price = sc.nextFloat();
+
+
+
 
         System.out.println("What type of product would you like to add?");
         System.out.println("1 - Headphones");
@@ -137,11 +133,9 @@ public class Service {
             newProd = new Microphone();
         }
 
-        System.out.println("Enter a name for the product: ");
-        newProd.setName(sc.nextLine());
 
-        System.out.println("Enter a price for the product: ");
-        newProd.setPrice(sc.nextFloat());
+        newProd.setName(name);
+        newProd.setPrice(price);
 
 
         System.out.println("Now you will need to select a manufacturer for the product: ");
@@ -157,15 +151,19 @@ public class Service {
             newProd.setBrand(manufacturers.get(manufacturerNumber - 1));
 
         }else{
+            //adding a new manufacturer
 
+            addManufacturer();
+
+            newProd.setBrand(manufacturers.get(manufacturers.size() - 1));
 
         }
 
         if (type == 1){
             //headphones
             System.out.println("Select the type of connectivity : ");
-            System.out.println("1 - Wireless. ");
-            System.out.println("2 - Wired. ");
+            System.out.println("1 - Wireless.");
+            System.out.println("2 - Wired.");
             option= sc.nextInt();
 
             switch (option){
@@ -198,10 +196,113 @@ public class Service {
 
         }else{
             newProd = new Microphone();
+
+            // TODO
         }
 
 
         products.add(newProd);
     }
+
+    private static void addUser(){
+        Scanner sc=new Scanner(System.in);
+        User newUser;
+
+        System.out.println("Enter a name: ");
+        String name = sc.nextLine();
+
+        System.out.println("Enter an email address: ");
+        String email = sc.nextLine();
+
+
+        System.out.println("What type of user would you like to add?");
+        System.out.println("1 - Customer");
+        System.out.println("2 - Employee");
+
+
+        int type = sc.nextInt();
+
+        if (type == 1){
+            newUser = new Customer();
+        }else{
+            newUser = new Employee();
+        }
+
+
+        newUser.setName(name);
+        newUser.setEmail(email);
+
+
+        if (type == 1){
+            ((Customer) newUser).setAddress(readAddress());
+
+        }else{
+
+            String dep = sc.nextLine();
+            ((Employee) newUser).setDepartment(dep);
+
+        }
+
+        users.add(newUser);
+
+
+    }
+
+    //deleting
+        //TODO
+
+
+
+    //printing
+    private static void printManufacturers(){
+            if(manufacturers.size() >0)
+                System.out.println(manufacturers);
+            else
+                System.out.println("There are no manufacturers at the moment.");
+    }
+
+    private static void printProducts(){
+        if(products.size() >0)
+            System.out.println(products);
+        else
+            System.out.println("There are no products at the moment.");
+    }
+
+    private static void printUsers(){
+        if(users.size() >0)
+            System.out.println(users);
+        else
+            System.out.println("There are no users at the moment.");
+    }
+
+
+    //extra
+    private static Address readAddress(){
+        Scanner sc=new Scanner(System.in);
+        Address newAdd = new Address();
+
+        System.out.println("Enter city: ");
+        String input = sc.nextLine();
+        newAdd.setCity(input);
+
+        System.out.println("Enter county: ");
+        input = sc.nextLine();
+        newAdd.setCounty(input);
+
+        System.out.println("Enter street: ");
+        input = sc.nextLine();
+        newAdd.setStreet(input);
+
+        int input2;
+
+        System.out.println("Enter street number: ");
+        input2 = sc.nextInt();
+        newAdd.setNumber(input2);
+
+
+        return newAdd;
+
+    }
+
 
 }
