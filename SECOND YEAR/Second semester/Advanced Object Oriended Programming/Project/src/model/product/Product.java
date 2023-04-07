@@ -1,5 +1,7 @@
 package model.product;
 
+import model.Manufacturer;
+
 public abstract class Product {
 
     protected float price;

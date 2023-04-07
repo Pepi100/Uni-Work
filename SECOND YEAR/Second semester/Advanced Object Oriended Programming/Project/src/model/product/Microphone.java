@@ -1,4 +1,6 @@
 package model.product;
 
-public class Microphone extends Product{
+import model.product.Product;
+
+public class Microphone extends Product {
 }
