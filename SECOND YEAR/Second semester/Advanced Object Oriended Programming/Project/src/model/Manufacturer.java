@@ -47,4 +47,13 @@ public class Manufacturer {
         this.email = email;
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Manufacturer{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
