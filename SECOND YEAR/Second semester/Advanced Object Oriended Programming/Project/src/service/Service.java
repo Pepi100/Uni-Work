@@ -113,6 +113,14 @@ public class Service {
                 System.out.println("There are no manufacturers at the moment.");
     }
 
+    private static void printProducts(){
+        System.out.println(products);
+    }
+
+    private static void printUsers(){
+        System.out.println(users);
+    }
+
     private static void addProduct(){
         Scanner sc=new Scanner(System.in);
         Product newProd;

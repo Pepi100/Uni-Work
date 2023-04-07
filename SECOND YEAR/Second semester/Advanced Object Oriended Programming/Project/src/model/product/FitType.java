@@ -5,5 +5,4 @@ public enum FitType {
     Over_Ear,
     In_Ear
 
-
 }

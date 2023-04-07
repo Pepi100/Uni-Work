@@ -18,10 +18,56 @@ public class Address {
 
     //setters
 
+    public String getCity() {
+        return city;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public int getNumber() {
+        return number;
+    }
 
 
     //getters
 
 
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    //toString
+    @Override
+    public String toString() {
+        return "Address{" +
+                "city='" + city + '\'' +
+                ", county='" + county + '\'' +
+                ", street='" + street + '\'' +
+                ", number=" + number +
+                '}';
+    }
+
+    public void read(){
+
+        
+    }
 
 }
