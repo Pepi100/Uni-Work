@@ -262,8 +262,51 @@ public class Service {
     }
 
     private static void printProducts(){
-        if(products.size() >0)
-            System.out.println(products);
+        if(products.size() >0){
+
+            System.out.printf("How would you like the products to be ordered?");
+            System.out.println("1 - Price.");
+            System.out.println("2 - Price, descending.");
+            System.out.println("3 - Name.");
+            System.out.println("4 - Name, descending.");
+            System.out.println("5 - Manufacturer.");
+
+            Scanner sc = new Scanner(System.in);
+            int input = sc.nextInt();
+
+
+
+
+            //TODO
+
+            switch (input){
+                case 1 ->{
+
+                }
+                case 2 ->{
+
+                }
+                case 3 ->{
+
+                }
+                case 4 ->{
+
+                }
+                case 5 ->{
+
+                }
+                default -> {
+
+                }
+
+            }
+
+
+
+
+
+        }
+
         else
             System.out.println("There are no products at the moment.");
     }
@@ -302,6 +345,11 @@ public class Service {
 
         return newAdd;
 
+    }
+
+
+    private static void readInitial(){
+        //TODO
     }
 
 
