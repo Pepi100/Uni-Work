@@ -2,6 +2,8 @@
 #include <ctime>
 #include <random>
 #define ELITISM true
+#define CROSSOVER_PROB 0.25
+#define MUTATION_PROB 0.1
 
 using namespace std;
 
@@ -129,7 +131,7 @@ public:
         //generate random position
         int p=rand()%domain.l;
 
-        genes[p] = (genes[p]-'0'+1)%2;
+        genes[p] = (genes[p]-'0'+1)%2 + '0';
         updateValue();
 
     }
@@ -142,6 +144,44 @@ private:
     vector <Chromosome> population ;
     int size;
     int precision;
+
+
+    void crossover(int a, int b, int i){
+        char v[2][100];
+        char aux[2][100];
+        strcpy(v[0], population[a].getGenes());
+        strcpy(v[1], population[b].getGenes());
+
+        for(int crom = 0; crom < 2; crom++){
+            for(int chr = 0; chr < domain.l; chr++){
+                aux[crom][chr] = v[(crom+(chr>=i))%2][chr];
+            }
+            aux[crom][domain.l] = '\0';
+        }
+
+        population[a].setGenes(aux[0]);
+        population[b].setGenes(aux[1]);
+    }
+
+
+    void crossover(int a, int b, int c, int i){
+        char v[3][100];
+        char aux[3][100];
+        strcpy(v[0], population[a].getGenes());
+        strcpy(v[1], population[b].getGenes());
+        strcpy(v[2], population[c].getGenes());
+
+        for(int crom = 0; crom < 3; crom++){
+            for(int chr = 0; chr < domain.l; chr++){
+                aux[crom][chr] = v[(crom+(chr>=i))%3][chr];
+            }
+            aux[crom][domain.l] = '\0';
+        }
+
+        population[a].setGenes(aux[0]);
+        population[b].setGenes(aux[1]);
+        population[c].setGenes(aux[2]);
+    }
 
 public:
 
@@ -204,109 +244,44 @@ public:
         Generation::population = population;
     }
 
-    //crossovers
 
-    void crossover(int a, int b, int i){
-        char v[2][100];
-        char aux[2][100];
-        strcpy(v[0], population[a].getGenes());
-        strcpy(v[1], population[b].getGenes());
+    //selection
 
-        for(int crom = 0; crom < 2; crom++){
-            for(int chr = 0; chr < domain.l; chr++){
-                aux[crom][chr] = v[(crom+(chr>=i))%2][chr];
-            }
-            aux[crom][domain.l] = '\0';
+    void selectionWithPrint(){
+
+        fout<<"\nSelection Probability: \n";
+        double fit = getFitness();
+
+        for(int i=0;i<getSize();i++){
+            fout<<"  chromosome: "<<right << setw(3)<<i+1<<".  probability= "<<right << setw(11)<<population[i].getFitness()/fit<<"\n";
         }
 
-        population[a].setGenes(aux[0]);
-        population[b].setGenes(aux[1]);
-    }
-
-
-    void crossover(int a, int b, int c, int i){
-        char v[3][100];
-        char aux[3][100];
-        strcpy(v[0], population[a].getGenes());
-        strcpy(v[1], population[b].getGenes());
-        strcpy(v[2], population[c].getGenes());
-
-        for(int crom = 0; crom < 3; crom++){
-            for(int chr = 0; chr < domain.l; chr++){
-                aux[crom][chr] = v[(crom+(chr>=i))%3][chr];
-            }
-            aux[crom][domain.l] = '\0';
+        fout<<"\nSelection Probability Intervals: \n";
+        double aux[getSize()+1];
+        aux[0]=0;
+        fout<<aux[0]<<" ";
+        for(int i=0;i<getSize()-1;i++){
+            aux[i+1]=aux[i] + population[i].getFitness()/fit;
+            fout<<aux[i+1]<<" ";
         }
+        aux[getSize()] = 1;
+        fout<<aux[getSize()]<<'\n';
 
-        population[a].setGenes(aux[0]);
-        population[b].setGenes(aux[1]);
-        population[c].setGenes(aux[2]);
-    }
-
-
-
-
-
-};
-
-double crossover_prob, mutation_prob;
-int epochs;
-
-
-int main() {
-    //citire
-    int n;
-    cin>>n;
-    cin>>domain.a>>domain.b;
-    cin>>f.a>>f.b>>f.c;
-    cin>>domain.p;
-    cin>>crossover_prob>>mutation_prob;
-    cin>>epochs;
-
-    buildDomain();
-
-    srand(time(NULL));
-    Generation g(n);
-
-    fout<<"Initial Population:\n";
-
-    for(int i=0;i<g.getSize();i++){
-        fout<<"  "<<right << setw(3)<<i+1<<".  "<<g.getChromosome(i).getGenes()<<"  val="<<right << setw(10)<<fixed<<setprecision(6)<< g.getChromosome(i).getValue()<<"  fitness= "<<right << setw(9)<<g.getChromosome(i).getFitness()<<"\n";
-    }
-
-    fout<<"\nSelection Probability: \n";
-    double fit = g.getFitness();
-
-    for(int i=0;i<g.getSize();i++){
-        fout<<"  chromosome: "<<right << setw(3)<<i+1<<".  probability= "<<right << setw(11)<<g.getChromosome(i).getFitness()/fit<<"\n";
-    }
-
-    fout<<"\nSelection Probability Intervals: \n";
-    double aux[g.getSize()+1];
-    aux[0]=0;
-    fout<<aux[0]<<" ";
-    for(int i=0;i<g.getSize()-1;i++){
-        aux[i+1]=aux[i]+ g.getChromosome(i).getFitness()/fit;
-        fout<<aux[i+1]<<" ";
-    }
-    aux[g.getSize()] = 1;
-    fout<<aux[g.getSize()]<<'\n';
-
-    //selectarea cromozomilor
-    vector <Chromosome> popl;
+        //selectarea cromozomilor
+        vector <Chromosome> popl;
         //criteriul elitist;
 
         if(ELITISM){
-            popl.push_back(g.getBest());
+            popl.push_back(getBest());
 
             fout<<"The best choromose was automatically selected for crossover!\n";
         }
 
-        while(popl.size() < g.getSize()){
+        while(popl.size() < getSize()){
             //generate random u;
             double u= rand() / (double) RAND_MAX;
 
-            int left = 0, right = g.getSize();
+            int left = 0, right = getSize();
 
             while(right-left >1){
                 int mid = (right+ left)/2;
@@ -320,174 +295,350 @@ int main() {
             }
 
             fout<<"  u=" << setw(11)<<u<<"  selecting chromosome "<< setw(3)<<left+1<<'\n';
-            popl.push_back(g.getChromosome(left));
+            popl.push_back(population[left]);
 
         }
 
-    fout<<"Population after selection:\n";
-    for(int i=0;i<g.getSize();i++){
-        fout<<"  "<<right << setw(3)<<i+1<<".  "<<popl[i].getGenes()<<"  val="<<right << setw(10)<<fixed<<setprecision(6)<< popl[i].getValue()<<"  fitness= "<<right << setw(9)<<popl[i].getFitness()<<"\n";
-    }
-    g.setPopulation(popl);
-
-
-    fout<<"\nCrossover probability: "<<crossover_prob<<'\n';
-    queue <int> cross_selection;
-
-    for(int i=0;i<g.getSize();i++){
-        double u= rand() / (double) RAND_MAX;
-
-        fout<<"  "<<right << setw(3)<<i+1<<".  "<<popl[i].getGenes()<<"  val="<<right << setw(10)<<fixed<<setprecision(6)<< popl[i].getValue()<<"  u= "<<right << setw(9)<<u;
-        if(u<crossover_prob){
-            fout<< " < "<<crossover_prob<<" SELECTED\n";
-            cross_selection.push(i);
-        }
-
-        else fout<<'\n';
-    }
-
-    while(cross_selection.size() != 3 && !cross_selection.empty()){
-        int a = cross_selection.front();
-        cross_selection.pop();
-
-        int b = cross_selection.front();
-        cross_selection.pop();
-
-        int i= 1+rand()%(domain.l/2);
-        fout<<setw(3)<<"Crossover between " << a+1<< " and "<<b+1<< " with crossover point "<<i+1<<"\n  Before:\n   ";
-
-        for(int j=0;j<domain.l;j++){
-            fout<<g.getChromosome(a).getGenes()[j];
-            if(j==i){
-                fout<<'|';
-            }
-        }
-        fout<<"\n   ";
-
-        for(int j=0;j<domain.l;j++){
-            fout<<g.getChromosome(b).getGenes()[j];
-            if(j==i){
-                fout<<'|';
-            }
-        }
-
-        g.crossover(a,b,i);
-
-        fout<<"\n  After:\n   ";
-
-        for(int j=0;j<domain.l;j++){
-            fout<<g.getChromosome(a).getGenes()[j];
-            if(j==i){
-                fout<<'|';
-            }
-        }
-        fout<<"\n   ";
-
-        for(int j=0;j<domain.l;j++){
-            fout<<g.getChromosome(b).getGenes()[j];
-            if(j==i){
-                fout<<'|';
-            }
-        }
-
-        fout<<"\n";
+        setPopulation(popl);
 
     }
 
-    if(cross_selection.size() == 3) {
+    void selection(){
 
-        int a = cross_selection.front();
-        cross_selection.pop();
 
-        int b = cross_selection.front();
-        cross_selection.pop();
+        double fit = getFitness();
+        double aux[getSize()+1];
 
-        int c = cross_selection.front();
-        cross_selection.pop();
+        aux[0]=0;
 
-        int i= 1+rand()%(domain.l/2);
-        fout<<setw(3)<<"Crossover between " << a+1<<", "<<b+1<< " and "<<c+1<< " with crossover point "<<i+1<<"\n  Before:\n   ";
-
-        for(int j=0;j<domain.l;j++){
-            fout<<g.getChromosome(a).getGenes()[j];
-            if(j==i){
-                fout<<'|';
-            }
+        for(int i=0;i<getSize()-1;i++){
+            aux[i+1]=aux[i] + population[i].getFitness()/fit;
         }
-        fout<<"\n   ";
+        aux[getSize()] = 1;
 
-        for(int j=0;j<domain.l;j++){
-            fout<<g.getChromosome(b).getGenes()[j];
-            if(j==i){
-                fout<<'|';
-            }
+        vector <Chromosome> popl;
+
+        if(ELITISM){
+            popl.push_back(getBest());
         }
 
-        fout<<"\n   ";
+        while(popl.size() < getSize()){
+            //generate random u;
+            double u= rand() / (double) RAND_MAX;
 
-        for(int j=0;j<domain.l;j++){
-            fout<<g.getChromosome(c).getGenes()[j];
-            if(j==i){
-                fout<<'|';
+            int left = 0, right = getSize();
+
+            while(right-left >1){
+                int mid = (right+ left)/2;
+
+                if(u<aux[mid]){
+                    right = mid;
+                }else{
+                    left=mid;
+                }
+
             }
+
+            popl.push_back(population[left]);
+
         }
 
-        g.crossover(a,b,c,i);
+        setPopulation(popl);
 
-        fout<<"\n  After:\n   ";
 
-        for(int j=0;j<domain.l;j++){
-            fout<<g.getChromosome(a).getGenes()[j];
-            if(j==i){
-                fout<<'|';
-            }
-        }
-        fout<<"\n   ";
-
-        for(int j=0;j<domain.l;j++){
-            fout<<g.getChromosome(b).getGenes()[j];
-            if(j==i){
-                fout<<'|';
-            }
-        }
-        fout<<"\n   ";
-        for(int j=0;j<domain.l;j++){
-            fout<<g.getChromosome(c).getGenes()[j];
-            if(j==i){
-                fout<<'|';
-            }
-        }
-        fout<<"\n";
     }
 
+
+    //crossover
+    void genCrossoverWithPrint(){
+
+
+        queue <int> cross_selection;
+
+        for(int i=0;i<getSize();i++){
+            double u= rand() / (double) RAND_MAX;
+
+            fout<<"  "<<right << setw(3)<<i+1<<".  "<<population[i].getGenes()<<"  val="<<right << setw(10)<<fixed<<setprecision(6)<< population[i].getValue()<<"  u= "<<right << setw(9)<<u;
+            if(u<CROSSOVER_PROB){
+                fout<< " < "<<CROSSOVER_PROB<<" SELECTED\n";
+                cross_selection.push(i);
+            }
+
+            else fout<<'\n';
+        }
+
+        if(cross_selection.size() == 1){
+            return;
+        }
+
+        while(cross_selection.size() != 3 && !cross_selection.empty()){
+            int a = cross_selection.front();
+            cross_selection.pop();
+
+            int b = cross_selection.front();
+            cross_selection.pop();
+
+            int i= 1+rand()%(domain.l/2);
+            fout<<setw(3)<<"Crossover between " << a+1<< " and "<<b+1<< " with crossover point "<<i+1<<"\n  Before:\n   ";
+
+            for(int j=0;j<domain.l;j++){
+                fout<<population[a].getGenes()[j];
+                if(j==i){
+                    fout<<'|';
+                }
+            }
+            fout<<"\n   ";
+
+            for(int j=0;j<domain.l;j++){
+                fout<<population[b].getGenes()[j];
+                if(j==i){
+                    fout<<'|';
+                }
+            }
+
+            crossover(a,b,i+1);
+
+            fout<<"\n  After:\n   ";
+
+            for(int j=0;j<domain.l;j++){
+                fout<<population[a].getGenes()[j];
+                if(j==i){
+                    fout<<'|';
+                }
+            }
+            fout<<"\n   ";
+
+            for(int j=0;j<domain.l;j++){
+                fout<<population[b].getGenes()[j];
+                if(j==i){
+                    fout<<'|';
+                }
+            }
+
+            fout<<"\n";
+
+        }
+
+        if(cross_selection.size() == 3) {
+
+            int a = cross_selection.front();
+            cross_selection.pop();
+
+            int b = cross_selection.front();
+            cross_selection.pop();
+
+            int c = cross_selection.front();
+            cross_selection.pop();
+
+            int i= 1+rand()%(domain.l/2);
+            fout<<setw(3)<<"Crossover between " << a+1<<", "<<b+1<< " and "<<c+1<< " with crossover point "<<i+1<<"\n  Before:\n   ";
+
+            for(int j=0;j<domain.l;j++){
+                fout<<population[a].getGenes()[j];
+                if(j==i){
+                    fout<<'|';
+                }
+            }
+            fout<<"\n   ";
+
+            for(int j=0;j<domain.l;j++){
+                fout<<population[b].getGenes()[j];
+                if(j==i){
+                    fout<<'|';
+                }
+            }
+
+            fout<<"\n   ";
+
+            for(int j=0;j<domain.l;j++){
+                fout<<population[c].getGenes()[j];
+                if(j==i){
+                    fout<<'|';
+                }
+            }
+
+            crossover(a,b,c,i+1);
+
+            fout<<"\n  After:\n   ";
+
+            for(int j=0;j<domain.l;j++){
+                fout<<population[a].getGenes()[j];
+                if(j==i){
+                    fout<<'|';
+                }
+            }
+            fout<<"\n   ";
+
+            for(int j=0;j<domain.l;j++){
+                fout<<population[b].getGenes()[j];
+                if(j==i){
+                    fout<<'|';
+                }
+            }
+            fout<<"\n   ";
+            for(int j=0;j<domain.l;j++){
+                fout<<population[c].getGenes()[j];
+                if(j==i){
+                    fout<<'|';
+                }
+            }
+            fout<<"\n";
+        }
+    }
+
+    void genCrossover(){
+
+        queue <int> cross_selection;
+
+        for(int i=0;i<size;i++){
+            double u= rand() / (double) RAND_MAX;
+            if(u<CROSSOVER_PROB){
+                cross_selection.push(i);
+            }
+        }
+
+        if(cross_selection.size() == 1){
+            return;
+        }
+
+        while(cross_selection.size() != 3 && !cross_selection.empty()){
+            int a = cross_selection.front();
+            cross_selection.pop();
+
+            int b = cross_selection.front();
+            cross_selection.pop();
+
+            int i= 1+rand()%(domain.l/2);
+            crossover(a,b,i+1);
+
+        }
+
+        if(cross_selection.size() == 3) {
+
+            int a = cross_selection.front();
+            cross_selection.pop();
+
+            int b = cross_selection.front();
+            cross_selection.pop();
+
+            int c = cross_selection.front();
+            cross_selection.pop();
+
+            int i= 1+rand()%(domain.l/2);
+
+            crossover(a,b,c,i+1);
+
+
+        }
+
+    }
 
     //mutation
 
-    fout<<"\nMutation probability: "<<mutation_prob<<'\n';
+    void mutationWithPrint(){
+        //rare mutation
+        for(int i=0;i<getSize();i++){
+            double u= rand() / (double) RAND_MAX;
 
-    //rare mutation
-    for(int i=0;i<g.getSize();i++){
-        double u= rand() / (double) RAND_MAX;
-
-        fout<<"  "<<right << setw(3)<<i+1<<".  "<<g.getChromosome(i).getGenes()<<"  val="<<right << setw(10)<<fixed<<setprecision(6)<< g.getChromosome(i).getValue()<<"  u= "<<right << setw(9)<<u;
-        if(u<mutation_prob){
-            fout<< " < "<<mutation_prob<<" SELECTED\n";
-            g.getChromosome(i).rareMutation();
+            fout<<"  "<<right << setw(3)<<i+1<<".  "<<population[i].getGenes()<<"  val="<<right << setw(10)<<fixed<<setprecision(6)<< population[i].getValue()<<"  u= "<<right << setw(9)<<u;
+            if(u<MUTATION_PROB){
+                fout<< " < "<<MUTATION_PROB<<" SELECTED\n";
+                population[i].rareMutation();
+            }
+            else fout<<'\n';
         }
-        else fout<<'\n';
+    }
+
+    void mutation(){
+        //rare mutation
+        for(int i=0;i<getSize();i++){
+            double u= rand() / (double) RAND_MAX;
+            if(u<MUTATION_PROB){
+                population[i].rareMutation();
+            }
+
+        }
     }
 
 
 
 
+    //printing
+    void printPopulation(){
+        for(int i=0;i<size;i++){
+            fout<<"  "<<right << setw(3)<<i+1<<".  "<<population[i].getGenes()<<"  val="<<right << setw(10)<<fixed<<setprecision(6)<< population[i].getValue()<<"  fitness= "<<right << setw(9)<<population[i].getFitness()<<"\n";
+        }
+    }
+
+    void printStatus(){
+
+        double avg=0;
+
+        for(int i=0; i<size;i++)
+            avg+=population[i].getFitness();
+        avg=avg/size;
+        fout<<"Best:  " <<right<<setw(12)<<getBest().getFitness();
+        fout<<"    Average: "<<right<<setw(12)<<avg<<'\n';
+    }
+
+
+};
 
 
 
 
-    for(int epoch =1; epoch < epochs;epoch++){
+int main() {
+    //citire
+    int n, epochs;
+    cin>>n;
+    cin>>domain.a>>domain.b;
+    cin>>f.a>>f.b>>f.c;
+    cin>>domain.p;
+    cin>>epochs;
+
+    buildDomain();
+
+    srand(time(NULL));
+    Generation g(n);
+
+    fout<<"Initial Population:\n";
+    g.printPopulation();
+    g.printStatus();
+
+    g.selectionWithPrint();
+    fout<<"Population after selection:\n";
+    g.printPopulation();
+
+
+    fout<<"\nCrossover probability: "<<CROSSOVER_PROB<<'\n';
+    g.genCrossoverWithPrint();
+
+    fout<<"Population after crossover:\n";
+    g.printPopulation();
+
+    //mutation
+
+    fout<<"\nMutation probability: "<<MUTATION_PROB<<'\n';
+    g.mutationWithPrint();
+
+    fout<<"Population after mutation:\n";
+    g.printPopulation();
+
+    fout<<right<<setw(3)<<1<<". ";
+    g.printStatus();
 
 
 
+
+
+
+    for(int epoch =2; epoch <= epochs;epoch++){
+        g.selection();
+        g.genCrossover();
+        g.mutation();
+
+        fout<<right<<setw(3)<<epoch<<". ";
+        g.printStatus();
     }
 
 }
