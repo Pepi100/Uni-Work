@@ -10,9 +10,7 @@ public class Main {
             Connection con=DriverManager.getConnection(
                     "jdbc:oracle:thin:@localhost:1521:xe","test","test1234");
 
-            String query = "INSERT INTO address ( city,country, street, \"NUMBER\") VALUES ( 'Bucuresti','Romania','Alexandru Macedon', 29)";
-            Statement pstmt = con.prepareStatement(query);
-            ResultSet rs = pstmt.executeQuery(query);
+
 
 
 
