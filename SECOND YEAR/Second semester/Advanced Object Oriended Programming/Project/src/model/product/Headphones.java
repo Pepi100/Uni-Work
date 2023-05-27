@@ -5,6 +5,7 @@ public class Headphones extends Product{
 
     private  ConnectivityType Connectivity;
     private  FitType fit;
+    private int headphones_id;
 
     //getters
     public ConnectivityType getConnectivity() {
@@ -13,6 +14,10 @@ public class Headphones extends Product{
 
     public FitType getFit() {
         return fit;
+    }
+
+    public int getHeadphones_id() {
+        return headphones_id;
     }
 
     //setters
@@ -24,6 +29,9 @@ public class Headphones extends Product{
         this.fit = fit;
     }
 
+    public void setHeadphones_id(int headphones_id) {
+        this.headphones_id = headphones_id;
+    }
 
     @Override
     public String toString() {

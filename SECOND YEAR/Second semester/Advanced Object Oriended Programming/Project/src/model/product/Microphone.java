@@ -7,7 +7,7 @@ public class Microphone extends Product {
 
     private MicConnectivityType connectivity;
 
-    private int id;
+    private int microphone_id;
 
 
     //getters
@@ -20,15 +20,14 @@ public class Microphone extends Product {
         return connectivity;
     }
 
-    public int getId() {
-        return id;
+    public int getMicrophone_id() {
+        return microphone_id;
     }
+//setters
 
-    //setters
 
-
-    public void setId(int id) {
-        this.id = id;
+    public void setMicrophone_id(int microphone_id) {
+        this.microphone_id = microphone_id;
     }
 
     public void setConnectivity(MicConnectivityType connectivity) {

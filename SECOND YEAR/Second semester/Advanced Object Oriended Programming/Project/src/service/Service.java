@@ -5,21 +5,20 @@ import model.product.*;
 import model.user.*;
 
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class Service {
-
-//    private static ArrayList<User> users;
-    private static ArrayList<Manufacturer> manufacturers;
-    private static ArrayList<Product> products;
     private static Service instance;
     private static DatabaseConnection DBinstance;
 
     private Service() {
-        manufacturers = new ArrayList<Manufacturer>();
-        products = new ArrayList<Product>();
+//        manufacturers = new ArrayList<Manufacturer>();
+//        products = new ArrayList<Product>();
 //        users = new ArrayList<User>();
         try {
             DBinstance = DatabaseConnection.getInstance();
@@ -36,68 +35,13 @@ public class Service {
         return instance;
     }
 
-
-    public static void run()  {
-        int input = -1;
-        do{
-            System.out.println("Choose an option from the following:");
-            System.out.println("1 - Print products.");
-            System.out.println("2 - Print users.");
-            System.out.println("3 - Print all manufacturers.");
-            System.out.println("4 - Add a new product.");
-            System.out.println("5 - Add a new manufacturer.");
-            System.out.println("6 - Add a new user.");
-            System.out.println("0 - Exit the program.");
-
-
-            Scanner reader = new Scanner(System.in);
-            input = reader.nextInt();
-
-            switch (input){
-                case 1 -> {
-                    printProducts();
-                }
-                case 2 -> {
-                    printUsers();
-                }
-                case 3 -> {
-                    printManufacturers();
-                }
-                case 4 -> {
-                    addProduct();
-                }
-                case 5 -> {
-                    addManufacturer();
-                }
-                case 6 -> {
-                    addUser();
-                }
-                case 7 -> {
-
-                }
-                case 0 -> {
-
-                }
-                default -> {
-                    System.out.println("!!ALERT!! The number you entered is not available, please try again.");
-                }
-
-            }
-
-        }while(input != 0);
-
-        System.out.println("\n\nThank you for choosing our products!");
-
-
-    }
-
     //adding
-    private static int addManufacturer(){
+    public static Manufacturer addManufacturer(){
         Scanner sc=new Scanner(System.in);
         Manufacturer newMan = new Manufacturer();
 
         int manufacturer_id = -1;
-
+        System.out.println("Inserting a new manufacturer: ");
         System.out.println("Enter a name for the manufacturer: ");
         String input = sc.nextLine();
         newMan.setName(input);
@@ -106,16 +50,14 @@ public class Service {
         input = sc.nextLine();
         newMan.setEmail(input);
 
-        System.out.println("Enter a description for the manufacturer: ");
-        input = sc.nextLine();
-        newMan.setDescription(input);
 
-        manufacturers.add(newMan);
+//        manufacturers.add(newMan);
+        manufacturer_id = DatabaseConnection.add(newMan);
 
-        return manufacturer_id;
+        return newMan;
     }
 
-    private static void addProduct(){
+    public static void addProduct(){
         Scanner sc=new Scanner(System.in);
         Product newProd;
 
@@ -155,14 +97,14 @@ public class Service {
             printManufacturers();
             System.out.println("Select a number from the list above: ");
             int manufacturerNumber = sc.nextInt();
-            newProd.setBrand(manufacturers.get(manufacturerNumber - 1));
+//            newProd.setBrand(manufacturers.get(manufacturerNumber - 1));
 
         }else{
             //adding a new manufacturer
 
             addManufacturer();
 
-            newProd.setBrand(manufacturers.get(manufacturers.size() - 1));
+//            newProd.setBrand(manufacturers.get(manufacturers.size() - 1));
 
         }
 
@@ -208,10 +150,10 @@ public class Service {
         }
 
 
-        products.add(newProd);
+//        products.add(newProd);
     }
 
-    private static void addUser()  {
+    public static void addUser()  {
         Scanner sc=new Scanner(System.in);
         User newUser;
 
@@ -228,6 +170,7 @@ public class Service {
 
 
         int type = sc.nextInt();
+        sc.nextLine();
 
         if (type == 1){
             newUser = new Customer();
@@ -247,35 +190,116 @@ public class Service {
             DatabaseConnection.add(((Customer) newUser));
 
         }else{
-
+            System.out.println("Enter a department: ");
             String dep = sc.nextLine();
             ((Employee) newUser).setDepartment(dep);
             DatabaseConnection.add(((Employee) newUser));
 
         }
 
-//        users.add(newUser);
+
 
 
     }
 
     //deleting
-        //TODO
 
+
+
+    private static void deleteManufacturer(){
+        printManufacturers();
+        System.out.printf("Enter the id of the manufacturer you would like to delete: ");
+        Scanner sc = new Scanner(System.in);
+        int input = sc.nextInt();
+        DatabaseConnection.deleteManufacturer(input);
+    }
+
+    private static void deleteProduct(){
+        printProducts();
+        System.out.printf("Enter the id of the product you would like to delete: ");
+        Scanner sc = new Scanner(System.in);
+        int input = sc.nextInt();
+        DatabaseConnection.deleteProduct(input);
+    }
+
+    private static void deleteCustomer(){
+        printCustomers();
+        System.out.printf("Enter the id of the customer you would like to delete: ");
+        Scanner sc = new Scanner(System.in);
+        int input = sc.nextInt();
+        DatabaseConnection.deleteCustomer(input);
+    }
 
 
     //printing
-    private static void printManufacturers(){
-            if(manufacturers.size() >0)
-                System.out.println(manufacturers);
-            else
-                System.out.println("There are no manufacturers at the moment.");
+    public static void printManufacturers(){
+        ArrayList<Manufacturer> manufacturers = DatabaseConnection.getManufacturers();
+        System.out.println("Here`s a list of all the manufacturers:");
+        for (int i = 0; i < manufacturers.size(); i++) {
+            System.out.println("  " +(i+1)+ "  " +manufacturers.get(i));
+        }
+        System.out.println('\n');
     }
 
-    private static void printProducts(){
-        if(products.size() >0){
+    public static void printProducts()  {
 
-            System.out.printf("How would you like the products to be ordered?");
+        ArrayList<Microphone> mic = DatabaseConnection.getMicrophones();
+        ArrayList<Headphones> hed = DatabaseConnection.getHeadphones();
+
+
+
+
+        Comparator<Product> priceCompDesc = new Comparator<Product>() {
+
+            @Override
+            public int compare(Product o1, Product o2) {
+                float p1=  o1.getPrice();
+                float p2=  o2.getPrice();
+                return Float.compare(p2, p1);
+            }
+        };
+
+        Comparator<Product> priceComp = new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                float p1=  o1.getPrice();
+                float p2=  o2.getPrice();
+                return -1*Float.compare(p2, p1);
+            }
+        };
+
+        Comparator<Product> nameCompDesc = new Comparator<Product>() {
+
+            @Override
+            public int compare(Product o1, Product o2) {
+                String p1=  o1.getName();
+                String p2=  o2.getName();
+                return -1*p1.compareTo(p2);
+            }
+        };
+
+        Comparator<Product> nameComp = new Comparator<Product>() {
+
+            @Override
+            public int compare(Product o1, Product o2) {
+                String p1=  o1.getName();
+                String p2=  o2.getName();
+                return p1.compareTo(p2);
+            }
+        };
+
+        Comparator<Product> manufacturerComp = new Comparator<Product>() {
+
+            @Override
+            public int compare(Product o1, Product o2) {
+                String p1=  o1.getBrand().getName();
+                String p2=  o2.getBrand().getName();
+                return p1.compareTo(p2);
+            }
+        };
+        if(mic.size() >0 || hed.size()>0){
+
+            System.out.println("How would you like the products to be ordered?");
             System.out.println("1 - Price.");
             System.out.println("2 - Price, descending.");
             System.out.println("3 - Name.");
@@ -285,26 +309,25 @@ public class Service {
             Scanner sc = new Scanner(System.in);
             int input = sc.nextInt();
 
-
-
-
-            //TODO
-
+            PriorityQueue<Product> pQueue = null;
             switch (input){
                 case 1 ->{
+                    pQueue = new PriorityQueue<Product>(priceComp );
 
                 }
                 case 2 ->{
-
+                    pQueue = new PriorityQueue<Product>(priceCompDesc );
                 }
                 case 3 ->{
+                    pQueue = new PriorityQueue<Product>(nameComp );
 
                 }
                 case 4 ->{
+                    pQueue = new PriorityQueue<Product>(nameCompDesc );
 
                 }
                 case 5 ->{
-
+                    pQueue = new PriorityQueue<Product>(manufacturerComp );
                 }
                 default -> {
 
@@ -313,7 +336,10 @@ public class Service {
             }
 
 
+            pQueue.addAll(mic);
+            pQueue.addAll(hed);
 
+            System.out.println(pQueue);
 
 
         }
@@ -322,8 +348,13 @@ public class Service {
             System.out.println("There are no products at the moment.");
     }
 
-    private static void printUsers(){
-//TODO
+    public static void printCustomers(){
+        ArrayList<Customer> customers = DatabaseConnection.getCustomers();
+        System.out.println("Here`s a list of all the customers:");
+        for (int i = 0; i < customers.size(); i++) {
+            System.out.println("  " +(i+1)+ "  " +customers.get(i));
+        }
+        System.out.println('\n');
     }
 
 

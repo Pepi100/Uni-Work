@@ -5,7 +5,7 @@ public abstract class Product {
     protected float price;
     protected Manufacturer brand;
     protected String name;
-    private int id;
+    protected int product_id;
 
 
 
@@ -22,15 +22,15 @@ public abstract class Product {
         return name;
     }
 
-    public int getId() {
-        return id;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    //setters
+//setters
 
 
-    public void setId(int id) {
-        this.id = id;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
     public void setPrice(float price) {

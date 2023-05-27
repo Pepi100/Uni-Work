@@ -3,22 +3,27 @@ import model.Address;
 
 public class Customer extends User{
 
-  private Address address;
+    private Address address;
+    private int customer_id;
 
     //getters
     public Address getAddress() {
         return address;
     }
 
-
+    public int getCustomer_id() {
+        return customer_id;
+    }
 
     //setters
     public void setAddress(Address address) {
         this.address = address;
     }
 
-
-    //toString
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
+    }
+//toString
 
 
     @Override

@@ -3,10 +3,15 @@ package model.user;
 public class Employee extends User{
 
     private String department;
+    private int employee_id;
 
     //getters
     public String getDepartment() {
         return department;
+    }
+
+    public int getEmployee_id() {
+        return employee_id;
     }
 
     //setters
@@ -14,8 +19,11 @@ public class Employee extends User{
         this.department = department;
     }
 
+    public void setEmployee_id(int employee_id) {
+        this.employee_id = employee_id;
+    }
 
-    //toString
+//toString
 
 
     @Override

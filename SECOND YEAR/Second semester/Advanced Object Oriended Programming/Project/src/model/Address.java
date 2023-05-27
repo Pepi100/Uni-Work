@@ -6,6 +6,8 @@ public class Address {
     private String street;
     private int streetNumber;
 
+    private int address_id;
+
     //constructor
 
 
@@ -38,9 +40,16 @@ public class Address {
         return streetNumber;
     }
 
+    public int getAddress_id() {
+        return address_id;
+    }
 
-    //getters
+//setters
 
+
+    public void setAddress_id(int address_id) {
+        this.address_id = address_id;
+    }
 
     public void setCity(String city) {
         this.city = city;
