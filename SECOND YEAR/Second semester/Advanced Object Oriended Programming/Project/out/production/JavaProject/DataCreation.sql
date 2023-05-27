@@ -34,7 +34,8 @@ CREATE TABLE headphones (
                             product_id NUMBER(6) NOT NULL,
                             headphones_id  NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
                             FitType VARCHAR2(20) CHECK( FitType IN ('ON_EAR','OVER_EAR','IN_EAR') ),
-                            ConnectivityType VARCHAR2(20) CHECK( ConnectivityType IN ('WIRED','WIRELESS') )
+                            ConnectivityType VARCHAR2(20) CHECK( ConnectivityType IN ('WIRED','WIRELESS') ),
+                            noise_cancelling NUMBER(1)
 );
 
 CREATE TABLE "USER"
@@ -66,8 +67,6 @@ TRUNCATE TABLE address;
 TRUNCATE TABLE customer;
 TRUNCATE TABLE "USER";
 TRUNCATE TABLE address;
-
-drop table headphones;
 
 
 DROP table address;

@@ -1,13 +1,11 @@
 package model.product;
 
-import model.Manufacturer;
-
 public abstract class Product {
 
     protected float price;
     protected Manufacturer brand;
     protected String name;
-
+    private int id;
 
 
 
@@ -24,8 +22,17 @@ public abstract class Product {
         return name;
     }
 
+    public int getId() {
+        return id;
+    }
 
     //setters
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setPrice(float price) {
         this.price = price;
     }

@@ -1,28 +1,31 @@
 package service;
 import model.Address;
-import model.Manufacturer;
+import model.product.Manufacturer;
 import model.product.*;
 import model.user.*;
 
-import java.lang.reflect.Array;
-import java.sql.*;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import java.util.Scanner;
 
 public class Service {
 
-    private static ArrayList<User> users;
+//    private static ArrayList<User> users;
     private static ArrayList<Manufacturer> manufacturers;
     private static ArrayList<Product> products;
-
     private static Service instance;
+    private static DatabaseConnection DBinstance;
 
     private Service() {
         manufacturers = new ArrayList<Manufacturer>();
         products = new ArrayList<Product>();
-        users = new ArrayList<User>();
+//        users = new ArrayList<User>();
+        try {
+            DBinstance = DatabaseConnection.getInstance();
+        }catch (Exception e){
+
+        }
 
     }
 
@@ -34,7 +37,7 @@ public class Service {
     }
 
 
-    public static void run(){
+    public static void run()  {
         int input = -1;
         do{
             System.out.println("Choose an option from the following:");
@@ -89,9 +92,11 @@ public class Service {
     }
 
     //adding
-    private static void addManufacturer(){
+    private static int addManufacturer(){
         Scanner sc=new Scanner(System.in);
         Manufacturer newMan = new Manufacturer();
+
+        int manufacturer_id = -1;
 
         System.out.println("Enter a name for the manufacturer: ");
         String input = sc.nextLine();
@@ -106,6 +111,8 @@ public class Service {
         newMan.setDescription(input);
 
         manufacturers.add(newMan);
+
+        return manufacturer_id;
     }
 
     private static void addProduct(){
@@ -168,10 +175,10 @@ public class Service {
 
             switch (option){
                 case 1 -> {
-                    ((Headphones) newProd).setConnectivity(ConnectivityType.Wireless);
+                    ((Headphones) newProd).setConnectivity(ConnectivityType.WIRELESS);
                 }
                 default -> {
-                    ((Headphones) newProd).setConnectivity(ConnectivityType.Wired);
+                    ((Headphones) newProd).setConnectivity(ConnectivityType.WIRED);
                 }
             }
 
@@ -184,13 +191,13 @@ public class Service {
 
             switch (option){
                 case 1 -> {
-                    ((Headphones) newProd).setFit(FitType.On_Ear);
+                    ((Headphones) newProd).setFit(FitType.ON_EAR);
                 }
                 case 2 -> {
-                    ((Headphones) newProd).setFit(FitType.Over_Ear);
+                    ((Headphones) newProd).setFit(FitType.OVER_EAR);
                 }
                 default -> {
-                    ((Headphones) newProd).setFit(FitType.In_Ear);
+                    ((Headphones) newProd).setFit(FitType.IN_EAR);
                 }
             }
 
@@ -204,7 +211,7 @@ public class Service {
         products.add(newProd);
     }
 
-    private static void addUser(){
+    private static void addUser()  {
         Scanner sc=new Scanner(System.in);
         User newUser;
 
@@ -234,16 +241,20 @@ public class Service {
 
 
         if (type == 1){
-            ((Customer) newUser).setAddress(readAddress());
+            Address a = readAddress();
+            ((Customer) newUser).setAddress(a);
+            //ADD Customer to db
+            DatabaseConnection.add(((Customer) newUser));
 
         }else{
 
             String dep = sc.nextLine();
             ((Employee) newUser).setDepartment(dep);
+            DatabaseConnection.add(((Employee) newUser));
 
         }
 
-        users.add(newUser);
+//        users.add(newUser);
 
 
     }
@@ -312,10 +323,7 @@ public class Service {
     }
 
     private static void printUsers(){
-        if(users.size() >0)
-            System.out.println(users);
-        else
-            System.out.println("There are no users at the moment.");
+//TODO
     }
 
 
@@ -340,7 +348,7 @@ public class Service {
 
         System.out.println("Enter street number: ");
         input2 = sc.nextInt();
-        newAdd.setNumber(input2);
+        newAdd.setStreetNumber(input2);
 
 
         return newAdd;

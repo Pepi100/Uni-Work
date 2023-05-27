@@ -4,7 +4,7 @@ public class Address {
     private String city;
     private String county;
     private String street;
-    private int number;
+    private int streetNumber;
 
     //constructor
 
@@ -12,11 +12,11 @@ public class Address {
     public Address() {
     }
 
-    public Address(String city, String county, String street, int number) {
+    public Address(String city, String county, String street, int streetNumber) {
         this.city = city;
         this.county = county;
         this.street = street;
-        this.number = number;
+        this.streetNumber = streetNumber;
     }
 
 
@@ -34,8 +34,8 @@ public class Address {
         return street;
     }
 
-    public int getNumber() {
-        return number;
+    public int getStreetNumber() {
+        return streetNumber;
     }
 
 
@@ -54,15 +54,15 @@ public class Address {
         this.street = street;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setStreetNumber(int streetNumber) {
+        this.streetNumber = streetNumber;
     }
 
     //toString
     @Override
     public String toString() {
         return "Address: " +
-                 city + ", " + street + ", " + "number " + number ;
+                 city + ", " + street + ", " + "number " + streetNumber;
     }
 
 

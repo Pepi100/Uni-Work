@@ -7,6 +7,8 @@ public class Microphone extends Product {
 
     private MicConnectivityType connectivity;
 
+    private int id;
+
 
     //getters
     public CapsuleType getCapsule() {
@@ -18,9 +20,17 @@ public class Microphone extends Product {
         return connectivity;
     }
 
-
+    public int getId() {
+        return id;
+    }
 
     //setters
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setConnectivity(MicConnectivityType connectivity) {
         this.connectivity = connectivity;
     }
