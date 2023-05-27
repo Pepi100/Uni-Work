@@ -38,9 +38,11 @@ public class Headphones extends Product{
         return "Headphones{" +
                 "Connectivity=" + Connectivity +
                 ", fit=" + fit +
+                ", headphones_id=" + headphones_id +
                 ", price=" + price +
                 ", brand=" + brand +
                 ", name='" + name + '\'' +
+                ", product_id=" + product_id +
                 '}';
     }
 }

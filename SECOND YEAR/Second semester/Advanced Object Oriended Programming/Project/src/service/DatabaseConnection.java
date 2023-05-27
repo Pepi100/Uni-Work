@@ -147,9 +147,7 @@ public class DatabaseConnection {
         return id;
     }
 
-    public static int add(Product p)  {
-
-        int manufacturer_id = add(p.getBrand());
+    public static int add(Product p, int manufacturer_id)  {
         String sql = "INSERT INTO PRODUCT (MANUFACTURER_ID, PRICE, NAME) VALUES (?, ?,?) returning PRODUCT_ID into ?";
         int id = -1;
         OraclePreparedStatement opstmt = null;
@@ -172,10 +170,10 @@ public class DatabaseConnection {
         return id;
     }
 
-    public static void add(Headphones h){
+    public static void add(Headphones h, int manufacturer_id){
 
         //adding product into database
-        int prod_id = add((Product) h);
+        int prod_id = add((Product) h, manufacturer_id);
 
 
         String sql = "INSERT INTO HEADPHONES (PRODUCT_ID, FITTYPE, CONNECTIVITYTYPE) VALUES (?, ?,?)";
@@ -194,10 +192,10 @@ public class DatabaseConnection {
 
     }
 
-    public static void add(Microphone m){
+    public static void add(Microphone m, int manufacturer_id){
 
         //adding product into database
-        int prod_id = add((Product) m);
+        int prod_id = add((Product) m, manufacturer_id);
 
 
         String sql = "INSERT INTO MICROPHONE (PRODUCT_ID, CAPSULE, MICCONNECTIVITYTYPE) VALUES (?, ?,?)";
@@ -387,11 +385,8 @@ public class DatabaseConnection {
 
     public static void deleteCustomer(int id) {
         String sql = "DELETE FROM CUSTOMER where CUSTOMER_ID =  ?";
-        OraclePreparedStatement opstmt = null;
-
         PreparedStatement pstmt = null;
         try{
-
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
@@ -402,7 +397,6 @@ public class DatabaseConnection {
 
     public static void deleteAddress(int id){
         String sql = "DELETE FROM ADDRESS where ADDRESS_ID =  ?";
-        OraclePreparedStatement opstmt = null;
 
         PreparedStatement pstmt = null;
         try{

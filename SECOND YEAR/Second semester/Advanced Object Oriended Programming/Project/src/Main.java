@@ -179,13 +179,13 @@ private static Service service;
 
             switch (input) {
                 case 1 -> {
-                    service.printProducts();
+                    service.deleteProduct();
                 }
                 case 2 -> {
-                    service.printManufacturers();
+                    service.deleteManufacturer();
                 }
                 case 3 -> {
-                    service.printCustomers();
+                    service.deleteCustomer();
                 }
 
                 case 0 -> {

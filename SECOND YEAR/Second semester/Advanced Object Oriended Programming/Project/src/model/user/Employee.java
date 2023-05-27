@@ -30,8 +30,10 @@ public class Employee extends User{
     public String toString() {
         return "Employee{" +
                 "department='" + department + '\'' +
+                ", employee_id=" + employee_id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", user_id=" + user_id +
                 '}';
     }
 }

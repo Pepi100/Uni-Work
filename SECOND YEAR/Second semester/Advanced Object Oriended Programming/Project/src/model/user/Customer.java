@@ -29,9 +29,11 @@ public class Customer extends User{
     @Override
     public String toString() {
         return "Customer{" +
+                "address=" + address +
+                ", customer_id=" + customer_id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                "address=" + address +
+                ", user_id=" + user_id +
                 '}';
     }
 }

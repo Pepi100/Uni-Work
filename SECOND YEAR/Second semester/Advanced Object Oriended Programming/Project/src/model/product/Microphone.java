@@ -45,10 +45,13 @@ public class Microphone extends Product {
     @Override
     public String toString() {
         return "Microphone{" +
-                "connectivity=" + connectivity +
+                "capsule=" + capsule +
+                ", connectivity=" + connectivity +
+                ", microphone_id=" + microphone_id +
                 ", price=" + price +
                 ", brand=" + brand +
                 ", name='" + name + '\'' +
+                ", product_id=" + product_id +
                 '}';
     }
 }

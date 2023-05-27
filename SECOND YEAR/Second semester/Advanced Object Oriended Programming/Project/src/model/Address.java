@@ -68,12 +68,16 @@ public class Address {
     }
 
     //toString
+
+
     @Override
     public String toString() {
-        return "Address: " +
-                 city + ", " + street + ", " + "number " + streetNumber;
+        return "Address{" +
+                "city='" + city + '\'' +
+                ", county='" + county + '\'' +
+                ", street='" + street + '\'' +
+                ", streetNumber=" + streetNumber +
+                ", address_id=" + address_id +
+                '}';
     }
-
-
-
 }

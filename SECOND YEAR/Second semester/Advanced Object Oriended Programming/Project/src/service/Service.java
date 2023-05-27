@@ -5,7 +5,6 @@ import model.product.*;
 import model.user.*;
 
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import java.util.Comparator;
@@ -36,7 +35,7 @@ public class Service {
     }
 
     //adding
-    public static Manufacturer addManufacturer(){
+    public static void addManufacturer(){
         Scanner sc=new Scanner(System.in);
         Manufacturer newMan = new Manufacturer();
 
@@ -54,20 +53,11 @@ public class Service {
 //        manufacturers.add(newMan);
         manufacturer_id = DatabaseConnection.add(newMan);
 
-        return newMan;
     }
 
     public static void addProduct(){
         Scanner sc=new Scanner(System.in);
         Product newProd;
-
-        System.out.println("Enter a name for the product: ");
-        String name = sc.nextLine();
-
-        System.out.println("Enter a price for the product: ");
-        float price = sc.nextFloat();
-
-
 
 
         System.out.println("What type of product would you like to add?");
@@ -82,38 +72,30 @@ public class Service {
             newProd = new Microphone();
         }
 
+        System.out.println("Enter a name for the product: ");
+        String name = sc.nextLine();
+
+        System.out.println("Enter a price for the product: ");
+        float price = sc.nextFloat();
+
 
         newProd.setName(name);
         newProd.setPrice(price);
 
 
         System.out.println("Now you will need to select a manufacturer for the product: ");
-        System.out.println("1 - Select from the current list.");
-        System.out.println("2 - Add a new manufacturer.");
 
-        int option = sc.nextInt();
 
-        if(option == 1){
             printManufacturers();
             System.out.println("Select a number from the list above: ");
-            int manufacturerNumber = sc.nextInt();
-//            newProd.setBrand(manufacturers.get(manufacturerNumber - 1));
-
-        }else{
-            //adding a new manufacturer
-
-            addManufacturer();
-
-//            newProd.setBrand(manufacturers.get(manufacturers.size() - 1));
-
-        }
+            int manufacturerId = sc.nextInt();
 
         if (type == 1){
             //headphones
             System.out.println("Select the type of connectivity : ");
             System.out.println("1 - Wireless.");
             System.out.println("2 - Wired.");
-            option= sc.nextInt();
+            int option= sc.nextInt();
 
             switch (option){
                 case 1 -> {
@@ -143,14 +125,45 @@ public class Service {
                 }
             }
 
-        }else{
-            newProd = new Microphone();
+            DatabaseConnection.add((Headphones) newProd, manufacturerId);
 
-            // TODO
+        }else{
+            System.out.println("Select the type of microphone: ");
+            System.out.println("1 - Dynamic.");
+            System.out.println("2 - Condenser.");
+            int option= sc.nextInt();
+
+          if (option ==1) {
+                    ((Microphone) newProd).setCapsule(CapsuleType.DYNAMIC);
+                }
+                else{
+                    ((Microphone) newProd).setCapsule(CapsuleType.CONDENSER);
+                }
+
+
+
+            System.out.println("Select the type of connectivity : ");
+            System.out.println("1 - XRL. ");
+            System.out.println("2 - USB. ");
+            System.out.println("3 - Jack. ");
+            option= sc.nextInt();
+
+            switch (option){
+                case 1 -> {
+                    ((Microphone) newProd).setConnectivity(MicConnectivityType.XLR);
+                }
+                case 2 -> {
+                    ((Microphone) newProd).setConnectivity(MicConnectivityType.USB);
+                }
+                default -> {
+                    ((Microphone) newProd).setConnectivity(MicConnectivityType.JACK);
+                }
+            }
+
+            DatabaseConnection.add((Microphone) newProd, manufacturerId);
         }
 
 
-//        products.add(newProd);
     }
 
     public static void addUser()  {
@@ -206,7 +219,7 @@ public class Service {
 
 
 
-    private static void deleteManufacturer(){
+    public static void deleteManufacturer(){
         printManufacturers();
         System.out.printf("Enter the id of the manufacturer you would like to delete: ");
         Scanner sc = new Scanner(System.in);
@@ -214,7 +227,7 @@ public class Service {
         DatabaseConnection.deleteManufacturer(input);
     }
 
-    private static void deleteProduct(){
+    public static void deleteProduct(){
         printProducts();
         System.out.printf("Enter the id of the product you would like to delete: ");
         Scanner sc = new Scanner(System.in);
@@ -222,7 +235,7 @@ public class Service {
         DatabaseConnection.deleteProduct(input);
     }
 
-    private static void deleteCustomer(){
+    public static void deleteCustomer(){
         printCustomers();
         System.out.printf("Enter the id of the customer you would like to delete: ");
         Scanner sc = new Scanner(System.in);
@@ -351,10 +364,9 @@ public class Service {
     public static void printCustomers(){
         ArrayList<Customer> customers = DatabaseConnection.getCustomers();
         System.out.println("Here`s a list of all the customers:");
-        for (int i = 0; i < customers.size(); i++) {
-            System.out.println("  " +(i+1)+ "  " +customers.get(i));
+        for (Customer customer : customers) {
+            System.out.println(customer);
         }
-        System.out.println('\n');
     }
 
 
@@ -384,11 +396,6 @@ public class Service {
 
         return newAdd;
 
-    }
-
-
-    private static void readInitial(){
-        //TODO
     }
 
 
