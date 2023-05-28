@@ -1,8 +1,8 @@
 package model.product;
 
 public enum FitType {
-    On_Ear,
-    Over_Ear,
-    In_Ear
+    ON_EAR,
+    OVER_EAR,
+    IN_EAR
 
 }

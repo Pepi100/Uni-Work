@@ -7,6 +7,8 @@ public class Microphone extends Product {
 
     private MicConnectivityType connectivity;
 
+    private int microphone_id;
+
 
     //getters
     public CapsuleType getCapsule() {
@@ -18,9 +20,16 @@ public class Microphone extends Product {
         return connectivity;
     }
 
+    public int getMicrophone_id() {
+        return microphone_id;
+    }
+//setters
 
 
-    //setters
+    public void setMicrophone_id(int microphone_id) {
+        this.microphone_id = microphone_id;
+    }
+
     public void setConnectivity(MicConnectivityType connectivity) {
         this.connectivity = connectivity;
     }
@@ -35,11 +44,11 @@ public class Microphone extends Product {
 
     @Override
     public String toString() {
-        return "Microphone{" +
-                "connectivity=" + connectivity +
-                ", price=" + price +
-                ", brand=" + brand +
-                ", name='" + name + '\'' +
-                '}';
+        return "Microphone" +product_id +
+                "   " + price +
+                "   " + brand.getName() +
+                "   " + name +
+                "   " + capsule +
+                "   " +connectivity;
     }
 }

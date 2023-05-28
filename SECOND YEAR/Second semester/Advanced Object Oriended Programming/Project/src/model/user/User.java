@@ -5,6 +5,8 @@ public abstract class User {
     protected String name;
     protected String email;
 
+    protected int user_id;
+
     //setters
 
     public void setName(String name) {
@@ -15,8 +17,15 @@ public abstract class User {
         this.email = email;
     }
 
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
 
-    //getters
+//getters
+
+    public int getUser_id() {
+        return user_id;
+    }
 
     public String getName() {
         return name;

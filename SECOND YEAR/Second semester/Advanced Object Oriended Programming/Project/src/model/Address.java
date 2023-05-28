@@ -1,10 +1,14 @@
 package model;
 
+import java.util.Scanner;
+
 public class Address {
     private String city;
     private String county;
     private String street;
-    private int number;
+    private int streetNumber;
+
+    private int address_id;
 
     //constructor
 
@@ -12,11 +16,11 @@ public class Address {
     public Address() {
     }
 
-    public Address(String city, String county, String street, int number) {
+    public Address(String city, String county, String street, int streetNumber) {
         this.city = city;
         this.county = county;
         this.street = street;
-        this.number = number;
+        this.streetNumber = streetNumber;
     }
 
 
@@ -34,13 +38,20 @@ public class Address {
         return street;
     }
 
-    public int getNumber() {
-        return number;
+    public int getStreetNumber() {
+        return streetNumber;
     }
 
+    public int getAddress_id() {
+        return address_id;
+    }
 
-    //getters
+//setters
 
+
+    public void setAddress_id(int address_id) {
+        this.address_id = address_id;
+    }
 
     public void setCity(String city) {
         this.city = city;
@@ -54,17 +65,43 @@ public class Address {
         this.street = street;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setStreetNumber(int streetNumber) {
+        this.streetNumber = streetNumber;
     }
 
     //toString
-    @Override
-    public String toString() {
-        return "Address: " +
-                 city + ", " + street + ", " + "number " + number ;
+
+    public void read(){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter city: ");
+        String input = sc.nextLine();
+        setCity(input);
+
+        System.out.println("Enter county: ");
+        input = sc.nextLine();
+        setCounty(input);
+
+        System.out.println("Enter street: ");
+        input = sc.nextLine();
+        setStreet(input);
+
+        int input2;
+
+        System.out.println("Enter street number: ");
+        input2 = sc.nextInt();
+        setStreetNumber(input2);
+
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Address{" +
+                "city='" + city + '\'' +
+                ", county='" + county + '\'' +
+                ", street='" + street + '\'' +
+                ", streetNumber=" + streetNumber +
+                ", address_id=" + address_id +
+                '}';
+    }
 }
