@@ -265,15 +265,23 @@ public class Service {
 
     }
 
+
+    public static void printAddresses(){
+        ArrayList<Address> addresses = DatabaseConnection.getAddresses();
+        System.out.println("Here`s a list of all the addresses:");
+        for (Address address : addresses) {
+            System.out.println("    " +address);
+        }
+
+        AuditInstance.log("Addresses_Printed");
+
+
+    }
+
     public static void printProducts()  {
 
         ArrayList<Microphone> mic = DatabaseConnection.getMicrophones();
         ArrayList<Headphones> hed = DatabaseConnection.getHeadphones();
-
-//        System.out.println(mic);
-//        System.out.println(hed);
-
-
 
 
         Comparator<Product> priceCompDesc = new Comparator<Product>() {
@@ -590,6 +598,17 @@ public class Service {
         AuditInstance.log("Product_Updated");
 
 
+    }
+
+    //others
+
+    public static void auditFilePath(){
+        System.out.println("Current file path: " + AuditInstance.getPath());
+        System.out.println("Enter a new file path:");
+        Scanner sc=new Scanner(System.in);
+        String path = sc.nextLine();
+
+        AuditInstance.setFilePath(path);
     }
 
 

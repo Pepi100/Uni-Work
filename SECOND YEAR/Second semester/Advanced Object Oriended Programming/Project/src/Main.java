@@ -17,6 +17,7 @@ private static Service service;
             System.out.println("2 - Insert menu.");
             System.out.println("3 - Update menu.");
             System.out.println("4 - Delete menu.");
+            System.out.println("5 - Others.");
             System.out.println("0 - Exit the program.");
 
 
@@ -35,6 +36,9 @@ private static Service service;
                 }
                 case 4 -> {
                     deleteMenu();
+                }
+                case 5 -> {
+                    otherMenu();
                 }
 
                 case 0 -> {
@@ -62,7 +66,6 @@ private static Service service;
             System.out.println("1 - Print products.");
             System.out.println("2 - Print manufacturers.");
             System.out.println("3 - Print customers.");
-            System.out.println("4 - Print adresses / NaN.");
             System.out.println("0 - Back.");
 
 
@@ -78,9 +81,6 @@ private static Service service;
                 }
                 case 3 -> {
                     service.printCustomers();
-                }
-                case 4 -> {
-
                 }
 
                 case 0 -> {
@@ -188,6 +188,36 @@ private static Service service;
                     service.deleteCustomer();
                 }
 
+                case 0 -> {
+
+                }
+                default -> {
+                    System.out.println("!!ALERT!! The number you entered is not available, please try again.");
+                }
+
+            }
+        } while (input != 0);
+    }
+
+    private static void otherMenu() {
+        int input = -1;
+        do {
+            System.out.println("Other options:");
+            System.out.println("1 - Change audit filepath.");
+            System.out.println("2 - Print addresses.");
+            System.out.println("0 - Back.");
+
+
+            Scanner reader = new Scanner(System.in);
+            input = reader.nextInt();
+
+            switch (input) {
+                case 1 -> {
+                    service.auditFilePath();
+                }
+                case 2 -> {
+                    service.printAddresses();
+                }
                 case 0 -> {
 
                 }

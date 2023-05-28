@@ -11,6 +11,8 @@ public class Audit
     private static FileWriter writer;
     private static DateTimeFormatter formatter;
 
+    private static String path;
+
     public static void log(String action){
         try {
             writer.append(action);
@@ -29,7 +31,8 @@ public class Audit
 
     private  Audit(){
         try{
-            writer  = new FileWriter("audit.csv");
+            path = "audit.csv";
+            writer  = new FileWriter(path);
             formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         }catch (Exception e){
             System.out.println("Couldn`t open file for audit");
@@ -43,8 +46,21 @@ public class Audit
         return instance;
     }
 
-    public static void setFilePath(){
-
+    public static void setFilePath(String _path){
+        try {
+            path = _path;
+            writer  = new FileWriter(path);
+        } catch (IOException e) {
+            System.out.println("Unble to set file path. Going back to default: audit.csv");
+            try {
+                writer  = new FileWriter("audit.csv");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
     }
 
+    public static String getPath() {
+        return path;
+    }
 }
