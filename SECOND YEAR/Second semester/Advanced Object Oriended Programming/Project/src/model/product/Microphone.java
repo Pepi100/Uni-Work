@@ -44,7 +44,7 @@ public class Microphone extends Product {
 
     @Override
     public String toString() {
-        return "Microphone" +product_id +
+        return "Microphone " +product_id +
                 "   " + price +
                 "   " + brand.getName() +
                 "   " + name +

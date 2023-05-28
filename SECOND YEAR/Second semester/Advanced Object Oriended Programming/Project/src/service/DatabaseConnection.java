@@ -351,6 +351,31 @@ public class DatabaseConnection {
 
     }
 
+    public static ArrayList<Address> getAddresses(){
+        ArrayList<Address> list = new ArrayList<Address>();
+
+        String sql = "SELECT city, country, STREET, STREETNUMBER, ADDRESS_ID FROM ADDRESS";
+        try {
+
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while(rs.next()){
+                Address a= new Address(rs.getString("city"), rs.getString("country"),rs.getString("STREET"),rs.getInt("STREETNUMBER"));
+                a.setAddress_id(rs.getInt("ADDRESS_ID"));
+                list.add(a);
+            }
+
+        }catch (SQLException e){
+
+        }
+
+
+        return list;
+
+
+    }
+
     //delete
 
     public static void deleteManufacturer(int id){

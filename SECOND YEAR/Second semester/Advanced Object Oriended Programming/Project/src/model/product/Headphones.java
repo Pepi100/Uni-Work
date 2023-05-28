@@ -35,7 +35,7 @@ public class Headphones extends Product{
 
     @Override
     public String toString() {
-        return "Headphones" +product_id +
+        return "Headphones " +product_id +
                 "   " + price +
                 "   " + brand.getName() +
                 "   " + name +
