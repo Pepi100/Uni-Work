@@ -14,6 +14,7 @@ import java.util.Scanner;
 public class Service {
     private static Service instance;
     private static DatabaseConnection DBinstance;
+    private static Audit AuditInstance;
 
     private Service() {
 //        manufacturers = new ArrayList<Manufacturer>();
@@ -21,6 +22,7 @@ public class Service {
 //        users = new ArrayList<User>();
         try {
             DBinstance = DatabaseConnection.getInstance();
+            AuditInstance = Audit.getInstance();
         }catch (Exception e){
 
         }
@@ -40,7 +42,7 @@ public class Service {
         Manufacturer newMan = new Manufacturer();
         newMan.read();
         DatabaseConnection.add(newMan);
-
+        AuditInstance.log("Manufacturer_Added");
     }
 
     public static void addProduct(){
@@ -156,6 +158,8 @@ public class Service {
             DatabaseConnection.add((Microphone) newProd, manufacturerId);
         }
 
+        AuditInstance.log("Product_Added");
+
 
     }
 
@@ -204,6 +208,8 @@ public class Service {
 
         }
 
+        AuditInstance.log("User_Added");
+
 
 
 
@@ -220,6 +226,8 @@ public class Service {
         int input = sc.nextInt();
         sc.nextLine();
         DatabaseConnection.deleteManufacturer(input);
+        AuditInstance.log("Manufacturer_Deleted");
+
     }
 
     public static void deleteProduct(){
@@ -228,6 +236,8 @@ public class Service {
         Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
         DatabaseConnection.deleteProduct(input);
+        AuditInstance.log("Product_Deleted");
+
     }
 
     public static void deleteCustomer(){
@@ -236,6 +246,9 @@ public class Service {
         Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
         DatabaseConnection.deleteCustomer(input);
+
+        AuditInstance.log("Customer_Deleted");
+
     }
 
 
@@ -246,6 +259,9 @@ public class Service {
         for (Manufacturer manufacturer : manufacturers) {
             System.out.println("    " +manufacturer);
         }
+
+        AuditInstance.log("Manufacturers_Printed");
+
 
     }
 
@@ -361,18 +377,26 @@ public class Service {
 
         else
             System.out.println("There are no products at the moment.");
+
+
+        AuditInstance.log("Products_Printed");
+
     }
 
     public static void printMicrophones() {
         System.out.println("Here`s a list of all microphones:");
         ArrayList<Microphone> mic = DatabaseConnection.getMicrophones();
         System.out.println(mic);
+        AuditInstance.log("Microphones_Printed");
 
     }
     public static void printHeadphones() {
         System.out.println("Here`s a list of all headphones:");
         ArrayList<Headphones> mic = DatabaseConnection.getHeadphones();
         System.out.println(mic);
+
+        AuditInstance.log("Headphones_Printed");
+
 
     }
 
@@ -382,6 +406,9 @@ public class Service {
         for (Customer customer : customers) {
             System.out.println(customer);
         }
+
+        AuditInstance.log("Customers_Printed");
+
     }
 
     //updating
@@ -396,6 +423,9 @@ public class Service {
         newMan.read();
 
         DatabaseConnection.update(id, newMan);
+
+        AuditInstance.log("Manufacturer_Updated");
+
     }
 
     public static void updateCustomer(){
@@ -409,6 +439,9 @@ public class Service {
         newCust.read();
 
         DatabaseConnection.update(id, newCust);
+
+        AuditInstance.log("Customer_Updated");
+
     }
 
     public static void updateProduct(){
@@ -554,38 +587,10 @@ public class Service {
                DatabaseConnection.update(id, newMi, manufacturerId);
            }
 
+        AuditInstance.log("Product_Updated");
+
+
     }
-
-
-
-    //extra
-//    private static Address readAddress(){
-//        Scanner sc=new Scanner(System.in);
-//        Address newAdd = new Address();
-//
-//        System.out.println("Enter city: ");
-//        String input = sc.nextLine();
-//        newAdd.setCity(input);
-//
-//        System.out.println("Enter county: ");
-//        input = sc.nextLine();
-//        newAdd.setCounty(input);
-//
-//        System.out.println("Enter street: ");
-//        input = sc.nextLine();
-//        newAdd.setStreet(input);
-//
-//        int input2;
-//
-//        System.out.println("Enter street number: ");
-//        input2 = sc.nextInt();
-//        newAdd.setStreetNumber(input2);
-//
-//
-//        return newAdd;
-//
-//    }
-//
 
 
 }
