@@ -18,10 +18,10 @@ CREATE TABLE manufacturer(
 
 CREATE TABLE product(
                         product_id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) PRIMARY KEY,
-                        manufacturer_id NUMBER(6) unique ,
+                        manufacturer_id NUMBER(6)  ,
                         price NUMBER(8,2) CHECK ( price >= 0 ),
                         name VARCHAR2(50) NOT NULL,
-                        CONSTRAINT fk_order_items_orders
+                        CONSTRAINT fk_product
                             FOREIGN KEY( manufacturer_id )
                                 REFERENCES manufacturer( manufacturer_id )
                                     ON DELETE CASCADE

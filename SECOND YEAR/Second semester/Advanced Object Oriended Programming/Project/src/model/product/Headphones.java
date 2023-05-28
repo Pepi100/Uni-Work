@@ -3,13 +3,13 @@ package model.product;
 
 public class Headphones extends Product{
 
-    private  ConnectivityType Connectivity;
+    private  ConnectivityType connectivity;
     private  FitType fit;
     private int headphones_id;
 
     //getters
     public ConnectivityType getConnectivity() {
-        return Connectivity;
+        return connectivity;
     }
 
     public FitType getFit() {
@@ -22,7 +22,7 @@ public class Headphones extends Product{
 
     //setters
     public void setConnectivity(ConnectivityType Connectivity) {
-        this.Connectivity = Connectivity;
+        this.connectivity = Connectivity;
     }
 
     public void setFit(FitType fit) {
@@ -35,14 +35,12 @@ public class Headphones extends Product{
 
     @Override
     public String toString() {
-        return "Headphones{" +
-                "Connectivity=" + Connectivity +
-                ", fit=" + fit +
-                ", headphones_id=" + headphones_id +
-                ", price=" + price +
-                ", brand=" + brand +
-                ", name='" + name + '\'' +
-                ", product_id=" + product_id +
-                '}';
+        return "Headphones" +product_id +
+                "   " + price +
+                "   " + brand.getName() +
+                "   " + name +
+                "   " + fit +
+                "   " +connectivity;
     }
+
 }

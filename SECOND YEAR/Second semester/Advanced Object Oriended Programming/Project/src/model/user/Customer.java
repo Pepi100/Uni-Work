@@ -1,5 +1,8 @@
 package model.user;
 import model.Address;
+import service.DatabaseConnection;
+
+import java.util.Scanner;
 
 public class Customer extends User{
 
@@ -24,16 +27,29 @@ public class Customer extends User{
         this.customer_id = customer_id;
     }
 //toString
+    public void read(){
+        Scanner sc=new Scanner(System.in);
 
+        System.out.println("Enter a name: ");
+        String name = sc.nextLine();
+
+        System.out.println("Enter an email address: ");
+        String email = sc.nextLine();
+
+        setName(name);
+        setEmail(email);
+
+        Address a = new Address();
+        a.read();
+        setAddress(a);
+
+
+    }
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "address=" + address +
-                ", customer_id=" + customer_id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", user_id=" + user_id +
-                '}';
+        return "Customer " + user_id +
+                "   " + name +
+                "   " + email;
     }
 }

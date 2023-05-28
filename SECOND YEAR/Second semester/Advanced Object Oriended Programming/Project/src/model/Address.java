@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Scanner;
+
 public class Address {
     private String city;
     private String county;
@@ -68,6 +70,28 @@ public class Address {
     }
 
     //toString
+
+    public void read(){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter city: ");
+        String input = sc.nextLine();
+        setCity(input);
+
+        System.out.println("Enter county: ");
+        input = sc.nextLine();
+        setCounty(input);
+
+        System.out.println("Enter street: ");
+        input = sc.nextLine();
+        setStreet(input);
+
+        int input2;
+
+        System.out.println("Enter street number: ");
+        input2 = sc.nextInt();
+        setStreetNumber(input2);
+
+    }
 
 
     @Override

@@ -132,11 +132,11 @@ private static Service service;
     private static void updateMenu() {
         int input = -1;
         do {
-            System.out.println("Printing menu:");
+            System.out.println("Update menu:");
             System.out.println("1 - Update products.");
             System.out.println("2 - Update manufacturers.");
             System.out.println("3 - Update customers.");
-            System.out.println("0 - Exit the program.");
+            System.out.println("0 - Back.");
 
 
             Scanner reader = new Scanner(System.in);
@@ -144,13 +144,13 @@ private static Service service;
 
             switch (input) {
                 case 1 -> {
-                    service.printProducts();
+                    service.updateProduct();
                 }
                 case 2 -> {
-                    service.printManufacturers();
+                    service.updateManufacturer();
                 }
                 case 3 -> {
-                    service.printCustomers();
+                    service.updateCustomer();
                 }
 
                 case 0 -> {
@@ -171,7 +171,7 @@ private static Service service;
             System.out.println("1 - Delete products.");
             System.out.println("2 - Delete manufacturers.");
             System.out.println("3 - Delete customers.");
-            System.out.println("0 - Exit the program.");
+            System.out.println("0 - Back.");
 
 
             Scanner reader = new Scanner(System.in);

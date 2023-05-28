@@ -38,20 +38,8 @@ public class Service {
     public static void addManufacturer(){
         Scanner sc=new Scanner(System.in);
         Manufacturer newMan = new Manufacturer();
-
-        int manufacturer_id = -1;
-        System.out.println("Inserting a new manufacturer: ");
-        System.out.println("Enter a name for the manufacturer: ");
-        String input = sc.nextLine();
-        newMan.setName(input);
-
-        System.out.println("Enter an email for the manufacturer: ");
-        input = sc.nextLine();
-        newMan.setEmail(input);
-
-
-//        manufacturers.add(newMan);
-        manufacturer_id = DatabaseConnection.add(newMan);
+        newMan.read();
+        DatabaseConnection.add(newMan);
 
     }
 
@@ -65,7 +53,7 @@ public class Service {
         System.out.println("2 - Microphone");
 
         int type = sc.nextInt();
-
+        sc.nextLine();
         if (type == 1){
             newProd = new Headphones();
         }else{
@@ -77,6 +65,7 @@ public class Service {
 
         System.out.println("Enter a price for the product: ");
         float price = sc.nextFloat();
+        sc.nextLine();
 
 
         newProd.setName(name);
@@ -96,6 +85,7 @@ public class Service {
             System.out.println("1 - Wireless.");
             System.out.println("2 - Wired.");
             int option= sc.nextInt();
+            sc.nextLine();
 
             switch (option){
                 case 1 -> {
@@ -112,6 +102,7 @@ public class Service {
             System.out.println("2 - Over Ear. ");
             System.out.println("3 - In Ear. ");
             option= sc.nextInt();
+            sc.nextLine();
 
             switch (option){
                 case 1 -> {
@@ -132,6 +123,7 @@ public class Service {
             System.out.println("1 - Dynamic.");
             System.out.println("2 - Condenser.");
             int option= sc.nextInt();
+            sc.nextLine();
 
           if (option ==1) {
                     ((Microphone) newProd).setCapsule(CapsuleType.DYNAMIC);
@@ -147,6 +139,7 @@ public class Service {
             System.out.println("2 - USB. ");
             System.out.println("3 - Jack. ");
             option= sc.nextInt();
+            sc.nextLine();
 
             switch (option){
                 case 1 -> {
@@ -197,7 +190,8 @@ public class Service {
 
 
         if (type == 1){
-            Address a = readAddress();
+            Address a = new Address();
+            a.read();
             ((Customer) newUser).setAddress(a);
             //ADD Customer to db
             DatabaseConnection.add(((Customer) newUser));
@@ -215,15 +209,16 @@ public class Service {
 
     }
 
+
+
     //deleting
-
-
 
     public static void deleteManufacturer(){
         printManufacturers();
         System.out.printf("Enter the id of the manufacturer you would like to delete: ");
         Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
+        sc.nextLine();
         DatabaseConnection.deleteManufacturer(input);
     }
 
@@ -248,16 +243,19 @@ public class Service {
     public static void printManufacturers(){
         ArrayList<Manufacturer> manufacturers = DatabaseConnection.getManufacturers();
         System.out.println("Here`s a list of all the manufacturers:");
-        for (int i = 0; i < manufacturers.size(); i++) {
-            System.out.println("  " +(i+1)+ "  " +manufacturers.get(i));
+        for (Manufacturer manufacturer : manufacturers) {
+            System.out.println("    " +manufacturer);
         }
-        System.out.println('\n');
+
     }
 
     public static void printProducts()  {
 
         ArrayList<Microphone> mic = DatabaseConnection.getMicrophones();
         ArrayList<Headphones> hed = DatabaseConnection.getHeadphones();
+
+//        System.out.println(mic);
+//        System.out.println(hed);
 
 
 
@@ -352,13 +350,30 @@ public class Service {
             pQueue.addAll(mic);
             pQueue.addAll(hed);
 
-            System.out.println(pQueue);
+
+            System.out.println("Here`s a list of all products:");
+            while(pQueue.isEmpty() == false){
+                System.out.println(pQueue.poll());
+            }
 
 
         }
 
         else
             System.out.println("There are no products at the moment.");
+    }
+
+    public static void printMicrophones() {
+        System.out.println("Here`s a list of all microphones:");
+        ArrayList<Microphone> mic = DatabaseConnection.getMicrophones();
+        System.out.println(mic);
+
+    }
+    public static void printHeadphones() {
+        System.out.println("Here`s a list of all headphones:");
+        ArrayList<Headphones> mic = DatabaseConnection.getHeadphones();
+        System.out.println(mic);
+
     }
 
     public static void printCustomers(){
@@ -369,34 +384,208 @@ public class Service {
         }
     }
 
+    //updating
+    public static void updateManufacturer(){
+        printManufacturers();
+        System.out.printf("Enter the id of the manufacturer you would like to update: ");
+        Scanner sc = new Scanner(System.in);
+        int id = sc.nextInt();
+        sc.nextLine();
 
-    //extra
-    private static Address readAddress(){
-        Scanner sc=new Scanner(System.in);
-        Address newAdd = new Address();
+        Manufacturer newMan = new Manufacturer();
+        newMan.read();
 
-        System.out.println("Enter city: ");
-        String input = sc.nextLine();
-        newAdd.setCity(input);
+        DatabaseConnection.update(id, newMan);
+    }
 
-        System.out.println("Enter county: ");
-        input = sc.nextLine();
-        newAdd.setCounty(input);
+    public static void updateCustomer(){
+        printCustomers();
+        System.out.printf("Enter the id of the customer you would like to update: ");
+        Scanner sc = new Scanner(System.in);
+        int id = sc.nextInt();
+        sc.nextLine();
 
-        System.out.println("Enter street: ");
-        input = sc.nextLine();
-        newAdd.setStreet(input);
+        Customer newCust = new Customer();
+        newCust.read();
 
-        int input2;
+        DatabaseConnection.update(id, newCust);
+    }
 
-        System.out.println("Enter street number: ");
-        input2 = sc.nextInt();
-        newAdd.setStreetNumber(input2);
+    public static void updateProduct(){
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What type of product would you like to update?");
+        System.out.println("1 - Headphones");
+        System.out.println("2 - Microphone");
+
+        int input = sc.nextInt();
+        sc.nextLine();
+        int id =0;
+           if(input == 1){
+               printHeadphones();
+               System.out.println("Which headphones would you like to update?");
+               id = sc.nextInt();
+               sc.nextLine();
+
+               Headphones newHp = new Headphones();
+
+               System.out.println("Enter a name for the product: ");
+               String name = sc.nextLine();
+
+               System.out.println("Enter a price for the product: ");
+               float price = sc.nextFloat();
+               sc.nextLine();
 
 
-        return newAdd;
+               newHp.setName(name);
+               newHp.setPrice(price);
+
+
+               System.out.println("Now you will need to select a manufacturer for the product: ");
+
+
+               printManufacturers();
+               System.out.println("Select a number from the list above: ");
+               int manufacturerId = sc.nextInt();
+
+               System.out.println("Select the type of connectivity : ");
+               System.out.println("1 - Wireless.");
+               System.out.println("2 - Wired.");
+               int option= sc.nextInt();
+               sc.nextLine();
+
+               switch (option){
+                   case 1 -> {
+                       newHp.setConnectivity(ConnectivityType.WIRELESS);
+                   }
+                   default -> {
+                       newHp.setConnectivity(ConnectivityType.WIRED);
+                   }
+               }
+
+
+               System.out.println("Select the type of fit : ");
+               System.out.println("1 - On Ear. ");
+               System.out.println("2 - Over Ear. ");
+               System.out.println("3 - In Ear. ");
+               option= sc.nextInt();
+               sc.nextLine();
+
+               switch (option){
+                   case 1 -> {
+                       newHp.setFit(FitType.ON_EAR);
+                   }
+                   case 2 -> {
+                       newHp.setFit(FitType.OVER_EAR);
+                   }
+                   default -> {
+                       newHp.setFit(FitType.IN_EAR);
+                   }
+               }
+
+               DatabaseConnection.update(id, newHp, manufacturerId);
+
+           }else{
+
+                   printMicrophones();
+                   System.out.println("Which microphone would you like to update?");
+                   id = sc.nextInt();
+                   sc.nextLine();
+
+                   Microphone newMi = new Microphone();
+
+                   System.out.println("Enter a name for the product: ");
+                   String name = sc.nextLine();
+
+                   System.out.println("Enter a price for the product: ");
+                   float price = sc.nextFloat();
+                   sc.nextLine();
+
+
+                newMi.setName(name);
+                newMi.setPrice(price);
+
+
+                   System.out.println("Now you will need to select a manufacturer for the product: ");
+
+
+                   printManufacturers();
+                   System.out.println("Select a number from the list above: ");
+                   int manufacturerId = sc.nextInt();
+
+
+               System.out.println("Select the type of microphone: ");
+               System.out.println("1 - Dynamic.");
+               System.out.println("2 - Condenser.");
+               int option= sc.nextInt();
+               sc.nextLine();
+
+               if (option ==1) {
+                   newMi.setCapsule(CapsuleType.DYNAMIC);
+               }
+               else{
+                   newMi.setCapsule(CapsuleType.CONDENSER);
+               }
+
+
+
+               System.out.println("Select the type of connectivity : ");
+               System.out.println("1 - XRL. ");
+               System.out.println("2 - USB. ");
+               System.out.println("3 - Jack. ");
+               option= sc.nextInt();
+               sc.nextLine();
+
+               switch (option){
+                   case 1 -> {
+                       newMi.setConnectivity(MicConnectivityType.XLR);
+                   }
+                   case 2 -> {
+                       newMi.setConnectivity(MicConnectivityType.USB);
+                   }
+                   default -> {
+                       newMi.setConnectivity(MicConnectivityType.JACK);
+                   }
+               }
+
+
+
+
+               DatabaseConnection.update(id, newMi, manufacturerId);
+           }
 
     }
+
+
+
+    //extra
+//    private static Address readAddress(){
+//        Scanner sc=new Scanner(System.in);
+//        Address newAdd = new Address();
+//
+//        System.out.println("Enter city: ");
+//        String input = sc.nextLine();
+//        newAdd.setCity(input);
+//
+//        System.out.println("Enter county: ");
+//        input = sc.nextLine();
+//        newAdd.setCounty(input);
+//
+//        System.out.println("Enter street: ");
+//        input = sc.nextLine();
+//        newAdd.setStreet(input);
+//
+//        int input2;
+//
+//        System.out.println("Enter street number: ");
+//        input2 = sc.nextInt();
+//        newAdd.setStreetNumber(input2);
+//
+//
+//        return newAdd;
+//
+//    }
+//
 
 
 }

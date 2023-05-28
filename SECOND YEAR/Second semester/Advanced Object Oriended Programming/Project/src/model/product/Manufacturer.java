@@ -1,5 +1,7 @@
 package model.product;
 
+import java.util.Scanner;
+
 public class Manufacturer {
 
     private String name;
@@ -52,12 +54,21 @@ public class Manufacturer {
 
     }
 
+    public void read(){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter a name for the manufacturer: ");
+        String input = sc.nextLine();
+        setName(input);
+
+        System.out.println("Enter an email for the manufacturer: ");
+        input = sc.nextLine();
+        setEmail(input);
+    }
+
     @Override
     public String toString() {
-        return "Manufacturer{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", manufacturer_id=" + manufacturer_id +
-                '}';
+        return "Manufacturer " + manufacturer_id +
+                "   " + name +
+                "   " + email ;
     }
 }

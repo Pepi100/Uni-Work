@@ -449,19 +449,72 @@ public class DatabaseConnection {
     }
 
     public static void update(int id, Customer a){
-        String sql = "UPDATE ADDRESS SET CITY =?, COUNTRY = ?, STREET =? , STREETNUMBER = ? where ADDRESS_ID = ?";
+        //updatarea adresei clientului
+        //TODO
+
+        String sqlUser = "UPDATE \"USER\" SET NAME = ?, EMAIL = ? where USER_ID = ?";
 
 
         PreparedStatement pstmt = null;
         try{
 
-            pstmt = con.prepareStatement(sql);
-//            pstmt.setString(1, a.getCity());
-//            pstmt.setString(2, a.getCounty());
-//            pstmt.setString(3, a.getStreet());
-//            pstmt.setInt(4, a.getStreetNumber());
-//            pstmt.setInt(5, id);
+            pstmt = con.prepareStatement(sqlUser);
+            pstmt.setString(1, a.getName());
+            pstmt.setString(2, a.getEmail());
+            pstmt.setInt(3, id);
             pstmt.executeUpdate();
+        }catch (SQLException e){
+            System.out.println(e.toString());
+        }
+    }
+
+    public static void update(int id, Headphones a,int manufacturer_id ){
+        String sqlProduct = "UPDATE product SET name =?, price = ?, MANUFACTURER_ID = ? where PRODUCT_ID = ?";
+        String sqlHeadphones = "UPDATE HEADPHONES SET CONNECTIVITYTYPE = ?, FITTYPE = ? where PRODUCT_ID = ?";
+
+
+        PreparedStatement pstmt = null;
+        try{
+
+            pstmt = con.prepareStatement(sqlProduct);
+            pstmt.setString(1, a.getName());
+            pstmt.setFloat(2, a.getPrice());
+            pstmt.setInt(3, manufacturer_id);
+            pstmt.setInt(4, id);
+            pstmt.executeUpdate();
+
+            pstmt = con.prepareStatement(sqlHeadphones);
+            pstmt.setString(1, a.getConnectivity().toString());
+            pstmt.setString(2, a.getFit().toString());
+            pstmt.setInt(3, id);
+            pstmt.executeUpdate();
+
+        }catch (SQLException e){
+            System.out.println(e.toString());
+        }
+    }
+
+    public static void update(int id, Microphone a,int manufacturer_id ){
+        String sqlProduct = "UPDATE product SET name =?, price = ?, MANUFACTURER_ID = ? where PRODUCT_ID = ?";
+        String sqlMicrophone = "UPDATE microphone SET MICCONNECTIVITYTYPE = ?, CAPSULE = ? where PRODUCT_ID = ?";
+
+
+        PreparedStatement pstmt = null;
+        try{
+
+            pstmt = con.prepareStatement(sqlProduct);
+            pstmt.setString(1, a.getName());
+            pstmt.setFloat(2, a.getPrice());
+            pstmt.setInt(3, manufacturer_id);
+            pstmt.setInt(4, id);
+            pstmt.executeUpdate();
+
+            pstmt = con.prepareStatement(sqlMicrophone);
+            pstmt.setString(1, a.getConnectivity().toString());
+            pstmt.setString(2, a.getCapsule().toString());
+            pstmt.setInt(3, id);
+            pstmt.executeUpdate();
+
         }catch (SQLException e){
             System.out.println(e.toString());
         }
