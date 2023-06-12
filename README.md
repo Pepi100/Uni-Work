@@ -27,6 +27,7 @@
 **II. Second year:**
    * First semester:
       * [Functional Programming](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/Functional%20Programming)
+      
       * [ASP.NET](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/ASP.NET)
       * [Probabilities and Statistics](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/Probabilities%20And%20Statistics)
       * [Fundamental Algorithms](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/First%20semester/Fundamental%20Algorithms)
@@ -36,6 +37,7 @@
 
    * Second semester:
       * [Advanced Algorithms](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/Second%20semester/Advanced%20Algorithms)
+      
       * [Advanced Object Oriented Programming](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/Second%20semester/Advanced%20Object%20Oriended%20Programming)
       * [Artificial Intelligence](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/Second%20semester/Artificial%20Intelligence)
       * [Programming Language Fundamentals](https://github.com/Pepi100/Uni-Work/tree/master/SECOND%20YEAR/Second%20semester/Programming%20Language%20Fundamentals)
