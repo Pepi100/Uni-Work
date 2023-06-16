@@ -121,21 +121,47 @@ public class Subiect_II
         la.stream().forEach(System.out::println);
         System.out.println();
 
-        System.out.println("Cerinta a)");
-        la.stream().filter(a -> a.getPret() >= 5000).sorted(comparing(Automobil::getPret).reversed()).forEach(System.out::println);
-        System.out.println();
+//        la.stream().filter(automobil -> automobil.getPret() >= 5000).sorted(Comparator.comparing(automobil -> -1*automobil.getPret())).forEach(System.out::println);
+//        la.stream().filter(automobil -> automobil.getPret() >= 5000).sorted(comparing(Automobil::getPret).reversed()).forEach(System.out::println);
 
-        System.out.println("Cerinta b)");
-        la.stream().map(Automobil::getMarca).distinct().forEach(System.out::println);
-        System.out.println();
+            la.stream().map(Automobil::getMarca).distinct().forEach(System.out::println);
 
-        System.out.println("Cerinta c)");
-        List<Automobil> ln = la.stream().filter(a -> a.getCapacitate() >= 2000).filter(a -> a.getCapacitate() <= 3000).collect(toList());
-        ln.stream().forEach(System.out::println);
+            List<Automobil> ls  = la.stream().filter(automobil -> automobil.getCapacitate()<=3000 && automobil.getCapacitate()>=2000).collect(Collectors.toList());
+
+            ls.stream().forEach(System.out::println);
         System.out.println();
+        System.out.println();
+             List<Integer> ls2 = la.stream().filter(automobil -> automobil.getMarca().compareTo("Audi") == 0).sorted(Comparator.comparing(automobil -> -1*automobil.getPret())).findFirst().map(automobil -> automobil.getPret()).stream().collect(toList());
+
+        System.out.println(ls2.get(0));
 
         System.out.println("Cerinta d)");
-        System.out.println(la.stream().filter(a -> a.getMarca().equals("Audi")).min(comparing(Automobil::getPret)));
-        System.out.println();
+         System.out.println(la.stream().filter(a -> a.getMarca().equals("Audi")).min(comparing(Automobil::getPret)));
+         System.out.println();
     }
 }
+
+
+
+
+
+
+
+
+
+//   System.out.println("Cerinta a)");
+//           la.stream().filter(a -> a.getPret() >= 5000).sorted(comparing(Automobil::getPret).reversed()).forEach(System.out::println);
+//           System.out.println();
+//
+//           System.out.println("Cerinta b)");
+//           la.stream().map(Automobil::getMarca).distinct().forEach(System.out::println);
+//           System.out.println();
+//
+//           System.out.println("Cerinta c)");
+//           List<Automobil> ln = la.stream().filter(a -> a.getCapacitate() >= 2000).filter(a -> a.getCapacitate() <= 3000).collect(toList());
+//        ln.stream().forEach(System.out::println);
+//        System.out.println();
+
+// System.out.println("Cerinta d)");
+//         System.out.println(la.stream().filter(a -> a.getMarca().equals("Audi")).min(comparing(Automobil::getPret)));
+//         System.out.println();

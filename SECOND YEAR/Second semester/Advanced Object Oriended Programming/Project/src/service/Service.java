@@ -499,6 +499,9 @@ public class Service {
                    case 1 -> {
                        newHp.setConnectivity(ConnectivityType.WIRELESS);
                    }
+                   case 0 -> {
+                       return;
+                   }
                    default -> {
                        newHp.setConnectivity(ConnectivityType.WIRED);
                    }
@@ -518,6 +521,9 @@ public class Service {
                    }
                    case 2 -> {
                        newHp.setFit(FitType.OVER_EAR);
+                   }
+                   case 0 -> {
+                       return;
                    }
                    default -> {
                        newHp.setFit(FitType.IN_EAR);
@@ -583,6 +589,10 @@ public class Service {
                    }
                    case 2 -> {
                        newMi.setConnectivity(MicConnectivityType.USB);
+                   }
+
+                   case 0 -> {
+                       return;
                    }
                    default -> {
                        newMi.setConnectivity(MicConnectivityType.JACK);
