@@ -1,2 +1,13 @@
 Supervised Learning = ce am facut la ML, CNN, KNN, SVM
 Unsupervised Learning = metode in care nu am labeled training data, precum clustering
+
+KR:
+MinMax:
+Radacina arborelui este intotdeauna un nod MAX
+Frunzele se pot afla la orice adancime (fie ne oprim la o stare finala, fie cand depth = 0)
+Primul fiu calculat nu poate fi niciodata retezat prin alpha beta
+Daca avem n fii, iar fiul i este retezat, atunci toti fiii din intervalul  [i, n] vor fi si ei retezati.
+Variatia principala: ruta in arbore
+
+Depth First -> stiva
+Breadth First -> coada
