@@ -1,0 +1,81 @@
+1.
+
+A- 3
+B- 1
+C- 5
+D- 2
+E- 4  
+
+2.
+
+Gândirea unui adversar se concentrează pe identificarea modurilor prin care un sistem poate eșua în atingerea obiectivelor sale, încercând să cauzeze cele mai grave și extinse consecințe negative posibile.
+
+Pentru a evalua în mod corespunzător securitatea unui sistem, este crucial să ne punem în locul unui posibil atacator și să luăm în considerare toate perspectivele și tehniciile pe care le-ar putea folosi
+
+3.
+24 + 10 = 34
+
+Baza 2:
+34%2 = 0
+17%2 = 1
+8%2 = 0
+4%2= 0
+2%2 = 0
+1%2 = 1
+Apoi le citim in ordine inversa si obtinem 10.0010
+
+In sens invers:
+0 * 2^0 + 1* 2^1 + 0 * 2^2 + 0 * 2^3 + 0 * 2^4 + 1 * 2^5 = 2 + 32 = 34 
+
+Baza 16:
+
+AF23 = 1010.1111.0010.0011   = A.F.2.3 (fiecare cifra reprezint 4 biti)
+
+4.
+Am folosit tabela de aici: https://www.ascii-code.com/
+RADU = 82 65 68 85
+
+66 82 65 86 79 = B R A V O
+
+5. Base64 Encoding
+In Base64, each character is reprezented using 6 bits:
+https://en.wikipedia.org/wiki/Base64
+
+RADU =
+01010010.01000001.01000100.01010101
+Becomes:
+010100.100100.000101.000100.010101.010000
+U	k	F	E     V      Q	    =     =
+
+
+U3VudCBzdHVkZW50IGxhIEZNSS4 = Sunt student la FMI.
+
+6. 
+malware - software malitios / creat cu intentia de a cauza rau
+
+virus - malware care se ataseaza altui program si isi inc epe executia odata cu executia acelui program
+
+dropper - componenta ale unui malware care descarca si instaleaza alte componente ale acelui malware 
+
+downloader - ca un dropper, dar mai specializat pe descarcare 
+
+trojan - malware care se prezinta ca un program legitim/util, dar care de fapt e malefic
+
+spyware - software care are scopul de a colecta informatii despre un utilizator fara consimtamantul/cunostinta acestuia
+
+riskware - software care prezinta caracteristici sau commponente care pot fi considerate de risc pentru securitatea sistemului
+
+ransomware - program care cripteaza fisierele unui utilizator si apoi cere o rascumparare pt a le decripta
+
+adware - software care afiseaza anuntuiri nedorite pe ecran
+
+worm - malware care se propaga fara nevoia unei gazde (programe/fisiere existente) sau a interventiei umane
+
+obfuscare - tehnica folosita in programele malware sau in software-ul ilegal pentru a ascunde/ingreuna intelegerea codului sursa al acelui program
+
+
+
+
+
+
+

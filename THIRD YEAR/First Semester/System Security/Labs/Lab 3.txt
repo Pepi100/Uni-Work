@@ -1,0 +1,98 @@
+1.1
+import base64
+
+# transform sirul din base64 in bytes
+str = "o9/khC3Pf3/9CyNCbdzHPy5oorccEawZSFt3mgCicRnihDSM8Obhlp3vviAVuBbiOtCSz6husBWqhfF0Q/8EZ+6iI9KygD3hAfFgnzyv9w=="
+str_to_bytes = base64.b64decode(str)
+
+print(str_to_bytes)
+
+# transform sirul hex in bytes
+hexString = "ecb181a479a6121add5b42264db9b44b4b48d7d93c62c56a3c3e1aba64c7517a90ed44f8919484b6ed8acc4670db62c249b9f5bada4ed474c9e4d111308b614788cd4fbdc1e949c1629e12fa5fdbd9"
+hex_to_bytes = bytes.fromhex(hexString)
+print(hex_to_bytes)
+
+# fac xor intre sirurile de bytes
+res = bytes(x ^ y for x, y in zip(str_to_bytes, hex_to_bytes))
+print(res)
+
+
+----------output:
+b'\xa3\xdf\xe4\x84-\xcf\x7f\x7f\xfd\x0b#Bm\xdc\xc7?.h\xa2\xb7\x1c\x11\xac\x19H[w\x9a\x00\xa2q\x19\xe2\x844\x8c\xf0\xe6\xe1\x96\x9d\xef\xbe \x15\xb8\x16\xe2:\xd0\x92\xcf\xa8n\xb0\x15\xaa\x85\xf1tC\xff\x04g\xee\xa2#\xd2\xb2\x80=\xe1\x01\xf1`\x9f<\xaf\xf7'
+b'\xec\xb1\x81\xa4y\xa6\x12\x1a\xdd[B&M\xb9\xb4KKH\xd7\xd9<b\xc5j<>\x1a\xbad\xc7Qz\x90\xedD\xf8\x91\x94\x84\xb6\xed\x8a\xccFp\xdbb\xc2I\xb9\xf5\xba\xdaN\xd4t\xc9\xe4\xd1\x110\x8baG\x88\xcdO\xbd\xc1\xe9I\xc1b\x9e\x12\xfa_\xdb\xd9'
+ 
+b'One Time Pad este un sistem de criptare perfect sigur daca este folosit corect.'
+
+
+1.2
+str = "o9/khC3Pf3/9CyNCbdzHPy5oorccEawZSFt3mgCicRnihDSM8Obhlp3vviAVuBbiOtCSz6husBWqhfF0Q/8EZ+6iI9KygD3hAfFgnzyv9w=="
+str_to_bytes = base64.b64decode(str)
+print(str_to_bytes)
+
+text = "Care este aceasta cheie?"
+text = bytes(text, 'ascii')
+
+# fac xor intre textul criptat si textul pe care vreau sa il obtin
+key = bytes(x ^ y for x, y in zip(str_to_bytes, text))
+print(key)
+
+decriptat = bytes(x ^ y for x, y in zip(str_to_bytes, key))
+print(decriptat)
+
+
+-----------output:
+b'\xa3\xdf\xe4\x84-\xcf\x7f\x7f\xfd\x0b#Bm\xdc\xc7?.h\xa2\xb7\x1c\x11\xac\x19H[w\x9a\x00\xa2q\x19\xe2\x844\x8c\xf0\xe6\xe1\x96\x9d\xef\xbe \x15\xb8\x16\xe2:\xd0\x92\xcf\xa8n\xb0\x15\xaa\x85\xf1tC\xff\x04g\xee\xa2#\xd2\xb2\x80=\xe1\x01\xf1`\x9f<\xaf\xf7'
+b'\xe0\xbe\x96\xe1\r\xaa\x0c\x0b\x98+B!\x08\xbd\xb4KOH\xc1\xdfyx\xc9&'
+b'Care este aceasta cheie?'
+
+2.1
+Cifrul lui Cezar
+Se alege o cheie k nr natural iar pentru fiecare litera din alfabet se asociaza litera care e deplasata cu k pozitii la dreapta.
+
+ex criptare:
+k = 18
+maria are mere -> esjas sjw ewjwe
+
+ex decriptare: (ne deplasam k pozitii la stanga)
+k = 2
+CDGEGFCT -> abecedar
+
+Criptarea nu foloseste o metoda complexa, s-ar putea usor folosi forta bruta pentru a fi testate toate cheile pana se obtine un mesaj cu sens. De asemenea, s ar putea folosi analiza de frecventa pentru a identifica cuvintele si literele care apar mai des.
+
+2.2
+Rail Fence: se stabileste un numar de linii k.
+Pentru criptare: se iau literele cate k si se scriu pe coloane; la final se rescrie textul linie cu linie
+
+ex: criptare pe 2 linii
+maria are mere
+
+m r a r m r
+ a i a e e e
+
+=> mrarmraiaeee
+
+Pentru decriptare:
+Se imparte textul in k parti si se scriu una sub cealalta; la final se citeste pe coloane
+
+ex: decriptare pt 2 linii
+mrarmraiaeee
+
+mrarmr
+aiaeee
+
+=> ma ri aa re me re 
+
+-----------------------------------------
+Asemenea cifrului lui cezar, se poate folosi forta bruta, deoarece complexitatea obtinuta nu este foarte mare
+
+3. codul zilei
+18 Aprilie 1940
+
+IV I III NWL HV IM JB OT QA UF HSP
+
+RADUN EDELC U => LROEH VTPGB H
+
+pentru a decripta, repunem discurile in pozitia intiala si tastam textul criptat.
+
+
+
