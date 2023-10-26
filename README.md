@@ -45,7 +45,7 @@
 **III. Third year:**
    * First semester: 
       
-      * [System Security](https://github.com/Pepi100/Uni-Work/tree/master/THIRD%20YEAR/First%20semester/System%20Security)
+      * [System Security](https://github.com/Pepi100/Uni-Work/tree/master/THIRD%20YEAR/First%20Semester/System%20Security)
       * Robotics - TBA
       * [Unreal Engine](https://github.com/Pepi100/Uni-Work/tree/master/THIRD%20YEAR/First%20semester/Unreal%20Engine)
       * [Unity](https://github.com/Pepi100/Tales-of-Quarto)
