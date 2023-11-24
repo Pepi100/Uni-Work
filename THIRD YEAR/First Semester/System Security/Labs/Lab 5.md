@@ -109,14 +109,15 @@ print(secrets.compare_digest(secv1, secv2))
 ### Genereaza o cheie fluida binara care ulterior sa poata fi folosita pentru cryptarea unui mesaj de 100 de caractere
 
 ```python
+key = secrets.token_bytes(100)
+text = ''.join(secrets.choice(string.ascii_letters) for i in range(100))
+binaryText = bytes(text, 'ascii')
 
-cheie = secrets.token_bytes(100)
-text = 'mTpVHVgzVhayFwGanjspjFUNUONVYoCpQdKUEpAzmXBXoAnHSyAZHMreUTqHsJXROOWgSBPeHYXrtnnwbahHssNaHMGOcXBgEzbP'
-text_binar = bytes(text, 'ascii')
 
-res = bytes(x ^ y for x, y in zip(cheie, text_binar))
+res = bytes(x ^ y for x, y in zip(key, binaryText))
+print("Initial text: " + text )
+print("Result: ")
 print(res)
-
 ```
 
 
