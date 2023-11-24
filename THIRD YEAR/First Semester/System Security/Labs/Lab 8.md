@@ -84,6 +84,6 @@ răspunsul JSON primit.
 
 ## Timestamps
 
-Am atasat [aici]() screenshot-ul din pestudio
+Am atasat [aici](https://github.com/Pepi100/Uni-Work/blob/master/THIRD%20YEAR/First%20Semester/System%20Security/Labs/petstudio.png) screenshot-ul din pestudio
 
-Timestamp-ul UNIX este 1700833338 si se gaseste [aici]().
+Timestamp-ul UNIX este 1700833338 si se gaseste [aici](https://github.com/Pepi100/Uni-Work/blob/master/THIRD%20YEAR/First%20Semester/System%20Security/Labs/Hxd.png).
