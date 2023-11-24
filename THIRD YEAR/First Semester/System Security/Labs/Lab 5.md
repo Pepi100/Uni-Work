@@ -81,7 +81,7 @@ un utilizator isi poate crea o parola sigura pentru un serviciu web
 ### Genereaza un string URL-safe de 32 de caractere
 
 ```python
-url = ''.join(secrets.choice(string.ascii_letters + string.digits + '-_') for _ in range(32 + secrets.randbelow(10) ))
+url = secrets.token_urlsafe(32)
 print(url)
 
 ```
