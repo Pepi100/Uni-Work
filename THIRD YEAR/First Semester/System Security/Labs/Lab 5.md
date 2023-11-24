@@ -126,13 +126,12 @@ print(res)
 
 import bcrypt
 
-def hash_and_store_password(password):
-    hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-    # stocarea efectiva
-    return hashed_password
-
-print(hash_and_store_password("ParolaMiaFrumoasa"))
-
+list = []
+for i in range(10):
+    password  = input("Introduceti o parola: ")
+    hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+    list.append(hashed)
+print(list)
 ```
 
 
