@@ -27,7 +27,7 @@ Descărcați puttygen.exe.
 Generați o pereche de chei cheie publică - cheie privată RSA pe 2048 de biți. Apăsați Generate. 
 
 
-<img src = "keygen.png" width = "300px">
+<img src = "https://github.com/Pepi100/Uni-Work/blob/master/THIRD%20YEAR/First%20Semester/System%20Security/Labs/Keygen.png" width = "400px">
 
 Adaugati PassPhrase. La ce folosește aceasta? 
 
