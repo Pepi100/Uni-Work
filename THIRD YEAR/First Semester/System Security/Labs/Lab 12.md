@@ -40,5 +40,3 @@ Hardcodați parole în cod.
 
 <br>
 
-## Buffer Overflow
-
