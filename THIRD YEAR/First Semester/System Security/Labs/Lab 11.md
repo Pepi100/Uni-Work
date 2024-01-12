@@ -14,7 +14,7 @@ Care este validitatea certificatului?
 > Certificatul este valid pana la data de **23 martie 2024**
 
 Pe câți biți este definită cheia publică? 
-> 512
+> 2048
 
 Care este valoarea exponenților de criptare din  certificat  și  din  certificatele  care îl atestă în lanț? Ce observați? Are aceasta impact asupra securității
 
