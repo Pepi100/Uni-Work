@@ -1,0 +1,33 @@
+1. Gramatici:
+
+- V = multime finita de stari neterminale
+
+- Σ = multime dinita de stari terminale
+
+Cele doua sunt disjuncte
+
+P = multimea regulilor = drumuri inte elementele celor doua multimi de mai sus
+
+S = multimea simbolurilor de start
+
+
+Ierarhia lui Chomsky
+
+Orice gramatica e de tip 0;
+
+
+Masini Turing
+
+- Un model de calcul mai puternic decat automatul finit sau automatul finit cu stiva. 
+
+
+ari:
+Definitie: O masina Turing determinista cu o banda este un tuplu M = (Z, Σ, Γ, δ, z0, ✷, E),
+unde:
+Z este o multime finita de stari,
+Σ este alfabetul de input,
+Γ ⊃ Σ este alfabetul de lucru,
+δ : Z × Γ → Z × Γ × {L, R, N} este functia de tranzitie,
+z0 ∈ Z este starea initiala (de start),
+✷ ∈ Γ \ Σ este simbolul blanc (care marcheaza o casuta goala),
+E ⊂ Z este multimea starilor finale
